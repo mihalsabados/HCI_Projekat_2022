@@ -35,7 +35,7 @@ namespace HCI_Projekat.gui
 		}
 
 
-		private void hideErrorLabels()
+		private void ResetState()
         {
 			FirstNameError.Visibility = Visibility.Hidden;
 			LastNameError.Visibility = Visibility.Hidden;
@@ -52,7 +52,7 @@ namespace HCI_Projekat.gui
 			var password = passwordTxt.Password;
 			var confirmPassword = confirmPasswordTxt.Password;
 
-			hideErrorLabels();
+			ResetState();
 
 			if (firstName.Length == 0)
 				FirstNameError.Visibility = Visibility.Visible;
@@ -77,7 +77,7 @@ namespace HCI_Projekat.gui
 					if (password != confirmPassword)
                     {
 						ConfrimPasswordError.Visibility = Visibility.Visible;
-						ConfrimPasswordError.Content = "Confirm password is not the same.";
+						ConfrimPasswordError.Content = "Lozinka za proveru nije ista.";
                     } else
                     {
 						User newUser = UserService.RegisterNewUser(firstName, lastName, username, password);
