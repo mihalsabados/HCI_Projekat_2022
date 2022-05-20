@@ -7,22 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="firstPage.png" />
     <None Remove="login.png" />
     <None Remove="railway.png" />
-    <None Remove="train.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="firstPage.png" />
     <Resource Include="login.png" />
     <Resource Include="railway.png" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="4.6.0-ci182" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="train.png" />
   </ItemGroup>
 
 </Project>
