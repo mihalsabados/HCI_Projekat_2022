@@ -27,6 +27,14 @@ namespace HCI_Projekat
             InitializeComponent();
         }
 
+
+        private void ResetState()
+        {
+            LoginError.Visibility = Visibility.Hidden;
+            usernameTxt.Text = "";
+            passwordTxt.Password = "";
+        }
+
         private void LoginClicked(object sender, RoutedEventArgs e)
         {
             var username = usernameTxt.Text;
@@ -49,8 +57,8 @@ namespace HCI_Projekat
 
 		private void ButtonRegister_OnClick(object sender, RoutedEventArgs e)
 		{
-            ((MainWindow)App.Current.MainWindow).Login.Visibility = Visibility.Hidden;
-            ((MainWindow)App.Current.MainWindow).Height = 600;
+           ((MainWindow)App.Current.MainWindow).Login.Visibility = Visibility.Hidden;
+            ResetState();
            ((MainWindow)App.Current.MainWindow).Registration.Visibility = Visibility.Visible;
         }
 	}
