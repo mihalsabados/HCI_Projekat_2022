@@ -7,6 +7,11 @@
         mc:Ignorable="d"
         Title="Railway" Height="450" Width="800" Icon="railway.png"
         >
-        
-    <Frame Source="/Login.xaml"/>
+
+	<Grid>
+		<Frame x:Name="Login" Source="/gui/Login.xaml" Visibility="Visible" />
+		<Frame x:Name="Registration" Source="/gui/Registration.xaml" Visibility="Hidden" />
+		<Frame x:Name="HomePageClient" Source="/gui/HomePageClient.xaml" Visibility="Hidden"/>
+		<Frame x:Name="HomePageManager" Source="/gui/HomePageManager.xaml" Visibility="Hidden"/>
+	</Grid>
 </Window>

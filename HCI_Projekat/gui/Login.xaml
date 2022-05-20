@@ -9,25 +9,25 @@
       d:DesignHeight="350" d:DesignWidth="600"
       Title="Login">
 
-    <Grid  Margin="0,0,0,0">
-        <Grid.Background>
-            <ImageBrush ImageSource="/login.png" /> 
-        </Grid.Background>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+	<Grid  Margin="0,0,0,0">
+		<Grid.Background>
+			<ImageBrush ImageSource="/login.png" />
+		</Grid.Background>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
 
-        <materialDesign:Card
-  Background="#FFE6CFAE"
+		<materialDesign:Card
+  Background="#FFCECFC8"
   Padding="8"
   UniformCornerRadius="6" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="450,20,80,20">
-            <StackPanel>
-                <Image Source="/railway.png" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="110,10,110,0" MaxHeight="80" MaxWidth="80"></Image>
-                <Label Content="Log in" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" Margin="62,0,62,0" Foreground="#FF485B83"/>
-                <TextBox
+			<StackPanel>
+				<Image Source="/railway.png" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="110,10,110,0" MaxHeight="80" MaxWidth="80"></Image>
+				<Label Content="Log in" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" Margin="62,0,62,0" Foreground="#FF485B83"/>
+				<TextBox
                 x:Name="usernameTxt"
                 Style="{StaticResource MaterialDesignFilledTextBox}"
                 VerticalAlignment="Center"
@@ -43,7 +43,7 @@
                 Foreground="#FF485B83"
             />
 
-                <PasswordBox
+				<PasswordBox
                  x:Name="passwordTxt"
                  Style="{StaticResource MaterialDesignFilledPasswordBox}"
                  VerticalAlignment="Center"
@@ -57,10 +57,30 @@
                  Foreground="#FF485B83"
             />
 
-                <Button Content="Log in" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Center" FontSize="14" Click="LoginClicked" Margin="45,10,45,0" Background="#FF485B83" BorderBrush="#FF485B83" Foreground="#FFC6AC87"/>
-                <Label Content="Don't have account? Register here." HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Top" Grid.RowSpan="2" Foreground="#FF485B83" Margin="0,5,0,0"/>
-            </StackPanel>
-        </materialDesign:Card>
-    </Grid>
+
+				<Button Content="Prijava" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Center" FontSize="14" Click="LoginClicked" Margin="45,10,45,0" Background="#FF485B83" BorderBrush="#FF485B83" Foreground="#FFCECFC8"/>
+				<Label
+                    Name="LoginError"
+                    Visibility="Hidden"
+                    Content="Pogrešno korisničko ime ili lozinka."
+                    HorizontalAlignment="Center"
+                    Grid.Row="5"
+                    VerticalAlignment="Top"
+                    Grid.RowSpan="2"
+                    Foreground="#FFC34E43"
+                    Margin="0,5,0,0" />
+
+
+				<Button
+				  Grid.Row="5" VerticalAlignment="Top" Grid.RowSpan="2"
+                  Click="ButtonRegister_OnClick"
+				  Margin="0,5,0,0"
+                  Content="Nemate nalog? Registrujte se." Foreground="#FF485B83" HorizontalAlignment="Center" FontSize="10" Background="{x:Null}" BorderBrush="{x:Null}"
+				/>
+
+
+			</StackPanel>
+		</materialDesign:Card>
+	</Grid>
 
 </Page>

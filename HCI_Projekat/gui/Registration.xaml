@@ -1,0 +1,181 @@
+﻿<Page x:Class="HCI_Projekat.gui.Registration"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:HCI_Projekat"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="600"
+      Title="Registration">
+
+	<Grid  Margin="0,0,0,0">
+		<Grid.Background>
+			<ImageBrush ImageSource="/login.png" />
+		</Grid.Background>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+
+		<materialDesign:Card
+  Background="#FFCECFC8"
+  Padding="8"
+  UniformCornerRadius="6" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="450,20,80,20">
+			<StackPanel>
+				<Image Source="/railway.png" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="110,10,110,0" MaxHeight="80" MaxWidth="80"></Image>
+				<Label Content="Log in" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" Margin="62,0,62,0" Foreground="#FF485B83"/>
+
+				<TextBox
+                x:Name="firstNameTxt"
+                Style="{StaticResource MaterialDesignFilledTextBox}"
+                VerticalAlignment="Center"
+                AcceptsReturn="True"
+                TextWrapping="Wrap"
+                materialDesign:HintAssist.Hint="First Name"
+                Grid.Row="2"
+                HorizontalAlignment="Stretch"
+                Margin="20,3,20,0"
+                FontSize="14"
+                CaretBrush="#FF1ABC9C"
+                SelectionBrush="#FFABF9EA"
+                Foreground="#FF485B83"
+                />
+                <Label
+                    Name="FirstNameError"
+                    Visibility="Hidden"
+                    FontSize="8px"
+                    Content="Unesite ime."
+                    HorizontalAlignment="Center"
+                    Grid.Row="5"
+                    VerticalAlignment="Top"
+                    Grid.RowSpan="2"
+                    Foreground="#FFC34E43" />
+
+                <TextBox
+                x:Name="lastNameTxt"
+                Style="{StaticResource MaterialDesignFilledTextBox}"
+                VerticalAlignment="Center"
+                AcceptsReturn="True"
+                TextWrapping="Wrap"
+                materialDesign:HintAssist.Hint="Last Name"
+                Grid.Row="2"
+                HorizontalAlignment="Stretch"
+                Margin="20,3,20,0"
+                FontSize="14"
+                CaretBrush="#FF1ABC9C"
+                SelectionBrush="#FFABF9EA"
+                Foreground="#FF485B83"
+                />
+                <Label
+                    Name="LastNameError"
+                    Visibility="Hidden"
+                    FontSize="8px"
+                    Content="Unesite prezime."
+                    HorizontalAlignment="Center"
+                    Grid.Row="5"
+                    VerticalAlignment="Top"
+                    Grid.RowSpan="2"
+                    Foreground="#FFC34E43"
+                    Margin="0,0,0,0" />
+
+				<TextBox
+                x:Name="usernameTxt"
+                Style="{StaticResource MaterialDesignFilledTextBox}"
+                VerticalAlignment="Center"
+                AcceptsReturn="True"
+                TextWrapping="Wrap"
+                materialDesign:HintAssist.Hint="Username"
+                Grid.Row="2"
+                HorizontalAlignment="Stretch"
+                Margin="20,3,20,0"
+                FontSize="14"
+                CaretBrush="#FF1ABC9C"
+                SelectionBrush="#FFABF9EA"
+                Foreground="#FF485B83"
+            />
+                <Label
+                    Name="UsernameError"
+                    Visibility="Hidden"
+                    FontSize="8px"
+                    Content="Unesite korisničko ime."
+                    HorizontalAlignment="Center"
+                    Grid.Row="5"
+                    VerticalAlignment="Top"
+                    Grid.RowSpan="2"
+                    Foreground="#FFC34E43"
+                    Margin="0,0,0,0" />
+
+
+
+                <PasswordBox
+                 x:Name="passwordTxt"
+                 Style="{StaticResource MaterialDesignFilledPasswordBox}"
+                 VerticalAlignment="Center"
+                 materialDesign:HintAssist.Hint="Password"
+                 Grid.Row="3"
+                 HorizontalAlignment="Stretch"
+                 Margin="20,3,20,0"
+                 FontSize="14"
+                 CaretBrush="#FF1ABC9C"
+                 SelectionBrush="#FFABF9EA"
+                 Foreground="#FF485B83"
+                />
+                <Label
+                    Name="PasswordError"
+                    Visibility="Hidden"
+                    FontSize="8px"
+                    Content="Unesite lozinku."
+                    HorizontalAlignment="Center"
+                    Grid.Row="5"
+                    VerticalAlignment="Top"
+                    Grid.RowSpan="2"
+                    Foreground="#FFC34E43"
+                    Margin="0,0,0,0" />
+
+
+
+                <PasswordBox
+                 x:Name="confirmPasswordTxt"
+                 Style="{StaticResource MaterialDesignFilledPasswordBox}"
+                 VerticalAlignment="Center"
+                 materialDesign:HintAssist.Hint="Confirm Password"
+                 Grid.Row="3"
+                 HorizontalAlignment="Stretch"
+                 Margin="20,3,20,0"
+                 FontSize="14"
+                 CaretBrush="#FF1ABC9C"
+                 SelectionBrush="#FFABF9EA"
+                 Foreground="#FF485B83"
+                />
+
+                <Label
+                    Name="ConfrimPasswordError"
+                    Visibility="Hidden"
+                    FontSize="8px"
+                    Content="Ponovo unesite lozinku."
+                    HorizontalAlignment="Center"
+                    Grid.Row="5"
+                    VerticalAlignment="Top"
+                    Grid.RowSpan="2"
+                    Foreground="#FFC34E43"
+                    Margin="0,0,0,0" />
+
+
+                <Button Content="Registracija" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Center" FontSize="14" Click="Button_Click_Register"  Margin="45,10,45,0" Background="#FF485B83" BorderBrush="#FF485B83" Foreground="#FFCECFC8"/>
+
+				<Button
+				  Grid.Row="5" VerticalAlignment="Top" Grid.RowSpan="2"
+                  Click="Button_Click_Login"
+				  Margin="0,0,0,0"
+                  Content="Već imate nalog? Prijavite se." Foreground="#FF485B83" HorizontalAlignment="Center" FontSize="10" Background="{x:Null}" BorderBrush="{x:Null}"
+				/>
+				
+
+			</StackPanel>
+		</materialDesign:Card>
+	</Grid>
+
+</Page>
