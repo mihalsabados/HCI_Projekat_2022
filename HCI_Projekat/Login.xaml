@@ -3,39 +3,64 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:HCI_Projekat"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="350" d:DesignWidth="600"
       Title="Login">
 
-    <Grid Background="White" Margin="0,0,0,0">
+    <Grid  Margin="0,0,0,0">
+        <Grid.Background>
+            <ImageBrush ImageSource="/login.png" /> 
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Grid HorizontalAlignment="Stretch" Margin="200,40,200,50" VerticalAlignment="Stretch" Background="#66477D9F">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Label Content="Log in" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
-            <TextBox x:Name="usernameTxt" HorizontalAlignment="Center" Grid.Row="2" Text="Username" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" FontSize="14"/>
-            <PasswordBox x:Name="passwordTxt" HorizontalAlignment="Center" Grid.Row="3" Password="Password" VerticalAlignment="Center" Width="120" FontSize="14" ToolTip="Password" Tag="Password"/>
-            <Button Content="Log in" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center" FontSize="16" Click="LoginClicked"/>
-            <Label Content="Don't have account? Register here." HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Top" Grid.RowSpan="2" Foreground="#FF0068FF"/>
 
+        <materialDesign:Card
+  Background="#FFE6CFAE"
+  Padding="8"
+  UniformCornerRadius="6" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="450,20,80,20">
+            <StackPanel>
+                <Image Source="/railway.png" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="110,10,110,0" MaxHeight="80" MaxWidth="80"></Image>
+                <Label Content="Log in" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" Margin="62,0,62,0" Foreground="#FF485B83"/>
+                <TextBox
+                x:Name="usernameTxt"
+                Style="{StaticResource MaterialDesignFilledTextBox}"
+                VerticalAlignment="Center"
+                AcceptsReturn="True"
+                TextWrapping="Wrap"
+                materialDesign:HintAssist.Hint="Username"
+                Grid.Row="2"
+                HorizontalAlignment="Stretch"
+                Margin="20,10,20,0"
+                FontSize="14"
+                CaretBrush="#FF1ABC9C"
+                SelectionBrush="#FFABF9EA"
+                Foreground="#FF485B83"
+            />
 
+                <PasswordBox
+                 x:Name="passwordTxt"
+                 Style="{StaticResource MaterialDesignFilledPasswordBox}"
+                 VerticalAlignment="Center"
+                 materialDesign:HintAssist.Hint="Password"
+                 Grid.Row="3"
+                 HorizontalAlignment="Stretch"
+                 Margin="20,10,20,0"
+                 FontSize="14"
+                 CaretBrush="#FF1ABC9C"
+                 SelectionBrush="#FFABF9EA"
+                 Foreground="#FF485B83"
+            />
 
-        </Grid>
+                <Button Content="Log in" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Center" FontSize="14" Click="LoginClicked" Margin="45,10,45,0" Background="#FF485B83" BorderBrush="#FF485B83" Foreground="#FFC6AC87"/>
+                <Label Content="Don't have account? Register here." HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Top" Grid.RowSpan="2" Foreground="#FF485B83" Margin="0,5,0,0"/>
+            </StackPanel>
+        </materialDesign:Card>
     </Grid>
 
 </Page>
