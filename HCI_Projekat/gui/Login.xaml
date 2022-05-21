@@ -7,7 +7,7 @@
       xmlns:local="clr-namespace:HCI_Projekat"
       mc:Ignorable="d" 
       d:DesignHeight="350" d:DesignWidth="600"
-      Title="Login">
+      Title="Prijava">
 
 	<Grid  Margin="0,0,0,0">
 		<Grid.Background>
@@ -26,14 +26,14 @@
   UniformCornerRadius="6" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="250,20,40,20">
 			<StackPanel>
 				<Image Source="/railway.png" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="110,10,110,0" MaxHeight="80" MaxWidth="80"></Image>
-				<Label Content="Log in" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" Margin="62,0,62,0" Foreground="#FF485B83"/>
+                <Label Content="Prijava" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" Margin="62,0,62,0" Foreground="#FF485B83"/>
 				<TextBox
                 x:Name="usernameTxt"
                 Style="{StaticResource MaterialDesignFilledTextBox}"
                 VerticalAlignment="Center"
                 AcceptsReturn="True"
                 TextWrapping="Wrap"
-                materialDesign:HintAssist.Hint="Username"
+                materialDesign:HintAssist.Hint="Korisničko ime"
                 Grid.Row="2"
                 HorizontalAlignment="Stretch"
                 Margin="20,10,20,0"
@@ -47,7 +47,7 @@
                  x:Name="passwordTxt"
                  Style="{StaticResource MaterialDesignFilledPasswordBox}"
                  VerticalAlignment="Center"
-                 materialDesign:HintAssist.Hint="Password"
+                 materialDesign:HintAssist.Hint="Lozinka"
                  Grid.Row="3"
                  HorizontalAlignment="Stretch"
                  Margin="20,10,20,0"
@@ -58,7 +58,7 @@
             />
 
 
-				<Button Content="Prijava" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Center" FontSize="14" Click="LoginClicked" Margin="45,10,45,0" Background="#FF485B83" BorderBrush="#FF485B83" Foreground="#FFCECFC8"/>
+				<Button Content="Prijavi se" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Center" FontSize="14" Click="LoginClicked" Margin="45,10,45,0" Background="#FF485B83" BorderBrush="#FF485B83" Foreground="#FFCECFC8"/>
 				<Label
                     Name="LoginError"
                     Visibility="Hidden"

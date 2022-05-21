@@ -15,6 +15,11 @@ using System.Windows.Shapes;
 using HCI_Projekat.model;
 using HCI_Projekat.database;
 using HCI_Projekat.services;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Position;
+using ToastNotifications.Messages;
+using System.Threading;
 
 namespace HCI_Projekat.gui
 {
@@ -27,6 +32,20 @@ namespace HCI_Projekat.gui
 		{
 			InitializeComponent();
 		}
+		Notifier notifier = new Notifier(cfg =>
+		{
+			cfg.PositionProvider = new WindowPositionProvider(
+				parentWindow: Application.Current.MainWindow,
+				corner: Corner.TopRight,
+				offsetX: 10,
+				offsetY: 10);
+
+			cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+				notificationLifetime: TimeSpan.FromSeconds(3),
+				maximumNotificationCount: MaximumNotificationCount.FromCount(5)); ; ;
+
+			cfg.Dispatcher = Application.Current.Dispatcher;
+		});
 
 		private void Button_Click_Login(object sender, RoutedEventArgs e)
 		{	
@@ -81,11 +100,14 @@ namespace HCI_Projekat.gui
                     } else
                     {
 						User newUser = UserService.RegisterNewUser(firstName, lastName, username, password);
+						notifier.ShowSuccess("Uspešno ste se registrovali.");
+
 						((MainWindow)App.Current.MainWindow).Registration.Visibility = Visibility.Hidden;
 						((MainWindow)App.Current.MainWindow).Login.Visibility = Visibility.Visible;
+						
 					}
                 }
-            }
+			}
 
 		}
 	}

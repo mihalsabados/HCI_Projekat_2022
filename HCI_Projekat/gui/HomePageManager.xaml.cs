@@ -24,5 +24,10 @@ namespace HCI_Projekat.gui
 		{
 			InitializeComponent();
 		}
-	}
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+    }
 }

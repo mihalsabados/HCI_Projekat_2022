@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:HCI_Projekat.gui"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="HomePageClient">
+      Title="Početna stranica klijenta">
 
     <Grid>
 		<Label>Home page za klijenta</Label>

@@ -6,8 +6,8 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:HCI_Projekat"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="600"
-      Title="Registration">
+      d:DesignHeight="660" d:DesignWidth="700"
+      Title="Registracija">
 
 	<Grid  Margin="0,0,0,0">
 		<Grid.Background>
@@ -21,12 +21,13 @@
 		</Grid.ColumnDefinitions>
 
 		<materialDesign:Card
+            
   Background="#FFCECFC8"
   Padding="8"
-  UniformCornerRadius="6" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="250,20,106,20">
-			<StackPanel>
-				<Image Source="/railway.png" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="110,10,110,0" MaxHeight="80" MaxWidth="80"></Image>
-				<Label Content="Log in" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" Margin="62,0,62,0" Foreground="#FF485B83"/>
+  UniformCornerRadius="6" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="300,5,80,5">
+			<StackPanel VerticalAlignment="Stretch">
+				<Image Source="/railway.png" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="125,2,125,0" MaxHeight="80" MaxWidth="80"></Image>
+				<Label Content="Registacija" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" Margin="62,0,62,0" Foreground="#FF485B83"/>
 
 				<TextBox
                 x:Name="firstNameTxt"
@@ -37,7 +38,7 @@
                 materialDesign:HintAssist.Hint="Ime"
                 Grid.Row="2"
                 HorizontalAlignment="Stretch"
-                Margin="20,3,20,0"
+                Margin="20,1,20,5"
                 FontSize="14"
                 CaretBrush="#FF1ABC9C"
                 SelectionBrush="#FFABF9EA"
@@ -46,7 +47,7 @@
                 <Label
                     Name="FirstNameError"
                     Visibility="Hidden"
-                    FontSize="8px"
+                    FontSize="12px"
                     Content="Unesite ime."
                     HorizontalAlignment="Center"
                     Grid.Row="5"
@@ -63,7 +64,8 @@
                 materialDesign:HintAssist.Hint="Prezime"
                 Grid.Row="2"
                 HorizontalAlignment="Stretch"
-                Margin="20,3,20,0"
+                Margin="20,1,20,0"
+               
                 FontSize="14"
                 CaretBrush="#FF1ABC9C"
                 SelectionBrush="#FFABF9EA"
@@ -72,7 +74,7 @@
                 <Label
                     Name="LastNameError"
                     Visibility="Hidden"
-                    FontSize="8px"
+                    FontSize="12px"
                     Content="Unesite prezime."
                     HorizontalAlignment="Center"
                     Grid.Row="5"
@@ -87,10 +89,10 @@
                 VerticalAlignment="Center"
                 AcceptsReturn="True"
                 TextWrapping="Wrap"
-                materialDesign:HintAssist.Hint="Korisničko Ime"
+                materialDesign:HintAssist.Hint="Korisničko ime"
                 Grid.Row="2"
                 HorizontalAlignment="Stretch"
-                Margin="20,3,20,0"
+                Margin="20,1,20,0"
                 FontSize="14"
                 CaretBrush="#FF1ABC9C"
                 SelectionBrush="#FFABF9EA"
@@ -99,7 +101,7 @@
                 <Label
                     Name="UsernameError"
                     Visibility="Hidden"
-                    FontSize="8px"
+                    FontSize="12px"
                     Content="Unesite korisničko ime."
                     HorizontalAlignment="Center"
                     Grid.Row="5"
@@ -117,7 +119,7 @@
                  materialDesign:HintAssist.Hint="Lozinka"
                  Grid.Row="3"
                  HorizontalAlignment="Stretch"
-                 Margin="20,3,20,0"
+                 Margin="20,1,20,0"
                  FontSize="14"
                  CaretBrush="#FF1ABC9C"
                  SelectionBrush="#FFABF9EA"
@@ -126,7 +128,7 @@
                 <Label
                     Name="PasswordError"
                     Visibility="Hidden"
-                    FontSize="8px"
+                    FontSize="12px"
                     Content="Unesite lozinku."
                     HorizontalAlignment="Center"
                     Grid.Row="5"
@@ -144,7 +146,7 @@
                  materialDesign:HintAssist.Hint="Ponovni unos lozinke"
                  Grid.Row="3"
                  HorizontalAlignment="Stretch"
-                 Margin="20,3,20,0"
+                 Margin="20,1,20,0"
                  FontSize="14"
                  CaretBrush="#FF1ABC9C"
                  SelectionBrush="#FFABF9EA"
@@ -154,7 +156,7 @@
                 <Label
                     Name="ConfrimPasswordError"
                     Visibility="Hidden"
-                    FontSize="8px"
+                    FontSize="12px"
                     Content="Ponovo unesite lozinku."
                     HorizontalAlignment="Center"
                     Grid.Row="5"
@@ -163,10 +165,9 @@
                     Foreground="#FFC34E43"
                     Margin="0,0,0,0" />
 
+                <Button Content="Registruj se" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Center" FontSize="14" Click="Button_Click_Register"  Margin="45,10,45,0" Background="#FF485B83" BorderBrush="#FF485B83" Foreground="#FFCECFC8"/>
 
-                <Button Content="Registracija" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Center" FontSize="14" Click="Button_Click_Register"  Margin="45,10,45,0" Background="#FF485B83" BorderBrush="#FF485B83" Foreground="#FFCECFC8"/>
-
-				<Button
+                <Button
 				  Grid.Row="5" VerticalAlignment="Top" Grid.RowSpan="2"
                   Click="Button_Click_Login"
 				  Margin="0,0,0,0"

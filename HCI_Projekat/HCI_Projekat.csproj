@@ -20,6 +20,8 @@
 
   <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="4.6.0-ci182" />
+    <PackageReference Include="ToastNotifications" Version="2.5.1" />
+    <PackageReference Include="ToastNotifications.Messages" Version="2.5.1" />
   </ItemGroup>
 
 </Project>
