@@ -49,6 +49,7 @@ namespace HCI_Projekat
                     ((MainWindow)App.Current.MainWindow).HomePageManager.Visibility = Visibility.Visible;
                 else
                     ((MainWindow)App.Current.MainWindow).HomePageClient.Visibility = Visibility.Visible;
+                MainWindow.LoggedUser = user;
             } else
             {
                 LoginError.Visibility = Visibility.Visible;

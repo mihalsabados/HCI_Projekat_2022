@@ -3,12 +3,39 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:HCI_Projekat.gui"
+      xmlns:local="clr-namespace:HCI_Projekat.gui" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Početna stranica klijenta">
+      Title="Početna stranica klijenta"  Background="#FFCECFC8">
 
-    <Grid>
-		<Label>Home page za klijenta</Label>
+    <Grid VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" HorizontalAlignment="Stretch" Background="#FF485B83" Foreground="#FFCECFC8">
+            <Menu.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <DockPanel HorizontalAlignment="Stretch"></DockPanel>
+                </ItemsPanelTemplate>
+            </Menu.ItemsPanel>
+            <MenuItem Header="Redovi vožnje" Foreground="#FFCECFC8">
+            </MenuItem>
+            <MenuItem Header="Mreža linija" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" >
+
+            </MenuItem>
+            <MenuItem Header="Rezervacija" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" >
+
+            </MenuItem>
+            <MenuItem Header="Pregled Rezervisanih" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" >
+
+            </MenuItem>
+            <MenuItem HorizontalAlignment="Right"  ToolTip="Odjava" Foreground="#FFCECFC8" Margin="-7,0,0,0" Click="Logout">
+                <MenuItem.Icon>
+                    <materialDesign:PackIcon Kind="Logout" />
+                </MenuItem.Icon>
+            </MenuItem>
+        </Menu>
+        <!--<Frame Grid.Row="1" x:Name="Login" Source="/gui/Login.xaml" Visibility="Visible" />-->
     </Grid>
 </Page>

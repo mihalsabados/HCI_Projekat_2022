@@ -41,7 +41,7 @@ namespace HCI_Projekat.gui
 				offsetY: 10);
 
 			cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
-				notificationLifetime: TimeSpan.FromSeconds(3),
+				notificationLifetime: TimeSpan.FromSeconds(2),
 				maximumNotificationCount: MaximumNotificationCount.FromCount(5)); ; ;
 
 			cfg.Dispatcher = Application.Current.Dispatcher;
@@ -89,7 +89,7 @@ namespace HCI_Projekat.gui
 				if (user != null)
                 {
 					UsernameError.Visibility = Visibility.Visible;
-					UsernameError.Content = "Korisnik sa unetim korisničkim imenom već postoji";
+					UsernameError.Content = "Korisnik sa unetim korisničkim imenom već postoji.";
                 }
 				else
                 {

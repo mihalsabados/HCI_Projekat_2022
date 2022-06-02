@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HCI_Projekat.model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,10 @@ namespace HCI_Projekat
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static User LoggedUser { get; set; }
+
         public MainWindow()
         {
-
             InitializeComponent();
         }
 

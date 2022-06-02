@@ -24,5 +24,15 @@ namespace HCI_Projekat.gui
 		{
 			InitializeComponent();
 		}
+
+		private void Logout(object sender, RoutedEventArgs e)
+		{
+			MainWindow.LoggedUser = null;
+			((MainWindow)Application.Current.MainWindow).HomePageClient.Visibility = Visibility.Hidden;
+			((MainWindow)Application.Current.MainWindow).Login.Visibility = Visibility.Visible;
+		}
+
 	}
+
+
 }
