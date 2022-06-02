@@ -25,9 +25,11 @@ namespace HCI_Projekat.gui
 			InitializeComponent();
 		}
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void Logout(object sender, RoutedEventArgs e)
         {
-
-        }
+			MainWindow.LoggedUser = null;
+			((MainWindow)App.Current.MainWindow).HomePageManager.Visibility = Visibility.Hidden;
+			((MainWindow)App.Current.MainWindow).Login.Visibility = Visibility.Visible;
+		}
     }
 }

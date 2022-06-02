@@ -30,7 +30,7 @@
                 <MenuItem Header="Po redu vožnje"  Foreground="#FFCECFC8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 </MenuItem>
             </MenuItem>
-            <MenuItem HorizontalAlignment="Right"  ToolTip="Odjava" Foreground="#FFCECFC8" Margin="-7,0,0,0" Click="MenuItem_Click">
+            <MenuItem HorizontalAlignment="Right"  ToolTip="Odjava" Foreground="#FFCECFC8" Margin="-7,0,0,0" Click="Logout">
                 <MenuItem.Icon>
                     <materialDesign:PackIcon Kind="Logout" />
                 </MenuItem.Icon>
