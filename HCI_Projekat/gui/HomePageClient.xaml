@@ -11,7 +11,7 @@
     <Grid VerticalAlignment="Top">
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
         </Grid.RowDefinitions>
         <Menu Grid.Row="0" HorizontalAlignment="Stretch" Background="#FF485B83" Foreground="#FFCECFC8">
             <Menu.ItemsPanel>
@@ -36,6 +36,6 @@
                 </MenuItem.Icon>
             </MenuItem>
         </Menu>
-        <!--<Frame Grid.Row="1" x:Name="Login" Source="/gui/Login.xaml" Visibility="Visible" />-->
+        <Frame Grid.Row="1" x:Name="TimetableView" Source="/gui/TimetableView.xaml" Visibility="Visible" Grid.Column="1" Margin="0,0,0,0" />
     </Grid>
 </Page>
