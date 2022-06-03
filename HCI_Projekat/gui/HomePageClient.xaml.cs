@@ -33,6 +33,10 @@ namespace HCI_Projekat.gui
 			((MainWindow)App.Current.MainWindow).Login.Visibility = Visibility.Visible;
 		}
 
+		private void TimetableShow(object sender, RoutedEventArgs e)
+		{
+			this.TimetableView.Visibility = Visibility.Visible;
+		}
 	}
 
 

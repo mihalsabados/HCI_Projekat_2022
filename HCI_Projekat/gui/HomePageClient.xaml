@@ -19,7 +19,7 @@
                     <DockPanel HorizontalAlignment="Stretch"></DockPanel>
                 </ItemsPanelTemplate>
             </Menu.ItemsPanel>
-            <MenuItem Header="Redovi vožnje" Foreground="#FFCECFC8">
+            <MenuItem Header="Redovi vožnje" Icon="{materialDesign:PackIcon Kind=Train}" Foreground="#FFCECFC8" Click="TimetableShow" >
             </MenuItem>
             <MenuItem Header="Mreža linija" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" >
 
@@ -36,6 +36,6 @@
                 </MenuItem.Icon>
             </MenuItem>
         </Menu>
-        <Frame Grid.Row="1" x:Name="TimetableView" Source="/gui/TimetableView.xaml" Visibility="Visible" Grid.Column="1" Margin="0,0,0,0" />
+        <Frame Grid.Row="1" x:Name="TimetableView" Source="/gui/TimetableView.xaml" Visibility="Hidden" Grid.Column="1" Margin="0,0,0,0" />
     </Grid>
 </Page>
