@@ -29,7 +29,7 @@ namespace HCI_Projekat
         }
 
 
-        private void ResetState()
+        public void ResetState()
         {
             LoginError.Visibility = Visibility.Hidden;
             usernameTxt.Text = "";
@@ -44,11 +44,18 @@ namespace HCI_Projekat
 
             if (user != null)
             {
-                this.Visibility = Visibility.Hidden;
                 if (user.UserType == UserType.MANAGER)
+                {
+                    ((MainWindow)App.Current.MainWindow).Login.Visibility = Visibility.Hidden;
+                    ResetState();
                     ((MainWindow)App.Current.MainWindow).HomePageManager.Visibility = Visibility.Visible;
+                }
                 else
+                {
+                    ((MainWindow)App.Current.MainWindow).Login.Visibility = Visibility.Hidden;
+                    ResetState();
                     ((MainWindow)App.Current.MainWindow).HomePageClient.Visibility = Visibility.Visible;
+                }
                 MainWindow.LoggedUser = user;
             } else
             {

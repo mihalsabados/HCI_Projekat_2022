@@ -77,9 +77,9 @@
 				  Margin="0,5,0,0"
                   Content="Nemate nalog? Registrujte se." Foreground="#FF485B83" HorizontalAlignment="Center" FontSize="10" Background="{x:Null}" BorderBrush="{x:Null}"
 				/>
+                
 
-
-			</StackPanel>
+            </StackPanel>
 		</materialDesign:Card>
 	</Grid>
 

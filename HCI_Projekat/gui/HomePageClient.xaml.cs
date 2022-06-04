@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Diagnostics;
 
 namespace HCI_Projekat.gui
 {
@@ -28,10 +29,14 @@ namespace HCI_Projekat.gui
 		private void Logout(object sender, RoutedEventArgs e)
 		{
 			MainWindow.LoggedUser = null;
-			((MainWindow)Application.Current.MainWindow).HomePageClient.Visibility = Visibility.Hidden;
-			((MainWindow)Application.Current.MainWindow).Login.Visibility = Visibility.Visible;
+			((MainWindow)App.Current.MainWindow).HomePageClient.Visibility = Visibility.Hidden;
+			((MainWindow)App.Current.MainWindow).Login.Visibility = Visibility.Visible;
 		}
 
+		private void TimetableShow(object sender, RoutedEventArgs e)
+		{
+			this.TimetableView.Visibility = Visibility.Visible;
+		}
 	}
 
 
