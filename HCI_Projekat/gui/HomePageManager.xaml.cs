@@ -31,5 +31,10 @@ namespace HCI_Projekat.gui
 			((MainWindow)App.Current.MainWindow).HomePageManager.Visibility = Visibility.Hidden;
 			((MainWindow)App.Current.MainWindow).Login.Visibility = Visibility.Visible;
 		}
+
+        private void OpenTrainCrudView(object sender, RoutedEventArgs e)
+        {
+			this.TrainCRUD.Visibility = Visibility.Visible;
+        }
     }
 }

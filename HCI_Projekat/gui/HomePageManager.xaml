@@ -8,8 +8,12 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Početna stanica menadžera" Background="#FFCECFC8">
 
-    <Grid VerticalAlignment="Top">
-        <Menu  Background="#FF485B83" HorizontalAlignment="Stretch" Foreground="#FFCECFC8">
+    <Grid VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" Background="#FF485B83" HorizontalAlignment="Stretch" Foreground="#FFCECFC8">
             <Menu.ItemsPanel>
                 <ItemsPanelTemplate>
                     <DockPanel HorizontalAlignment="Stretch"></DockPanel>
@@ -20,7 +24,7 @@
             <MenuItem Header="Mreža linija" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" >
 
             </MenuItem>
-            <MenuItem Header="Vozovi" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" >
+            <MenuItem Header="Vozovi" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" Click="OpenTrainCrudView" >
 
             </MenuItem>
             <MenuItem Header="Prodate karte" Foreground="#FFCECFC8" Background="#FF485B83" HorizontalAlignment="Stretch" >
@@ -36,5 +40,6 @@
                 </MenuItem.Icon>
             </MenuItem>
         </Menu>
+        <Frame Grid.Row="1" x:Name="TrainCRUD" Source="/gui/TrainCRUDPage.xaml" Visibility="Hidden" VerticalAlignment="Stretch" Margin="0,0,0,0"/>
     </Grid>
 </Page>
