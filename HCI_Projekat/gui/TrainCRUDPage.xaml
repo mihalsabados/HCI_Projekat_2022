@@ -1,0 +1,101 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HCI_Projekat.gui"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="HCI_Projekat.gui.TrainCRUDPage"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800" Background="#FFB2B2A6"
+      Title="TrainCRUDPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" x:Name="TrainLayout">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="10*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Content="Svi vozovi:" HorizontalAlignment="Left" Grid.Row="0" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" Margin="62,0,62,0" Foreground="#FF485B83"/>
+
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" x:Name="FormLayout">
+            <materialDesign:Card
+                Grid.RowSpan="3"
+                Grid.ColumnSpan="2"
+                  Background="#FFCECFC8"
+                  Padding="8"
+                  UniformCornerRadius="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,10"
+                >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="2.1*"></RowDefinition>
+                        <RowDefinition Height="0.8*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Content="Podaci o vozu:" HorizontalAlignment="Left" Grid.Row="0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" Margin="20,0,0,0" Foreground="#FF485B83"/>
+                    <TextBox
+                        x:Name="trainNameTxt"
+                        Grid.ColumnSpan="2"
+                        Style="{StaticResource MaterialDesignFilledTextBox}"
+                        VerticalAlignment="Top"
+                        AcceptsReturn="True"
+                        TextWrapping="Wrap"
+                        materialDesign:HintAssist.Hint="Naziv voza"
+                        HorizontalAlignment="Stretch"
+                        Margin="20,30,20,0"
+                        FontSize="14"
+                        CaretBrush="#FF1ABC9C"
+                        SelectionBrush="#FFABF9EA"
+                        Foreground="#FF485B83"
+                    />
+                    <Label Content="vagoni voza:" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" VerticalAlignment="Bottom" FontSize="15" FontWeight="Bold" Margin="20,0,30,0" Foreground="#FF485B83"/>
+                    <Label Content="izgled vagona:" HorizontalAlignment="Right" Grid.Row="0" Grid.Column="1" VerticalAlignment="Bottom" FontSize="15" FontWeight="Bold" Margin="20,0,30,0" Foreground="#FF485B83"/>
+                    <ListBox Grid.Row="1" HorizontalAlignment="Stretch" x:Name="WagonListBox"
+                              ScrollViewer.CanContentScroll="True"
+                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                              ScrollViewer.PanningMode="HorizontalFirst" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" BorderBrush="#FF485B83" BorderThickness="1">
+                     
+                    </ListBox>
+                    <Canvas Grid.Row="1" Grid.Column="1" x:Name="myCanvas" Background="#FFE2E2E2">
+                        <Grid Width="{Binding ActualWidth, ElementName=myCanvas}" 
+                              Height="{Binding ActualHeight, ElementName=myCanvas}">
+                            <Rectangle x:Name="WagonRect" Width="60" Height="120" Stroke="Black"  VerticalAlignment="Center" HorizontalAlignment="Center" >
+
+                            </Rectangle>
+                            <Canvas x:Name="WagonLayout" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                            </Canvas>
+                        </Grid>
+                    </Canvas>
+                    <Label Content="Mogući broj putnika: " x:Name="passengerNumTxt" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" FontSize="13" FontWeight="Bold" Margin="0,0,0,0" Foreground="#FF485B83"/>
+                    <Button Content="Sačuvaj izmene" x:Name="saveBtn" HorizontalAlignment="Stretch" Grid.Row="4" Grid.ColumnSpan="2" VerticalAlignment="Center" FontSize="14" Click="SaveChanges" Margin="45,10,45,0" Background="#FF485B83" BorderBrush="#FF485B83" Foreground="#FFCECFC8"/>
+                    <Button Content="Dodaj voz" x:Name="addBtn" HorizontalAlignment="Stretch" Grid.Row="4" Grid.ColumnSpan="2" VerticalAlignment="Center" FontSize="14" Click="AddNewTrainEvent" Margin="45,10,45,0" Background="#FF485B83" BorderBrush="#FF485B83" Foreground="#FFCECFC8" Visibility="Hidden"/>
+                    <Label
+                        Name="AddError"
+                        Visibility="Hidden"
+                        Content=""
+                        HorizontalAlignment="Center"
+                        Grid.Row="3"
+                        VerticalAlignment="Bottom"
+                        Grid.ColumnSpan="2"
+                        Foreground="#FFC34E43"
+                        Margin="0,0,0,0" />
+
+                </Grid>
+
+
+            </materialDesign:Card>
+        </Grid>
+
+
+    </Grid>
+</Page>
