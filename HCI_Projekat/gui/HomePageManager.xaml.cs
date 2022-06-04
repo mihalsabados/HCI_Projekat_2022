@@ -29,5 +29,10 @@ namespace HCI_Projekat.gui
         {
 
         }
+
+        private void OpenTrainCrudView(object sender, RoutedEventArgs e)
+        {
+			this.TrainCRUD.Visibility = Visibility.Visible;
+        }
     }
 }
