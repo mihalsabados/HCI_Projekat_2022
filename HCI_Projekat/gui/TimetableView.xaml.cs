@@ -29,10 +29,13 @@ namespace HCI_Projekat.gui
 
         private void addFromAndToRoutes()
         {
-            foreach (Route route in RouteService.GetAllRoutes())
+            foreach (Place place in RouteService.GetAllDistinctPlacesForStartRoute())
             {
-                fromRoutes.Items.Add(createComboBoxItem(route.places[0].Name));
-                toRoutes.Items.Add(createComboBoxItem(route.places[route.places.Count - 1].Name));
+                fromRoutes.Items.Add(createComboBoxItem(place.Name));
+            }
+            foreach (Place place in RouteService.GetAllDistinctPlacesForEndRoute())
+            {
+                toRoutes.Items.Add(createComboBoxItem(place.Name));
             }
         }
 
