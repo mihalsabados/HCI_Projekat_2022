@@ -1,4 +1,4 @@
-﻿<Page x:Class="HCI_Projekat.gui.TimetableView"
+﻿<Page x:Class="HCI_Projekat.gui.TimetableViewClient"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -60,6 +60,7 @@
                     Margin="0,1,0,0" />
                 <DatePicker
                     MaxWidth="250"
+                    Language='sr-Lat'
                     Name="LocaleDatePickerRTL"
                     SelectedDate="{x:Static sys:DateTime.Now}"
                     Style="{StaticResource MaterialDesignFilledDatePicker}"
@@ -84,6 +85,7 @@
               CanUserAddRows="False"
               Visibility="Hidden"
               SelectionUnit="Cell"
+              IsReadOnly="True"
               AutoGenerateColumns="False" Margin="10,10,10,0" HorizontalContentAlignment="Left" Foreground="#FF485B83" 
             >
                 <DataGrid.Resources>
@@ -99,9 +101,9 @@
                     </Style>
                 </DataGrid.Resources>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding StartDateTime, StringFormat='hh:mm'}" Header="Polazak" Width="*" />
+                    <DataGridTextColumn Binding="{Binding StartDateTime, StringFormat='HH:mm'}" Header="Polazak" Width="*" />
                     <DataGridTextColumn Binding="{Binding StartDateTime, StringFormat='dd.MM.yyyy.'}" Header="Datum polaska" Width="1.5*" />
-                    <DataGridTextColumn Binding="{Binding EndDateTime, StringFormat='hh:mm'}" Header="Dolazak"  Width="*" />
+                    <DataGridTextColumn Binding="{Binding EndDateTime, StringFormat='HH:mm'}" Header="Dolazak"  Width="*" />
                     <DataGridTextColumn Binding="{Binding EndDateTime, StringFormat='dd.MM.yyyy.'}"  Width="1.5*" Header="Datum dolaska" />
                     <DataGridTextColumn Binding="{Binding Duration}" Header="Putuje" />
 

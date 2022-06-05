@@ -116,7 +116,18 @@ namespace HCI_Projekat.database
                 PlaceService.FindPlaceByName("Smederevo"),
             }),
         };
-        
+
+        internal static Route FindRouteByAttr(string selectedFrom, string selectedTo)
+        {
+            foreach (Route t in routes)
+            {
+                if (t.places[0].Name.Equals(selectedFrom) && t.places[t.places.Count - 1].Name.Equals(selectedTo))
+                {
+                    return t;
+                }
+            }
+            return null;
+        }
 
         public static Route FindRouteByName(string name)
         {

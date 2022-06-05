@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HCI_Projekat"
         mc:Ignorable="d"
-        Title="Railway" Height="650" Width="800" Icon="railway.png"
+        Title="Želeynica Srbije" Height="650" Width="800" Icon="railway.png"
         >
 
 	<Grid>

@@ -23,13 +23,25 @@ namespace HCI_Projekat.gui
 		public HomePageManager()
 		{
 			InitializeComponent();
+
 		}
 
-        private void Logout(object sender, RoutedEventArgs e)
+		private void Logout(object sender, RoutedEventArgs e)
         {
 			MainWindow.LoggedUser = null;
 			((MainWindow)App.Current.MainWindow).HomePageManager.Visibility = Visibility.Hidden;
 			((MainWindow)App.Current.MainWindow).Login.Visibility = Visibility.Visible;
+			this.TimetableView.Visibility = Visibility.Hidden;
+			((MainWindow)App.Current.MainWindow).Width = 800;
+
+		}
+
+		private void TimetableShow(object sender, RoutedEventArgs e)
+		{
+			((MainWindow)App.Current.MainWindow).Width = 1000;
+			this.RouteMapView.Visibility = Visibility.Hidden;
+			this.TimetableView.Visibility = Visibility.Visible;
+			this.TimetableView.Refresh();
 		}
 
         private void OpenTrainCrudView(object sender, RoutedEventArgs e)
