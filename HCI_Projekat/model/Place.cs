@@ -8,7 +8,7 @@
 
         public Place() { }
 
-        public Place(string name, double longitude, double latitude)
+        public Place(string name, double latitude, double longitude)
         {
             Name = name;
             Longitude = longitude;

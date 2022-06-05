@@ -14,5 +14,10 @@ namespace HCI_Projekat.services
         {
             return PlaceRepository.FindPlaceByName(name);
         }
+
+        public static List<Place> GetAllPlaces()
+        {
+            return PlaceRepository.GetAllPlaces();
+        }
     }
 }

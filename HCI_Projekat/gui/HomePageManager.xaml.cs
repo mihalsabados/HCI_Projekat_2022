@@ -36,5 +36,9 @@ namespace HCI_Projekat.gui
         {
 			this.TrainCRUD.Visibility = Visibility.Visible;
         }
+        private void ShowRouteMap_Click(object sender, RoutedEventArgs e)
+        {
+			this.RouteMapView.Visibility = Visibility.Visible;
+		}
     }
 }
