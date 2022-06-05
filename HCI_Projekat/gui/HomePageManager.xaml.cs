@@ -42,5 +42,10 @@ namespace HCI_Projekat.gui
 			this.TimetableView.Visibility = Visibility.Visible;
 			this.TimetableView.Refresh();
 		}
-	}
+
+        private void OpenTrainCrudView(object sender, RoutedEventArgs e)
+        {
+			this.TrainCRUD.Visibility = Visibility.Visible;
+        }
+    }
 }
