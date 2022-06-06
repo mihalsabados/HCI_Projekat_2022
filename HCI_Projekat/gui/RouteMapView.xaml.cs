@@ -70,6 +70,8 @@ namespace HCI_Projekat.gui
             CalculateRouteFromPlaces(foundRoute);
         }
 
+
+
         private async void CalculateRouteFromPlaces(Route foundRoute)
         {
             Mapa.Children.Clear();
@@ -159,25 +161,6 @@ namespace HCI_Projekat.gui
                 Mapa.Children.Add(routePolyline);
 
                 var locs = new List<Microsoft.Maps.MapControl.WPF.Location>();
-
-                //Create pushpins for the optimized waypoints.
-                //The waypoints in the request were optimized for us.
-                /*for (var i = 0; i < routeRequest.Waypoints.Count; i++)
-                {
-                    var loc = new Microsoft.Maps.MapControl.WPF.Location(routeRequest.Waypoints[i].Coordinate.Latitude, routeRequest.Waypoints[i].Coordinate.Longitude);
-
-                    //Only render the last waypoint when it is not a round trip.
-                    if (i < routeRequest.Waypoints.Count - 1)
-                    {
-                        Mapa.Children.Add(new Pushpin()
-                        {
-                            Location = loc,
-                            Content = i
-                        });
-                    }
-
-                    locs.Add(loc);
-                }*/
 
                 for (var i = 0; i < currentRoute.places.Count; ++i)
                 {

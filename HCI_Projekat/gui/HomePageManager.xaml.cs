@@ -40,17 +40,35 @@ namespace HCI_Projekat.gui
 		{
 			((MainWindow)App.Current.MainWindow).Width = 1000;
 			this.RouteMapView.Visibility = Visibility.Hidden;
+			this.StationsView.Visibility = Visibility.Hidden;
 			this.TimetableView.Visibility = Visibility.Visible;
 			this.TimetableView.Refresh();
 		}
 
         private void OpenTrainCrudView(object sender, RoutedEventArgs e)
         {
+			this.RouteMapView.Visibility = Visibility.Hidden;
+			this.StationsView.Visibility = Visibility.Hidden;
+			this.TimetableView.Visibility = Visibility.Hidden;
+
 			this.TrainCRUD.Visibility = Visibility.Visible;
         }
         private void ShowRouteMap_Click(object sender, RoutedEventArgs e)
         {
+			this.TrainCRUD.Visibility = Visibility.Hidden;
+			this.StationsView.Visibility = Visibility.Hidden;
+			this.TimetableView.Visibility = Visibility.Hidden;
+
 			this.RouteMapView.Visibility = Visibility.Visible;
 		}
-    }
+
+		private void Stations_Click(object sender, RoutedEventArgs e)
+        {
+			this.TrainCRUD.Visibility = Visibility.Hidden;
+			this.TimetableView.Visibility = Visibility.Hidden;
+			this.RouteMapView.Visibility = Visibility.Hidden;
+
+			this.StationsView.Visibility = Visibility.Visible;
+		}
+	}
 }
