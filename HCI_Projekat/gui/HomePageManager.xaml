@@ -28,7 +28,7 @@
 
                     </MenuItem>
                     <MenuItem Header="Prodate karte" Foreground="#FFCECFC8" Background="#FF485B83" HorizontalAlignment="Stretch" >
-                        <MenuItem Header="Po mesecu" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                <MenuItem Click="SoldCardsPerMonth" Header="Po mesecu" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
                         </MenuItem>
                         <Separator/>
                         <MenuItem Header="Po redu vožnje"  Foreground="#FFCECFC8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -42,5 +42,6 @@
                 </Menu>
                 <Frame Grid.Row="1" x:Name="TimetableView" Source="/gui/TimetableViewManager.xaml" Visibility="Hidden" Grid.Column="1" Margin="0,0,0,0" />
                 <Frame Grid.Row="1" x:Name="TrainCRUD" Source="/gui/TrainCRUDPage.xaml" Visibility="Hidden" VerticalAlignment="Stretch" Margin="0,0,0,0"/>
+                <Frame Grid.Row="1" x:Name="SoldCardsPerMonthPage" Source="/gui/SoldCardsPerMonth.xaml" Visibility="Hidden" VerticalAlignment="Stretch" Margin="0,0,0,0"/>
         </Grid>
 </Page>

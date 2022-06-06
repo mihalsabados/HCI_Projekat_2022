@@ -12,6 +12,7 @@
     <None Remove="firstPage.png" />
     <None Remove="login.png" />
     <None Remove="railway.png" />
+    <None Remove="revenue.png" />
     <None Remove="timetable.png" />
   </ItemGroup>
 
@@ -19,10 +20,12 @@
     <Resource Include="firstPage.png" />
     <Resource Include="login.png" />
     <Resource Include="railway.png" />
+    <Resource Include="revenue.png" />
     <Resource Include="timetable.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
     <PackageReference Include="MaterialDesignThemes" Version="4.6.0-ci182" />
     <PackageReference Include="ToastNotifications" Version="2.5.1" />
     <PackageReference Include="ToastNotifications.Messages" Version="2.5.1" />
