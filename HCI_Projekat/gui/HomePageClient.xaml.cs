@@ -35,9 +35,16 @@ namespace HCI_Projekat.gui
 		}
 
 		private void TimetableShow(object sender, RoutedEventArgs e)
-		{ 
-			this.TimetableView.Visibility = Visibility.Visible;
+		{
+			this.RouteMapView.Visibility = Visibility.Hidden;
 			this.TimetableView.Refresh();
+			this.TimetableView.Visibility = Visibility.Visible;
+		}
+
+		private void ShowRouteMap_Click(object sender, RoutedEventArgs e)
+		{
+			this.TimetableView.Visibility = Visibility.Hidden;
+			this.RouteMapView.Visibility = Visibility.Visible;
 		}
 	}
 
