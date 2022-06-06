@@ -47,5 +47,10 @@ namespace HCI_Projekat.gui
         {
 			this.TrainCRUD.Visibility = Visibility.Visible;
         }
+
+        private void SoldCardsPerMonth(object sender, RoutedEventArgs e)
+        {
+			SoldCardsPerMonthPage.Visibility = Visibility.Visible;
+		}
     }
 }
