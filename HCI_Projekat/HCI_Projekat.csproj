@@ -13,6 +13,7 @@
     <None Remove="login.png" />
     <None Remove="railway.png" />
     <None Remove="revenue.png" />
+    <None Remove="route.png" />
     <None Remove="timetable.png" />
   </ItemGroup>
 
@@ -21,6 +22,7 @@
     <Resource Include="login.png" />
     <Resource Include="railway.png" />
     <Resource Include="revenue.png" />
+    <Resource Include="route.png" />
     <Resource Include="timetable.png" />
   </ItemGroup>
 

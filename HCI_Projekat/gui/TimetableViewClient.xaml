@@ -39,7 +39,7 @@
                 <Label
                     Name="FromError"
                     Visibility="Hidden"
-                    Content="Unesite polazište."
+                    Content="Izaberite polazište."
                     HorizontalAlignment="Center"
                     Foreground="#FFC34E43"
                     Margin="0,1,0,0" />
@@ -54,7 +54,7 @@
                 <Label
                     Name="ToError"
                     Visibility="Hidden"
-                    Content="Unesite dolazište."
+                    Content="Izaberite dolazište."
                     HorizontalAlignment="Center"
                     Foreground="#FFC34E43"
                     Margin="0,1,0,0" />

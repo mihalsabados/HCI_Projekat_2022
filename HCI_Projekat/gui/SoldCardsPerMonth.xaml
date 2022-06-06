@@ -26,7 +26,7 @@
             <ComboBox Grid.Row="1"
                       SelectionChanged="yearsComboBox_SelectionChanged"
                     x:Name="yearsComboBox"
-                    Visibility="Visible"
+                    Visibility="Hidden"
                     MaxWidth="250"
                 SelectedValuePath="Content"
                     Style="{StaticResource MaterialDesignFilledComboBox}"
@@ -37,8 +37,8 @@
                 <Label Grid.Row="1" Visibility="Hidden" Name="searchedYears" Content="U sistemu još uvek nema kupljenih karata." HorizontalAlignment="Stretch"  FontSize="14" FontWeight="Bold" Margin="10,5,0,0" Foreground="#FFC34E43"/>
           
         </StackPanel>
-        <Label Grid.Row="1" x:Name="label1" FontSize="18" Margin="15,0,0,0" Padding="4,10" FontWeight="Bold" Content="" Foreground="#FF485B83"/>
-        <Wpf:CartesianChart Name="columnChart" Zoom="X" Margin="50,30,50,10" Grid.Row="1"/>
+        <Label Grid.Row="1" Visibility="Hidden" x:Name="label1" FontSize="18" Margin="15,0,0,0" Padding="4,10" FontWeight="Bold" Content="" Foreground="#FF485B83"/>
+        <Wpf:CartesianChart Visibility="Hidden" Name="columnChart" Zoom="X" Margin="50,30,50,10" Grid.Row="1"/>
 
     </Grid>
 </Page>

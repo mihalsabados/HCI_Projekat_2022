@@ -45,5 +45,10 @@ namespace HCI_Projekat.services
             TimetableRepository.Edit(selectedTimetable, route, fromTime, toTime, weekDay);
 
         }
+
+        internal static List<Timetable> FindTimetablesByIdRouteName(string routeId)
+        {
+            return TimetableRepository.FindTimetablesByRouteName(routeId);
+        }
     }
 }

@@ -21,17 +21,17 @@
             </Menu.ItemsPanel>
             <MenuItem Header="Redovi vožnje" Icon="{materialDesign:PackIcon Kind=Train}" Foreground="#FFCECFC8" Click="TimetableShow" >
             </MenuItem>
-            <MenuItem Header="Mreža linija" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" Click="ShowRouteMap_Click" >
+            <MenuItem Header="Mreža linija" Icon="{materialDesign:PackIcon Kind=MapOutline}" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" Click="ShowRouteMap_Click" >
 
             </MenuItem>
             <MenuItem Header="Vozovi" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" Click="OpenTrainCrudView" >
 
             </MenuItem>
-            <MenuItem Header="Prodate karte" Foreground="#FFCECFC8" Background="#FF485B83" HorizontalAlignment="Stretch" >
+            <MenuItem Header="Prodate karte" Icon="{materialDesign:PackIcon Kind=CardsOutline}" Foreground="#FFCECFC8" Background="#FF485B83" HorizontalAlignment="Stretch" >
                 <MenuItem Click="SoldCardsPerMonth" Header="Po mesecu" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
                 </MenuItem>
                 <Separator/>
-                <MenuItem Header="Po redu vožnje"  Foreground="#FFCECFC8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <MenuItem Click="SoldCardsPerRoute" Header="Po redu vožnje"  Foreground="#FFCECFC8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 </MenuItem>
             </MenuItem>
             <MenuItem HorizontalAlignment="Right"  ToolTip="Odjava" Foreground="#FFCECFC8" Margin="-7,0,0,0" Click="Logout">
@@ -43,6 +43,7 @@
         <Frame Grid.Row="1" x:Name="TimetableView" Source="/gui/TimetableViewManager.xaml" Visibility="Hidden" Grid.Column="1" Margin="0,0,0,0" />
         <Frame Grid.Row="1" x:Name="TrainCRUD" Source="/gui/TrainCRUDPage.xaml" Visibility="Hidden" VerticalAlignment="Stretch" Margin="0,0,0,0"/>
         <Frame Grid.Row="1" x:Name="SoldCardsPerMonthPage" Source="/gui/SoldCardsPerMonth.xaml" Visibility="Hidden" VerticalAlignment="Stretch" Margin="0,0,0,0"/>
+        <Frame Grid.Row="1" x:Name="SoldCardsPerRoutePage" Source="/gui/SoldCardsPerRoute.xaml" Visibility="Hidden" VerticalAlignment="Stretch" Margin="0,0,0,0"/>
         <Frame Grid.Row="1" x:Name="RouteMapView" Source="/gui/RouteMapView.xaml" Visibility="Hidden" VerticalAlignment="Stretch" Margin="0,0,0,0"/>
     </Grid>
 </Page>

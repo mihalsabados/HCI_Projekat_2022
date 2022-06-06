@@ -35,10 +35,18 @@ namespace HCI_Projekat.gui
         {
             List<int> years = CardService.GetAvailableYearsWithSoldCards();
             if (years.Count == 0)
+            {
                 searchedYears.Visibility = Visibility.Visible;
+                yearsComboBox.Visibility = Visibility.Hidden;
+                label1.Visibility = Visibility.Hidden;
+                columnChart.Visibility = Visibility.Hidden;
+            }
             else
             {
                 searchedYears.Visibility = Visibility.Hidden;
+                yearsComboBox.Visibility = Visibility.Visible;
+                label1.Visibility = Visibility.Visible;
+                columnChart.Visibility = Visibility.Visible;
                 foreach (int year in years)
                     yearsComboBox.Items.Add(createComboBoxItem(year));
                 int maxYear = years.Max();

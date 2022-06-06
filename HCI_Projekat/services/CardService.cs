@@ -22,5 +22,10 @@ namespace HCI_Projekat.services
         {
             return CardRepository.RevenueForMonths(yearRevenue);
         }
+
+        internal static List<double> RevenueForTimetable(int timetableId)
+        {
+            return CardRepository.RevenueForTimetable(timetableId);
+        }
     }
 }

@@ -66,6 +66,17 @@ namespace HCI_Projekat.database
             return true;
         }
 
+        internal static List<Timetable> FindTimetablesByRouteName(string routeId)
+        {
+            List<Timetable> tts = new List<Timetable>();
+            foreach (Timetable t in timetables)
+            {
+                if (t.RouteForTimetable.Name.Equals(routeId))
+                    tts.Add(t);
+            }
+            return tts;
+        }
+
         internal static void Edit(DataGridTimetable selectedTimetable, Route route, DateTime fromTime, DateTime toTime, DayOfWeekTimetable weekDay)
         {
             foreach (Timetable t in timetables)
