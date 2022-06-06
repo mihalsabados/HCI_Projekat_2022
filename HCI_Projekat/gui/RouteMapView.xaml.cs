@@ -28,6 +28,10 @@ namespace HCI_Projekat.gui
     {
         private string BingMapsKey = "oU6C1d9L3SpiIjWjcMtX~NlvJ4abp72u-diLrup_xdw~AtDP3HyzbLn6vnOjapJ7nLaqM4g-sR1TpNVBbl6c53FGjGJEVOp5jRDt96RJyCmC";
         private string SessionKey;
+
+        public static String SelectedFromRoute { get; set; }
+        public static String SelectedToRoute { get; set; }
+
         private Route currentRoute = null;
 
         public RouteMapView()
@@ -42,32 +46,29 @@ namespace HCI_Projekat.gui
                 SessionKey = c.ApplicationId;
             });
 
-            fillComboBoxItems();
+            addFromAndToRoutes();
         }
 
-
-        private void fillComboBoxItems()
+        private void addFromAndToRoutes()
         {
-            foreach (Route route in RouteService.GetAllRoutes())
+            foreach (Place place in RouteService.GetAllDistinctPlacesForStartRoute())
             {
-                string from = route.places[0].Name;
-                string to = route.places[route.places.Count - 1].Name;
-                string content = from + " - " + to;
-                ComboBoxItem c = new ComboBoxItem();
-                c.Content = content;
-                c.Visibility = Visibility.Visible;
-                c.Foreground = (Brush)(new BrushConverter().ConvertFrom("#FF485B83"));
-                routeCb.Items.Add(c);
+                fromRoutes.Items.Add(createComboBoxItem(place.Name));
+            }
+            foreach (Place place in RouteService.GetAllDistinctPlacesForEndRoute())
+            {
+                toRoutes.Items.Add(createComboBoxItem(place.Name));
             }
         }
 
-        private void routeCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private ComboBoxItem createComboBoxItem(string content)
         {
-            ComboBoxItem item = (ComboBoxItem)routeCb.SelectedItem;
-            string content = item.Content.ToString();
-            Route foundRoute = RouteService.FindRouteFromToPlace(content);
-            currentRoute = foundRoute;
-            CalculateRouteFromPlaces(foundRoute);
+            ComboBoxItem c = new ComboBoxItem();
+            c.Content = content;
+            c.Visibility = Visibility.Visible;
+            c.Foreground = (Brush)(new BrushConverter().ConvertFrom("#FF485B83"));
+
+            return c;
         }
 
 
@@ -179,6 +180,66 @@ namespace HCI_Projekat.gui
             else if (response != null && response.ErrorDetails != null && response.ErrorDetails.Length > 0)
             {
                 throw new Exception(String.Join("", response.ErrorDetails));
+            }
+        }
+
+        private Route checkIfRouteExists(string selectedFromRoute, string selectedToRoute)
+        {
+            foreach (Route route in RouteService.GetAllRoutes())
+            {
+                if (route.places[0].Name.Equals(selectedFromRoute) && route.places[route.places.Count - 1].Name.Equals(selectedToRoute))
+                {
+                    return route;
+                }
+            }
+            return null;
+        }
+
+
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+            SelectedFromRoute = "";
+            SelectedToRoute = "";
+            if (fromRoutes.SelectedItem != null)
+            {
+                ComboBoxItem item = (ComboBoxItem)fromRoutes.SelectedItem;
+                SelectedFromRoute = item.Content.ToString();
+            }
+            else
+            {
+                FromError.Visibility = Visibility;
+            }
+            if (toRoutes.SelectedItem != null)
+            {
+                ComboBoxItem item = (ComboBoxItem)toRoutes.SelectedItem;
+                SelectedToRoute = item.Content.ToString();
+            }
+            else
+            {
+                ToError.Visibility = Visibility;
+            }
+            if (!SelectedFromRoute.Equals(""))
+            {
+                FromError.Visibility = Visibility.Hidden;
+                if (!SelectedToRoute.Equals(""))
+                {
+                    ToError.Visibility = Visibility.Hidden;
+                    Route route = checkIfRouteExists(SelectedFromRoute, SelectedToRoute);
+                    if (route == null)
+                    {
+                        searchedMessage.Content = "Trenuno ne postoji direktna vozna linija: " + SelectedFromRoute + " - " + SelectedToRoute;
+                        this.searchedMessage.Visibility = Visibility.Visible;
+                        this.Mapa.Visibility = Visibility.Hidden;
+                    }
+                    else
+                    {
+                        searchedMessage.Content = "Vozna linija: " + SelectedFromRoute + " - " + SelectedToRoute;
+                        this.searchedMessage.Visibility = Visibility.Visible;
+                        this.Mapa.Visibility = Visibility.Visible;
+                        currentRoute = route;
+                        CalculateRouteFromPlaces(route);
+                    }
+                }
             }
         }
     }
