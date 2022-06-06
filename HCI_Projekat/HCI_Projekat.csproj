@@ -12,6 +12,7 @@
     <None Remove="firstPage.png" />
     <None Remove="login.png" />
     <None Remove="railway.png" />
+    <None Remove="revenue.png" />
     <None Remove="timetable.png" />
   </ItemGroup>
 
@@ -19,10 +20,12 @@
     <Resource Include="firstPage.png" />
     <Resource Include="login.png" />
     <Resource Include="railway.png" />
+    <Resource Include="revenue.png" />
     <Resource Include="timetable.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
     <PackageReference Include="BingMapsRESTToolkit" Version="1.1.4" />
     <PackageReference Include="MaterialDesignThemes" Version="4.6.0-ci182" />
     <PackageReference Include="Microsoft.Maps.MapControl.WPF" Version="1.0.0.3" />
