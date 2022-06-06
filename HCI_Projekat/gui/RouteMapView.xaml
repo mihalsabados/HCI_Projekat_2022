@@ -13,30 +13,76 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="9*"></RowDefinition>
+            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.3*"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
 
-        <StackPanel>
-            <ComboBox 
-                Grid.Row="1"
-                x:Name="routeCb"
-                MaxWidth="250"
-                Style="{StaticResource MaterialDesignFilledComboBox}"
-                materialDesign:HintAssist.Hint="Vozna linija"
-                Background="#FF485B83"
-                Foreground="White" FontSize="14" FontWeight="Bold" Margin="5,5,0,0"
-                SelectionChanged="routeCb_SelectionChanged">
-            </ComboBox>
-        </StackPanel>
 
-        <m:Map
-            Grid.Row="2"
+        <materialDesign:Card
+            MaxWidth="420"
+            Background="#FF485B83"
+            Padding="8"
+            UniformCornerRadius="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20,20,20,20">
+            <StackPanel>
+                <Label Content="Vozne linije" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" Margin="10,0,0,0" Foreground="#FFCECFC8"/>
+                <Label BorderThickness="0, 2, 0, 0" Grid.Row="1" BorderBrush="#FFCECFC8"/>
+
+                <ComboBox
+                    x:Name="fromRoutes"
+                    MaxWidth="250"
+                    Style="{StaticResource MaterialDesignFilledComboBox}"
+                    materialDesign:HintAssist.Hint="Polazište" Background="#FFCECFC8" Foreground="#FF485B83" FontSize="14" Margin="10,15,10,0" HorizontalAlignment="Stretch">
+
+                </ComboBox>
+                <Label
+                    Name="FromError"
+                    Visibility="Hidden"
+                    Content="Unesite polazište."
+                    HorizontalAlignment="Center"
+                    Foreground="#FFC34E43"
+                    Margin="0,1,0,0" />
+
+                <ComboBox
+                    MaxWidth="250"
+                    x:Name="toRoutes"
+                    Style="{StaticResource MaterialDesignFilledComboBox}"
+                    materialDesign:HintAssist.Hint="Dolazište" Background="#FFCECFC8" Foreground="#FF485B83" FontSize="14" Margin="10,5,10,0" HorizontalAlignment="Stretch">
+
+                </ComboBox>
+                <Label
+                    Name="ToError"
+                    Visibility="Hidden"
+                    Content="Unesite dolazište."
+                    HorizontalAlignment="Center"
+                    Foreground="#FFC34E43"
+                    Margin="0,1,0,0" />
+                <Button
+                  Click="Search_Click"
+                  Content="Pretraži" MaxWidth="150" MinWidth="150" Foreground="#FFCECFC8" HorizontalAlignment="Center" FontSize="14" Background="#FFC34E43" BorderBrush="{x:Null}" Margin="10,10,10,20"
+				/>
+            </StackPanel>
+
+        </materialDesign:Card>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Name="searchedMessage" Visibility="Hidden"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="14" FontWeight="Bold" Margin="10,15,0,0" Foreground="#FF485B83"/>
+            <m:Map
+                Margin="5 5 22 20"
+                Visibility="Hidden"
+            Grid.Row="1"
             Name="Mapa"
             Center="44.815071,20.460480" ZoomLevel="8"
            >
-        </m:Map>
-
-        <ProgressBar  Name="LoadingBar" IsIndeterminate="True" Height="25" Width="250" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Collapsed"/>
+                <ProgressBar  Name="LoadingBar" IsIndeterminate="True" Height="25" Width="250" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Collapsed"/>
+            </m:Map>
+        </Grid>
     </Grid>
 </Page>
