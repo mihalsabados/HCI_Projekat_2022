@@ -65,5 +65,18 @@ namespace HCI_Projekat.services
         {
             return RouteRepository.FindRouteByAttr(selectedFrom, selectedTo);
         }
+
+        public static bool CheckIfSomeRouteUsePlaceWithName(string placeName)
+        {
+            foreach (Route r in GetAllRoutes())
+            {
+                foreach (Place p in r.places)
+                {
+                    if (p.Name.Equals(placeName))
+                        return true;
+                }
+            }
+            return false;
+        }
     }
 }

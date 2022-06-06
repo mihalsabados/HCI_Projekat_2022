@@ -22,6 +22,7 @@
             <MenuItem Header="Redovi vožnje" Icon="{materialDesign:PackIcon Kind=Train}" Foreground="#FFCECFC8" Click="TimetableShow" >
             </MenuItem>
             <MenuItem Header="Mreža linija" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" Click="ShowRouteMap_Click" ></MenuItem>
+            <MenuItem Header="Stanice" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" Click="Stations_Click" ></MenuItem>
             <MenuItem Header="Vozovi" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" Click="OpenTrainCrudView" ></MenuItem>
             <MenuItem Header="Prodate karte" Foreground="#FFCECFC8" Background="#FF485B83" HorizontalAlignment="Stretch" >
                 <MenuItem Header="Po mesecu" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
@@ -39,5 +40,13 @@
         <Frame Grid.Row="1" x:Name="TimetableView" Source="/gui/TimetableViewManager.xaml" Visibility="Hidden" Grid.Column="1" Margin="0,0,0,0" />
         <Frame Grid.Row="1" x:Name="TrainCRUD" Source="/gui/TrainCRUDPage.xaml" Visibility="Hidden" VerticalAlignment="Stretch" Margin="0,0,0,0"/>
         <Frame Grid.Row="1" x:Name="RouteMapView" Source="/gui/RouteMapView.xaml" Visibility="Hidden" VerticalAlignment="Stretch" Margin="0,0,0,0"/>
+        
+        
+        
+        
+        
+        
+        
+        <Frame Grid.Row="1" x:Name="StationsView" Source="/gui/StationsView.xaml" Visibility="Hidden" VerticalAlignment="Stretch" Margin="0,0,0,0"/>
     </Grid>
 </Page>

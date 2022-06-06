@@ -35,6 +35,23 @@ namespace HCI_Projekat.database
             new Place("Jagodina", 43.9794256, 21.2607688),
         };
 
+        internal static void AddNewPlace(Place newPlace)
+        {
+            places.Add(newPlace);
+        }
+
+        public static bool DeletePlaceByName(string name)
+        {
+            for (int i = 0; i < places.Count; ++i)
+            {
+                if (places[i].Name.Equals(name))
+                {
+                    return places.Remove(places[i]);
+                }
+            }
+            return false; 
+        }
+
         public static List<Place> GetAllPlaces()
         {
             return places;
