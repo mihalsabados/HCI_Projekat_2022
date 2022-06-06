@@ -22,6 +22,7 @@
             <MenuItem Header="Redovi vožnje" Icon="{materialDesign:PackIcon Kind=Train}" Foreground="#FFCECFC8" Click="TimetableShow" >
             </MenuItem>
             <MenuItem Header="Mreža linija" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" Click="ShowRouteMap_Click" ></MenuItem>
+            <MenuItem Header="Vozne linija" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" Click="Routes_Click" ></MenuItem>
             <MenuItem Header="Stanice" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" Click="Stations_Click" ></MenuItem>
             <MenuItem Header="Vozovi" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" Click="OpenTrainCrudView" ></MenuItem>
             <MenuItem Header="Prodate karte" Foreground="#FFCECFC8" Background="#FF485B83" HorizontalAlignment="Stretch" >
@@ -49,5 +50,6 @@
         
         
         <Frame Grid.Row="1" x:Name="StationsView" Source="/gui/StationsView.xaml" Visibility="Hidden" VerticalAlignment="Stretch" Margin="0,0,0,0"/>
+        <Frame Grid.Row="1" x:Name="RoutesView" Source="/gui/AllRoutesGridView.xaml" Visibility="Hidden" VerticalAlignment="Stretch" Margin="0,0,0,0"/>
     </Grid>
 </Page>

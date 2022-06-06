@@ -78,5 +78,10 @@ namespace HCI_Projekat.services
             }
             return false;
         }
+
+        internal static bool DeleteRouteByName(string name)
+        {
+            return RouteRepository.DeleteRouteByName(name);
+        }
     }
 }
