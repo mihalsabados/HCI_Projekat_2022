@@ -18,14 +18,24 @@ namespace HCI_Projekat.services
             return CardRepository.GetAvailableYearsWithSoldCards();
         }
 
-        internal static List<double> RevenueForMonths(int yearRevenue)
+        internal static List<double> RevenueForMonths(int yearRevenue, int month)
         {
-            return CardRepository.RevenueForMonths(yearRevenue);
+            return CardRepository.RevenueForMonths(yearRevenue, month);
         }
 
         internal static List<double> RevenueForTimetable(int timetableId)
         {
             return CardRepository.RevenueForTimetable(timetableId);
         }
+
+        internal static List<CardDataGrid> GetCardForYearAndMonth(int year, int month)
+        {
+            List<Card> cards = CardRepository.GetCardsForYearAndMonth(year, month);
+            List<CardDataGrid> data = new List<CardDataGrid>();
+            foreach (Card card in cards)
+                data.Add(new CardDataGrid(card.RouteForCard.FromTo, card.DateTimeForCard, card.WagonNumber, card.SeatNumber, card.Price));
+            return data;
+        }
+
     }
 }

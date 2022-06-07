@@ -44,7 +44,7 @@ namespace HCI_Projekat.gui
 			this.TrainCRUD.Visibility = Visibility.Hidden;
 			this.SoldCardsPerMonthPage.Visibility = Visibility.Hidden;
 			this.SoldCardsPerRoutePage.Visibility = Visibility.Hidden;
-			this.RoutesView.Visibility = Visibility.Hidden;
+			this.RoutesViewPage.Visibility = Visibility.Hidden;
 			this.TimetableView.Visibility = Visibility.Visible;
 			this.TimetableView.Refresh();
 		}
@@ -56,21 +56,23 @@ namespace HCI_Projekat.gui
 			this.TimetableView.Visibility = Visibility.Hidden;
 			this.SoldCardsPerMonthPage.Visibility = Visibility.Hidden;
 			this.SoldCardsPerRoutePage.Visibility = Visibility.Hidden;
-			this.RoutesView.Visibility = Visibility.Hidden;
+			this.RoutesViewPage.Visibility = Visibility.Hidden;
 
 			this.TrainCRUD.Visibility = Visibility.Visible;
-        }
+			this.TrainCRUD.Refresh();
+		}
 
         private void SoldCardsPerMonth(object sender, RoutedEventArgs e)
         {
+			((MainWindow)App.Current.MainWindow).Width = 1100;
 			this.RouteMapView.Visibility = Visibility.Hidden;
 			this.StationsView.Visibility = Visibility.Hidden;
 			this.TrainCRUD.Visibility = Visibility.Hidden;
 			this.TimetableView.Visibility = Visibility.Hidden;
 			this.SoldCardsPerRoutePage.Visibility = Visibility.Hidden;
-			this.RoutesView.Visibility = Visibility.Hidden;
-
-			SoldCardsPerMonthPage.Visibility = Visibility.Visible; 
+			this.RoutesViewPage.Visibility = Visibility.Hidden;
+			SoldCardsPerMonthPage.Visibility = Visibility.Visible;
+			this.SoldCardsPerMonthPage.Refresh();
 		}
 
 		private void SoldCardsPerRoute(object sender, RoutedEventArgs e)
@@ -80,9 +82,10 @@ namespace HCI_Projekat.gui
 			this.StationsView.Visibility = Visibility.Hidden;
 			this.TimetableView.Visibility = Visibility.Hidden;
 			this.SoldCardsPerMonthPage.Visibility = Visibility.Hidden;
-			this.RoutesView.Visibility = Visibility.Hidden;
+			this.RoutesViewPage.Visibility = Visibility.Hidden;
 
 			this.SoldCardsPerRoutePage.Visibility = Visibility.Visible;
+			this.SoldCardsPerRoutePage.Refresh();
 		}
 
 		private void ShowRouteMap_Click(object sender, RoutedEventArgs e)
@@ -92,9 +95,10 @@ namespace HCI_Projekat.gui
 			this.TimetableView.Visibility = Visibility.Hidden;
 			this.SoldCardsPerMonthPage.Visibility = Visibility.Hidden;
 			this.SoldCardsPerRoutePage.Visibility = Visibility.Hidden;
-			this.RoutesView.Visibility = Visibility.Hidden;
+			this.RoutesViewPage.Visibility = Visibility.Hidden;
 
 			this.RouteMapView.Visibility = Visibility.Visible;
+			this.RouteMapView.Refresh();
 		}
 
 		private void Stations_Click(object sender, RoutedEventArgs e)
@@ -104,20 +108,11 @@ namespace HCI_Projekat.gui
 			this.RouteMapView.Visibility = Visibility.Hidden;
 			this.SoldCardsPerMonthPage.Visibility = Visibility.Hidden;
 			this.SoldCardsPerRoutePage.Visibility = Visibility.Hidden;
-			this.RoutesView.Visibility = Visibility.Hidden;
+			this.RoutesViewPage.Visibility = Visibility.Hidden;
 
 			this.StationsView.Visibility = Visibility.Visible;
+			this.StationsView.Refresh();
 		}
-
-
-
-
-
-
-
-
-
-
 
         private void Routes_Click(object sender, RoutedEventArgs e)
         {
@@ -126,8 +121,9 @@ namespace HCI_Projekat.gui
 			this.RouteMapView.Visibility = Visibility.Hidden;
 			this.SoldCardsPerMonthPage.Visibility = Visibility.Hidden;
 			this.StationsView.Visibility = Visibility.Hidden;
-
-			this.RoutesView.Visibility = Visibility.Visible;
+			this.SoldCardsPerRoutePage.Visibility = Visibility.Hidden;
+			this.RoutesViewPage.Visibility = Visibility.Visible;
+			this.RoutesViewPage.Refresh();
 		}
     }
 }
