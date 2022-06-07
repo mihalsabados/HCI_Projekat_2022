@@ -28,17 +28,6 @@ namespace HCI_Projekat.database
             trains.Add(train1);
             trains.Add(train2);
             trains.Add(train3);
-            trains.Add(train3);
-            trains.Add(train3);
-            trains.Add(train3);
-            trains.Add(train3);
-            trains.Add(train3);
-            trains.Add(train3);
-            trains.Add(train3);
-            trains.Add(train3);
-            trains.Add(train3);
-            trains.Add(train3);
-            trains.Add(train3);
         }
 
 
@@ -52,6 +41,7 @@ namespace HCI_Projekat.database
         {
             return trains;
         }
+
 
         public static Train addNewTrain(string name, List<Wagon> wagons)
         {

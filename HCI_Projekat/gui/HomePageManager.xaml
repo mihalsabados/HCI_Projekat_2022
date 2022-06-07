@@ -23,9 +23,8 @@
             </MenuItem>
 
             <MenuItem Header="Mreža linija" Icon="{materialDesign:PackIcon Kind=MapOutline}" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" Click="ShowRouteMap_Click"/>
-
+            <MenuItem Header="Vozne linije" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" Click="Routes_Click" ></MenuItem>
             <MenuItem Header="Stanice" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" Click="Stations_Click" ></MenuItem>
-
             <MenuItem Header="Vozovi" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" Click="OpenTrainCrudView" >
             </MenuItem>
    
@@ -47,13 +46,8 @@
         <Frame Grid.Row="1" x:Name="SoldCardsPerMonthPage" Source="/gui/SoldCardsPerMonth.xaml" Visibility="Hidden" VerticalAlignment="Stretch" Margin="0,0,0,0"/>
         <Frame Grid.Row="1" x:Name="SoldCardsPerRoutePage" Source="/gui/SoldCardsPerRoute.xaml" Visibility="Hidden" VerticalAlignment="Stretch" Margin="0,0,0,0"/>
         <Frame Grid.Row="1" x:Name="RouteMapView" Source="/gui/RouteMapView.xaml" Visibility="Hidden" VerticalAlignment="Stretch" Margin="0,0,0,0"/>
-        
-        
-        
-        
-        
-        
-        
+       
         <Frame Grid.Row="1" x:Name="StationsView" Source="/gui/StationsView.xaml" Visibility="Hidden" VerticalAlignment="Stretch" Margin="0,0,0,0"/>
+        <Frame Grid.Row="1" x:Name="RoutesViewPage" Source="/gui/AllRoutesGridView.xaml" Visibility="Hidden" VerticalAlignment="Stretch" Margin="0,0,0,0"/>
     </Grid>
 </Page>
