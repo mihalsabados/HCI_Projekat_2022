@@ -22,6 +22,11 @@ namespace HCI_Projekat.model
         }
         public Route() { }
 
+        public Route(List<Place> places)
+        {
+            this.places = places;
+        }
+
     }
 
 }

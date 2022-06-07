@@ -22,6 +22,8 @@ using ToastNotifications.Lifetime;
 using ToastNotifications.Messages;
 using ToastNotifications.Position;
 using System.Threading.Tasks;
+using System.Windows.Automation.Peers;
+using System.Windows.Automation.Provider;
 
 namespace HCI_Projekat.gui
 {
@@ -86,23 +88,26 @@ namespace HCI_Projekat.gui
 
         private void showMapRoute()
         {
-            List<Place> places = new List<Place>();
-            ComboBoxItem startItem = (ComboBoxItem)startStationCb.SelectedItem;
-            string startPlace = startItem.Content.ToString();
-
-            ComboBoxItem endItem = (ComboBoxItem)endStationCb.SelectedItem;
-            string endPlace = endItem.Content.ToString();
-
-            places.Add(PlaceService.FindPlaceByName(startPlace));
-            foreach (Place p in newInnerStations)
+            if (checkValidationStations())
             {
-                places.Add(p);
-            }
-            places.Add(PlaceService.FindPlaceByName(endPlace));
+                List<Place> places = new List<Place>();
+                ComboBoxItem startItem = (ComboBoxItem)startStationCb.SelectedItem;
+                string startPlace = startItem.Content.ToString();
 
-            model.Route newRoute = new model.Route("name", selectedRoute.Route.RouteTrain, places);
-            currentRoute = newRoute;
-            CalculateRouteFromPlaces(newRoute);
+                ComboBoxItem endItem = (ComboBoxItem)endStationCb.SelectedItem;
+                string endPlace = endItem.Content.ToString();
+
+                places.Add(PlaceService.FindPlaceByName(startPlace));
+                foreach (Place p in newInnerStations)
+                {
+                    places.Add(p);
+                }
+                places.Add(PlaceService.FindPlaceByName(endPlace));
+
+                model.Route newRoute = new model.Route("name", selectedRoute.Route.RouteTrain, places);
+                currentRoute = newRoute;
+                CalculateRouteFromPlaces(newRoute);
+            }
         }
 
 
@@ -118,6 +123,7 @@ namespace HCI_Projekat.gui
             }
 
             var travelMode = (TravelModeType)Enum.Parse(typeof(TravelModeType), (string)("Walking"));
+            
             var tspOptimization = (TspOptimizationType)Enum.Parse(typeof(TspOptimizationType), (string)("StraightLineDistance"));
 
             try
@@ -160,7 +166,15 @@ namespace HCI_Projekat.gui
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                if (ex.Message.StartsWith("Access was"))
+                {
+                    MessageBox.Show("Došlo je do greške prilikom učitavanja rute. Probajte da otvorite prikaz ponovo,\n ili kliknite na dugme 'Odustani' kako biste osvežili prikaz");
+                }
+                else if (ex.Message.StartsWith("The route"))
+                {
+                    MessageBox.Show("Ruta je predugačka da bi se prikazala na mapi");
+                }
+
             }
 
             LoadingBar.Visibility = Visibility.Collapsed;
@@ -323,6 +337,7 @@ namespace HCI_Projekat.gui
 
         private void DeleteInnerStation_Click(object sender, RoutedEventArgs e)
         {
+            StationError.Visibility = Visibility.Hidden;
             Place item = innerStationsTable.SelectedItem as Place;
             newInnerStations.RemoveAll(i => i.Name.Equals(item.Name));
 
@@ -331,6 +346,18 @@ namespace HCI_Projekat.gui
         }
 
 
+        private void OnLoadMap(object sender, RoutedEventArgs e) 
+        {
+            ButtonAutomationPeer peer = new ButtonAutomationPeer(showMapBtn);
+            IInvokeProvider invokeProv = peer.GetPattern(PatternInterface.Invoke) as IInvokeProvider;
+            invokeProv.Invoke();
+        }
+
+        private void ShowMapClicked(object sender, RoutedEventArgs e)
+        {
+            currentRoute = selectedRoute.Route;
+            CalculateRouteFromPlaces(currentRoute);
+        }
 
         private void addRoute_Click(object sender, RoutedEventArgs e)
         {

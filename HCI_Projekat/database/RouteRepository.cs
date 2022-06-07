@@ -160,6 +160,7 @@ namespace HCI_Projekat.database
         public static Route SaveNewRoute(List<Place> listPlaces, Train train)
 		{
             string name = "nova" + counter.ToString();
+            counter++;
             Route r = new Route(name, train, listPlaces);
             routes.Add(r);
             return r;

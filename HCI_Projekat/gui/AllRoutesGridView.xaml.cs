@@ -108,7 +108,9 @@ namespace HCI_Projekat.gui
 
         private void AddRoute_Click(object sender, RoutedEventArgs e)
         {
-
+            SelectedRoute = routesTable.SelectedItem as DataGridRoute;
+            AddRoute addRoute = new AddRoute(this);
+            addRoute.ShowDialog();
         }
 
         private void EditRoute_Click(object sender, RoutedEventArgs e)
