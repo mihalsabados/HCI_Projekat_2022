@@ -16,6 +16,8 @@ namespace HCI_Projekat.database
         private static Train tr3 = TrainRepository.FindTrainByName("743");
 
 
+        private static int counter = 0;
+
         private static List<Route> routes = new List<Route>()
         {
             new Route("1", tr1, new List<Place>(){ 
@@ -155,12 +157,12 @@ namespace HCI_Projekat.database
             return null;
         }
 
-        public static Route SaveNewRoute(string name, List<Place> listPlaces)
+        public static Route SaveNewRoute(List<Place> listPlaces, Train train)
 		{
-            /*Route r = new Route(name, listPlaces);
+            string name = "nova" + counter.ToString();
+            Route r = new Route(name, train, listPlaces);
             routes.Add(r);
-            return r;*/
-            return null;
+            return r;
 		}
 
         public static List<Route> GetRoutes()

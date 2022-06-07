@@ -78,7 +78,7 @@ namespace HCI_Projekat.gui
             View = CollectionViewSource.GetDefaultView(Routes);
         }
 
-        private void refreshData()
+        public void refreshData()
         {
             List<Route> routes = RouteService.GetAllRoutes();
             List<DataGridRoute> drList = new List<DataGridRoute>();
@@ -114,7 +114,7 @@ namespace HCI_Projekat.gui
         private void EditRoute_Click(object sender, RoutedEventArgs e)
         {
             SelectedRoute = routesTable.SelectedItem as DataGridRoute;
-            EditRoute editRoute = new EditRoute();
+            EditRoute editRoute = new EditRoute(this);
             editRoute.ShowDialog();
         }
 

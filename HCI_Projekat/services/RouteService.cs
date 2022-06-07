@@ -83,5 +83,38 @@ namespace HCI_Projekat.services
         {
             return RouteRepository.DeleteRouteByName(name);
         }
+
+        public static Route AddNewRoute(List<Place> places, Train train)
+        {
+            return RouteRepository.SaveNewRoute(places, train);
+        }
+
+        internal static bool CheckIfRouteWithPlacesAlreadyExist(List<Place> places)
+        {
+            foreach (Route route in GetAllRoutes())
+            {
+                int counter = 0;
+                if (route.places.Count == places.Count)
+                {
+                    for (int i = 0; i < places.Count; ++i)
+                    {
+                        if (route.places[i].Name.Equals(places[i].Name))
+                        {
+                            counter++;
+                        }
+                    }
+                    if (counter == places.Count)
+                        return true;
+                }
+            }
+            return false;
+        }
+
+        internal static void ChangeRouteByName(string name, Train train, List<Place> places)
+        {
+            Route route = FindRouteByName(name);
+            route.RouteTrain = train;
+            route.places = places;
+        }
     }
 }

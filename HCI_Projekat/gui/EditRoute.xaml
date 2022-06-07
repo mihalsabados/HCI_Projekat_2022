@@ -9,7 +9,7 @@
         Icon="/railway.png"
         Background="#FFCECFC8"
         xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
-        Title="EditRoute" Height="650" Width="800">
+        Title="Promena vozne linije" Height="650" Width="850">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.5*"></ColumnDefinition>
@@ -37,14 +37,14 @@
 
                     <Grid Grid.Row="1">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="0.5*"></RowDefinition>
+                            <RowDefinition Height="0.2*"></RowDefinition>
                             <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="0.4*"></RowDefinition>
+                            <RowDefinition Height="0.2*"></RowDefinition>
                         </Grid.RowDefinitions>
 
                         <Grid Grid.Row="0">
                             <Grid.RowDefinitions>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
@@ -53,8 +53,6 @@
                             </Grid.ColumnDefinitions>
 
                             <Label Grid.Column="0" Grid.Row="0" Content="Polazna stanica:"  HorizontalAlignment="Left"  VerticalAlignment="Center" FontSize="13" FontWeight="Bold" Margin="18,-2,0,0" Foreground="#FFCECFC8"/>
-                            <Label Grid.Column="0" Grid.Row="1" Content="Krajnja stanica:"  HorizontalAlignment="Left"  VerticalAlignment="Center" FontSize="13" FontWeight="Bold" Margin="18,-2,0,0" Foreground="#FFCECFC8"/>
-                            <Label Grid.Column="0" Grid.Row="2" Content="Naziv voza:"  HorizontalAlignment="Left"  VerticalAlignment="Center" FontSize="13" FontWeight="Bold" Margin="18,-2,0,0" Foreground="#FFCECFC8"/>
 
                             <ComboBox
                                 Grid.Column="1" Grid.Row="0"
@@ -62,29 +60,11 @@
                                 MaxWidth="250"
                                 Height="35"
                                 Style="{StaticResource MaterialDesignFilledComboBox}"
+                                SelectionChanged="startStationCb_SelectionChanged"
                                 materialDesign:HintAssist.IsFloating="False"
                                 materialDesign:HintAssist.Hint="Polazna stanica" Background="#FFCECFC8" Foreground="#FF485B83" FontSize="14" Margin="5,0,10,0" HorizontalAlignment="Stretch">
                             </ComboBox>
 
-                            <ComboBox
-                                Grid.Column="1" Grid.Row="1"
-                                x:Name="endStationCb"
-                                MaxWidth="250"
-                                Height="35"
-                                Style="{StaticResource MaterialDesignFilledComboBox}"
-                                materialDesign:HintAssist.IsFloating="False"
-                                materialDesign:HintAssist.Hint="Kranja stanica" Background="#FFCECFC8" Foreground="#FF485B83" FontSize="14" Margin="5,0,10,0" HorizontalAlignment="Stretch">
-                            </ComboBox>
-
-                            <ComboBox
-                                Grid.Column="1" Grid.Row="2"
-                                x:Name="trainCb"
-                                MaxWidth="250"
-                                Height="35"
-                                Style="{StaticResource MaterialDesignFilledComboBox}"
-                                materialDesign:HintAssist.IsFloating="False"
-                                materialDesign:HintAssist.Hint="Naziv voza" Background="#FFCECFC8" Foreground="#FF485B83" FontSize="14" Margin="5,0,10,0" HorizontalAlignment="Stretch">
-                            </ComboBox>
                         </Grid>
 
                         <Grid Grid.Row="1">
@@ -93,9 +73,11 @@
                                 <RowDefinition Height="*"></RowDefinition>
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
 
                             <StackPanel Margin="5 2 5 0" Grid.Row="0">
+                                <Label Name="StationError"  Visibility="Hidden" HorizontalAlignment="center"  VerticalAlignment="Center" FontSize="10" FontWeight="Bold" Margin="18,-5,0,0" Foreground="#FFC34E43"/>
                                 <Label BorderThickness="0, 2, 0, 0" Grid.Row="1" BorderBrush="#FFCECFC8"/>
                             </StackPanel>
 
@@ -191,6 +173,7 @@
                             </Grid>
 
                             <Grid Grid.Row="2" Margin="10">
+                                
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="1*"></ColumnDefinition>
                                     <ColumnDefinition Width="0.6*"></ColumnDefinition>
@@ -209,33 +192,75 @@
                                 <Button Grid.Column="1" x:Name="addRoute" Width="100" Visibility="Visible" FontSize="12" Click="addRoute_Click"  Content="Dodaj" ToolTip="Dodaj međustanicu"  Margin="0,0,0,0" Background="#FF485B83" BorderBrush="White" Foreground="#FFCECFC8"/>
                             </Grid>
                             <Grid Grid.Row="3">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="*"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <Label Grid.Row="0" BorderThickness="0, 2, 0, 0" BorderBrush="#FFCECFC8"/>
+                                <Label Name="InnerStationError" Visibility="Hidden" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Center" FontSize="10" FontWeight="Bold" Margin="18,-5,0,0" Foreground="#FFC34E43"/>
+                            </Grid>
+                            <Label Grid.Row="4" BorderThickness="0, 2, 0, 0" BorderBrush="#FFCECFC8"/>
+                        </Grid>
+                        
+                        <Grid Grid.Row="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
 
-                                <Grid Grid.Row="1">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1*"></ColumnDefinition>
-                                        <ColumnDefinition Width="2*"></ColumnDefinition>
-                                        <ColumnDefinition Width="2*"></ColumnDefinition>
-                                        <ColumnDefinition Width="1*"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
 
-                                    <Button Grid.Column="1"
+                            <Label Grid.Column="0" Grid.Row="0" Content="Krajnja stanica:"  HorizontalAlignment="Left"  VerticalAlignment="Center" FontSize="13" FontWeight="Bold" Margin="18,-2,0,0" Foreground="#FFCECFC8"/>
+                            <Label Grid.Column="0" Grid.Row="1" Content="Naziv voza:"  HorizontalAlignment="Left"  VerticalAlignment="Center" FontSize="13" FontWeight="Bold" Margin="18,-2,0,0" Foreground="#FFCECFC8"/>
+
+                            <ComboBox
+                                Grid.Column="1" Grid.Row="0"
+                                x:Name="endStationCb"
+                                MaxWidth="250"
+                                SelectionChanged="endStationCb_SelectionChanged"
+                                Height="35"
+                                Style="{StaticResource MaterialDesignFilledComboBox}"
+                                materialDesign:HintAssist.IsFloating="False"
+                                materialDesign:HintAssist.Hint="Kranja stanica" Background="#FFCECFC8" Foreground="#FF485B83" FontSize="14" Margin="5,0,10,0" HorizontalAlignment="Stretch">
+                            </ComboBox>
+
+                            <ComboBox
+                                Grid.Column="1" Grid.Row="1"
+                                x:Name="trainCb"
+                                MaxWidth="250"
+                                Height="35"
+                                Style="{StaticResource MaterialDesignFilledComboBox}"
+                                materialDesign:HintAssist.IsFloating="False"
+                                materialDesign:HintAssist.Hint="Naziv voza" Background="#FFCECFC8" Foreground="#FF485B83" FontSize="14" Margin="5,0,10,0" HorizontalAlignment="Stretch">
+                            </ComboBox>
+                        </Grid>
+                        
+                        <Grid Grid.Row="3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" BorderThickness="0, 2, 0, 0" BorderBrush="#FFCECFC8"/>
+
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <Button Grid.Column="1"
+                                        Click="Save_Click"
                                         Content="Sačuvaj" MaxWidth="150" MinWidth="150" Foreground="#FFCECFC8" HorizontalAlignment="Center" FontSize="14" Background="#FFC34E43" BorderBrush="{x:Null}" Margin="0,0,5,0"
 				                    />
 
-                                    <Button Grid.Column="2"
+                                <Button Grid.Column="2"
+                                        Click="Reset_Click"
                                         Content="Odustani" MaxWidth="150" MinWidth="150"  Foreground="#FFCECFC8" HorizontalAlignment="Center" FontSize="14" Background="#FFC34E43" BorderBrush="{x:Null}" Margin="5,0,0,0"
 				                    />
-                                </Grid>
-                                
                             </Grid>
-                            
+
                         </Grid>
-                        
+
                     </Grid>
                  </Grid>
             </materialDesign:Card>
@@ -250,6 +275,7 @@
             <m:Map
                 Grid.Row="1"
                 Name="Mapa"
+                Margin="-20 5 15 10"
                 Center="44.815071,20.460480" ZoomLevel="8"
             >
                 </m:Map>
