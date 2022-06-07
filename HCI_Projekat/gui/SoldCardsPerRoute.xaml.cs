@@ -24,6 +24,8 @@ namespace HCI_Projekat.gui
     /// </summary>
     public partial class SoldCardsPerRoute : Page
     {
+        public List<CardDataGrid> cards;
+        public bool check;
         public SoldCardsPerRoute()
         {
             InitializeComponent();
@@ -67,7 +69,10 @@ namespace HCI_Projekat.gui
         {
             String selectedFromRoute = "";
             String selectedToRoute = "";
-            String selectedTimetable = "";
+            String selectedTimetable = timetableComboBox.Text;
+            List<Timetable> timetables = new List<Timetable>();
+            bool noDataForRoute = false;
+            bool noTimetableData = false;
 
             timtableError.Visibility = Visibility.Hidden;
 
@@ -79,7 +84,10 @@ namespace HCI_Projekat.gui
             else
             {
                 FromError.Visibility = Visibility;
-
+                columnChart.Visibility = Visibility.Hidden;
+                label1.Visibility = Visibility.Hidden;
+                label.Visibility = Visibility.Hidden;
+                review.Visibility = Visibility.Hidden;
             }
             if (toRoutes.SelectedItem != null)
             {
@@ -89,6 +97,10 @@ namespace HCI_Projekat.gui
             else
             {
                 ToError.Visibility = Visibility;
+                columnChart.Visibility = Visibility.Hidden;
+                label1.Visibility = Visibility.Hidden;
+                label.Visibility = Visibility.Hidden;
+                review.Visibility = Visibility.Hidden;
             }
             if (!selectedFromRoute.Equals(""))
             {
@@ -100,23 +112,37 @@ namespace HCI_Projekat.gui
                     Route route = checkIfRouteExists(selectedFromRoute, selectedToRoute);
                     if (route == null)
                     {
+                        noDataForRoute = true;
                         searchedMessage.Content = "Nema vozne linije za traženu relaciju.";
+                        searchButton.Content = "Pretraži";
                         this.searchedMessage.Visibility = Visibility.Visible;
-                        this.timetable.Visibility = Visibility.Hidden;
+                        this.timetableComboBox.Visibility = Visibility.Hidden;
+                        selectedTimetable = "";
+                        columnChart.Visibility = Visibility.Hidden;
+                        label1.Visibility = Visibility.Hidden;
+                        label.Visibility = Visibility.Hidden;
+                        review.Visibility = Visibility.Hidden;
                     }
                     else
                     {
                         
-                        List<Timetable> timetables = TimetableService.FindTimetablesByIdRouteName(route.Name);
+                        timetables = TimetableService.FindTimetablesByIdRouteName(route.Name);
                         if (timetables.Count == 0)
                         {
+                            noTimetableData = true;
                             searchedMessage.Content = "Nema redova vožnje za traženu relaciju.";
+                            selectedTimetable = "";
+                            searchButton.Content = "Pretraži";
                             this.searchedMessage.Visibility = Visibility.Visible;
-                            this.timetable.Visibility = Visibility.Hidden;
-
+                            this.timetableComboBox.Visibility = Visibility.Hidden;
+                            columnChart.Visibility = Visibility.Hidden;
+                            label1.Visibility = Visibility.Hidden;
+                            label.Visibility = Visibility.Hidden;
+                            review.Visibility = Visibility.Hidden;
                         }
                         else
                         {
+                            timetableComboBox.Items.Clear();
                             foreach (Timetable tt in timetables)
                             {
                                 String fromT = tt.StartDateTime.Hour + ":" + tt.StartDateTime.Minute;
@@ -127,9 +153,9 @@ namespace HCI_Projekat.gui
                                 else if (tt.weekDay == DayOfWeekTimetable.SATURDAY)
                                     weekDay = "Subota";
                                 else weekDay = "Nedelja";
-                                timetable.Items.Add(createComboBoxItem(tt.Id + " ( " + fromT + "-" + toT + " ) *" + weekDay));
+                                timetableComboBox.Items.Add(createComboBoxItem(tt.Id + " ( " + fromT + "-" + toT + " ) *" + weekDay));
                             }
-                            this.timetable.Visibility = Visibility.Visible;
+                            this.timetableComboBox.Visibility = Visibility.Visible;
                             this.searchedMessage.Visibility = Visibility.Hidden;
                             
                         }
@@ -140,17 +166,56 @@ namespace HCI_Projekat.gui
             }
             if (!selectedFromRoute.Equals("") && !selectedToRoute.Equals(""))
             {
-                if (timetable.SelectedItem == null)
+                if (!noDataForRoute && !noTimetableData)
                 {
-                    timtableError.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    ComboBoxItem item = (ComboBoxItem)timetable.SelectedItem;
-                    selectedTimetable = item.Content.ToString();
-                    string[] tokens = selectedTimetable.Split('(');
-                    int timetableId = Int32.Parse(tokens[0].Trim());
-                    loadLineChart(timetableId);
+                    if (selectedTimetable.Equals("") && !searchButton.Content.Equals("Pretraži"))
+                    {
+                        timtableError.Visibility = Visibility.Visible;
+                        columnChart.Visibility = Visibility.Hidden;
+                        label1.Visibility = Visibility.Hidden;
+                        label.Visibility = Visibility.Hidden;
+                        review.Visibility = Visibility.Hidden;
+                    }
+                    else if (!selectedTimetable.Equals("") && !searchButton.Content.Equals("Pretraži"))
+
+                    {
+                        int i = 0;
+                        foreach (Timetable tt in timetables)
+                        {
+                            String fromT = tt.StartDateTime.Hour + ":" + tt.StartDateTime.Minute;
+                            String toT = tt.EndDateTime.Hour + ":" + tt.EndDateTime.Minute;
+                            String weekDay = "";
+                            if (tt.weekDay == DayOfWeekTimetable.WORK)
+                                weekDay = "Radni dan";
+                            else if (tt.weekDay == DayOfWeekTimetable.SATURDAY)
+                                weekDay = "Subota";
+                            else weekDay = "Nedelja";
+                            string ttName = tt.Id + " ( " + fromT + "-" + toT + " ) *" + weekDay;
+
+                            if (ttName.Equals(selectedTimetable))
+                                break;
+                            i++;
+                        }
+                        timetableComboBox.SelectedIndex = i;
+                        string[] tokens = selectedTimetable.Split('(');
+                        int timetableId = Int32.Parse(tokens[0].Trim());
+                        timtableError.Visibility = Visibility.Hidden;
+                        columnChart.Visibility = Visibility.Visible;
+                        label1.Visibility = Visibility.Visible;
+                        label.Visibility = Visibility.Visible;
+                        review.Visibility = Visibility.Visible;
+                        loadLineChart(timetableId);
+                        loadDataGrid(timetableId);
+                    }
+                    else
+                    {
+                        timtableError.Visibility = Visibility.Hidden;
+                        columnChart.Visibility = Visibility.Hidden;
+                        label1.Visibility = Visibility.Hidden;
+                        label.Visibility = Visibility.Hidden;
+                        review.Visibility = Visibility.Hidden;
+                    }
+                    searchButton.Content = "Generiši pregled";
                 }
             }
         }
@@ -163,22 +228,35 @@ namespace HCI_Projekat.gui
 
             List<double> revenue = CardService.RevenueForTimetable(timetableId);
 
-            label1.Content = "Mesečni prihodi od prodatih karata za izabrani red vožnje.";
-            label1.HorizontalAlignment = HorizontalAlignment.Center;
-
-            var chartValues = new ChartValues<double>();
-            foreach (var monthly in revenue)
+            check = checkIfNoSoldCards(revenue);
+            if (check)
+            {
+                label.Content = "Nema prodatih karti za izabrani red vožnje.";
+                timtableError.Visibility = Visibility.Hidden;
+                columnChart.Visibility = Visibility.Hidden;
+                label1.Visibility = Visibility.Hidden;
+                label.Visibility = Visibility.Visible;
+                review.Visibility = Visibility.Hidden;
+                searchedMessage.Visibility = Visibility.Hidden;
+            }
+            else
             {
 
-                chartValues.Add(monthly);
-            }
+                label1.Content = "Grafički prikaz broja prodatih karti za izabrani red vožnje";
+                label1.HorizontalAlignment = HorizontalAlignment.Center;
+
+                var chartValues = new ChartValues<double>();
+                foreach (var monthly in revenue)
+                {
+                    chartValues.Add(monthly);
+                }
 
 
-            var seriesCollection = new SeriesCollection
+                var seriesCollection = new SeriesCollection
             {
                new ColumnSeries
                 {
-                    Title = "Prihodi po mesecu",
+                    Title = "Broj prodatih karti po mesecu",
                     Values = chartValues,
                     Configuration = new CartesianMapper<double>()
                     .Y(point => point)
@@ -188,42 +266,81 @@ namespace HCI_Projekat.gui
             };
 
 
-            seriesCollection.Add(new LineSeries()
+                seriesCollection.Add(new LineSeries()
+                {
+                    Title = "Broj prodatih karti po mesecu",
+                    Values = chartValues,
+                    DataLabels = false,
+                    Fill = Brushes.Transparent,
+                    PointGeometrySize = 0,
+                    IsEnabled = false,
+                    Configuration = new CartesianMapper<double>()
+                       .Y(point => point)
+                });
+                List<int> yearsForTt = CardService.GetAvailableYearsWithSoldCards(timetableId);
+                List<string> labelForChart = new List<string>();
+
+                foreach (int year in yearsForTt)
+                {
+                    labelForChart.Add("Jan, " + year + ".");
+                    labelForChart.Add("Feb, " + year + ".");
+                    labelForChart.Add("Mart, " + year + ".");
+                    labelForChart.Add("Apr, " + year + ".");
+                    labelForChart.Add("Maj, " + year + ".");
+                    labelForChart.Add("Jun, " + year + ".");
+                    labelForChart.Add("Jul, " + year + ".");
+                    labelForChart.Add("Avg, " + year + ".");
+                    labelForChart.Add("Sept, " + year + ".");
+                    labelForChart.Add("Okt, " + year + ".");
+                    labelForChart.Add("Nov, " + year + ".");
+                    labelForChart.Add("Dec, " + year + ".");
+                }
+
+                columnChart.AxisX.Add(new Axis
+                {
+                    Title = "Mesec",
+                    Labels = labelForChart,
+                    Foreground = (Brush)(new BrushConverter().ConvertFrom("#FF485B83")),
+                    FontSize = 14
+
+                });
+
+                Func<double, string> labFormat = value => string.Format("{0:0}", value);
+
+                columnChart.AxisY.Add(new Axis
+                {
+                    Title = "Broj prodatih karti",
+                    LabelFormatter = labFormat,
+                    Foreground = (Brush)new BrushConverter().ConvertFrom("#FF485B83"),
+                    FontSize = 14
+
+                });
+
+                columnChart.Series = seriesCollection;
+            }
+        }
+
+        private void loadDataGrid(int timetableId)
+        {
+            if (!check)
             {
-                Title = "Prihodi po mesecu",
-                Values = chartValues,
-                DataLabels = false,
-                Fill = Brushes.Transparent,
-                PointGeometrySize = 0,
-                IsEnabled = false,
-                Configuration = new CartesianMapper<double>()
-                   .Y(point => point)
-            });
-
-
-            columnChart.AxisX.Add(new Axis
-            {
-                Title = "Mesec",
-                Labels = new[] { "Jan", "Feb", "Mart", "April", "Maj", "Jun", "Jul", "Avg", "Sept", "Okt", "Nov", "Dec" },
-                Foreground = (Brush)(new BrushConverter().ConvertFrom("#FF485B83")),
-                FontSize = 14,
-                Separator = new LiveCharts.Wpf.Separator { Step = 1 }
-
-            });
-
-            Func<double, string> labFormat = value => value.ToString("C");
-
-            columnChart.AxisY.Add(new Axis
-            {
-                Title = "Prihodi (RSD)",
-                LabelFormatter = labFormat,
-                Foreground = (Brush)new BrushConverter().ConvertFrom("#FF485B83"),
-                FontSize = 14
-
-            });
-
-            columnChart.Series = seriesCollection;
+                cards = CardService.GetSoldCardForTimetable(timetableId);
+                this.review.ItemsSource = cards;
+                this.review.Visibility = Visibility.Visible;
+                label.Content = "Tabelarni prikaz broja prodatih karti za izabrani red vožnje";
+                label.HorizontalAlignment = HorizontalAlignment.Center;
+            }
 
         }
+
+        private bool checkIfNoSoldCards(List<double> revenue)
+        {
+            foreach (double r in revenue)
+            {
+                if (r != 0) return false;
+            }
+            return true;
+        }
+
     }
 }

@@ -51,6 +51,7 @@ namespace HCI_Projekat.gui
 
         private void OpenTrainCrudView(object sender, RoutedEventArgs e)
         {
+			((MainWindow)App.Current.MainWindow).Width = 800;
 			this.RouteMapView.Visibility = Visibility.Hidden;
 			this.StationsView.Visibility = Visibility.Hidden;
 			this.TimetableView.Visibility = Visibility.Hidden;
@@ -77,6 +78,7 @@ namespace HCI_Projekat.gui
 
 		private void SoldCardsPerRoute(object sender, RoutedEventArgs e)
 		{
+			((MainWindow)App.Current.MainWindow).Width = 1100;
 			this.RouteMapView.Visibility = Visibility.Hidden;
 			this.TrainCRUD.Visibility = Visibility.Hidden;
 			this.StationsView.Visibility = Visibility.Hidden;
@@ -90,6 +92,7 @@ namespace HCI_Projekat.gui
 
 		private void ShowRouteMap_Click(object sender, RoutedEventArgs e)
         {
+			((MainWindow)App.Current.MainWindow).Width = 800;
 			this.TrainCRUD.Visibility = Visibility.Hidden;
 			this.StationsView.Visibility = Visibility.Hidden;
 			this.TimetableView.Visibility = Visibility.Hidden;
@@ -103,6 +106,7 @@ namespace HCI_Projekat.gui
 
 		private void Stations_Click(object sender, RoutedEventArgs e)
         {
+			((MainWindow)App.Current.MainWindow).Width = 800;
 			this.TrainCRUD.Visibility = Visibility.Hidden;
 			this.TimetableView.Visibility = Visibility.Hidden;
 			this.RouteMapView.Visibility = Visibility.Hidden;
@@ -116,6 +120,7 @@ namespace HCI_Projekat.gui
 
         private void Routes_Click(object sender, RoutedEventArgs e)
         {
+			((MainWindow)App.Current.MainWindow).Width = 800;
 			this.TrainCRUD.Visibility = Visibility.Hidden;
 			this.TimetableView.Visibility = Visibility.Hidden;
 			this.RouteMapView.Visibility = Visibility.Hidden;
