@@ -14,10 +14,12 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using HCI_Projekat.model;
 using HCI_Projekat.services;
+using HCI_Projekat.database;
 using ToastNotifications;
 using ToastNotifications.Lifetime;
 using ToastNotifications.Messages;
 using ToastNotifications.Position;
+
 
 namespace HCI_Projekat.gui
 {
@@ -28,6 +30,7 @@ namespace HCI_Projekat.gui
     {
 
         public static DataGridRoute SelectedRoute { get; set; }
+        private List<Route> filteredRoutes = new List<Route>();
 
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -64,11 +67,43 @@ namespace HCI_Projekat.gui
             InitializeComponent();
             this.DataContext = this;
             initTableData();
+            initComboboxes();
         }
-        
+
+        private void initComboboxes()
+        {
+            foreach (Place place in PlaceService.GetAllPlaces())
+            {
+                ComboBoxItem itemStart = createComboBoxItem(place.Name);
+                ComboBoxItem itemEnd = createComboBoxItem(place.Name);
+                ComboBoxItem itemInner = createComboBoxItem(place.Name);
+
+                startStationCb.Items.Add(itemStart);
+                endStationCb.Items.Add(itemEnd);
+                innerStationCb.Items.Add(itemInner);
+            }
+
+            foreach (Train train in TrainRepository.getAllTrains())
+            {
+                ComboBoxItem item = createComboBoxItem(train.Name);
+                trainStationCb.Items.Add(item);
+            }
+        }
+
+        private ComboBoxItem createComboBoxItem(string content)
+        {
+            ComboBoxItem c = new ComboBoxItem();
+            c.Content = content;
+            c.Visibility = Visibility.Visible;
+            c.Foreground = (Brush)(new BrushConverter().ConvertFrom("#FF485B83"));
+            return c;
+        }
+
+
         private void initTableData()
         {
             List<Route> routes = RouteService.GetAllRoutes();
+            filteredRoutes = routes;
             List<DataGridRoute> drList = new List<DataGridRoute>();
             foreach (Route route in routes)
             {
@@ -81,6 +116,7 @@ namespace HCI_Projekat.gui
         public void refreshData()
         {
             List<Route> routes = RouteService.GetAllRoutes();
+            filteredRoutes = routes;
             List<DataGridRoute> drList = new List<DataGridRoute>();
             foreach (Route route in routes)
             {
@@ -142,5 +178,81 @@ namespace HCI_Projekat.gui
                 }
             }
         }
+
+        private void resetFilterBtn_Click(object sender, RoutedEventArgs e)
+        {
+            startStationCb.SelectedItem = null;
+            endStationCb.SelectedItem = null;
+            trainStationCb.SelectedItem = null;
+            innerStationCb.SelectedItem = null;
+            refreshData();
+        }
+
+        private void filterBtn_Click(object sender, RoutedEventArgs e)
+        {
+            filterByStart();
+            filterByEnd();
+            filterByInner();
+            filterByTrain();
+
+            List<DataGridRoute> drList = new List<DataGridRoute>();
+            foreach (Route route in filteredRoutes)
+            {
+                drList.Add(new DataGridRoute(route));
+            }
+            Routes = new ObservableCollection<DataGridRoute>(drList);
+            this.OnPropertyChanged("Routes");
+        }
+
+        private void filterByStart()
+        {
+            if (startStationCb.SelectedItem != null)
+            {
+                ComboBoxItem startItem = (ComboBoxItem)startStationCb.SelectedItem;
+                string startPlace = startItem.Content.ToString();
+                filteredRoutes = filteredRoutes.FindAll(f => f.places[0].Name.Equals(startPlace));
+            }
+        }
+        private void filterByEnd()
+        {
+            if (endStationCb.SelectedItem != null)
+            {
+                ComboBoxItem endItem = (ComboBoxItem)endStationCb.SelectedItem;
+                string endPlace = endItem.Content.ToString();
+                filteredRoutes = filteredRoutes.FindAll(f => f.places[^1].Name.Equals(endPlace));
+            }
+        }
+        private void filterByTrain()
+        {
+            if (trainStationCb.SelectedItem != null)
+            {
+                ComboBoxItem trainItem = (ComboBoxItem)trainStationCb.SelectedItem;
+                string train = trainItem.Content.ToString();
+                filteredRoutes = filteredRoutes.FindAll(f => f.RouteTrain.Name.Equals(train));
+            }
+        }
+
+        private void filterByInner()
+        {
+            if (innerStationCb.SelectedItem != null)
+            {
+                ComboBoxItem innerItem = (ComboBoxItem)innerStationCb.SelectedItem;
+                string innerPlace = innerItem.Content.ToString();
+                List<Route> newRoutes = new List<Route>();
+                foreach (Route r in filteredRoutes)
+                {
+                    for (int i = 1; i < r.places.Count - 1; ++i)
+                    {
+                        if (r.places[i].Name.Equals(innerPlace))
+                        {
+                            newRoutes.Add(r);
+                            break;
+                        }
+                    }
+                }
+                filteredRoutes = newRoutes;
+            }
+        }
+
     }
 }

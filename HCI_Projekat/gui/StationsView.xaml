@@ -117,9 +117,35 @@
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            
-            <Label Grid.Row="0" Name="titleMessage" Content="Prikaz svih stanica" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="14" FontWeight="Bold" Margin="10,5,0,0" Foreground="#FF485B83"/>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
                 
+                
+                <Label Grid.Column="0" Name="titleMessage" Content="Prikaz svih stanica" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="14" FontWeight="Bold" Margin="10,5,0,0" Foreground="#FF485B83"/>
+
+                <TextBox
+                    SelectionChanged="pretraziStanice_SelectionChanged"
+                    Grid.Column="1"
+                    x:Name="pretraziStaniceTxt"
+                    Style="{StaticResource MaterialDesignTextBox}"
+                    VerticalAlignment="Center"
+                    AcceptsReturn="True"
+                    TextWrapping="Wrap"
+                    materialDesign:HintAssist.Hint="Pretraži..."
+                    HorizontalAlignment="Stretch"
+                    Margin="0,0,10,-5"
+                    FontSize="14"
+                    CaretBrush="#FF1ABC9C"
+                    SelectionBrush="#FFABF9EA"
+                    Foreground="#FF485B83"
+                />
+            </Grid>
+
+            
             <DataGrid
               Grid.Row="1"
               Name="stationsTable"

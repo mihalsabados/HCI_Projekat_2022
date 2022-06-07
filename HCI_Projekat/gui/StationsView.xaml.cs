@@ -101,6 +101,7 @@ namespace HCI_Projekat.gui
         }
         private void refreshData()
         {
+            pretraziStaniceTxt.Text = "";
             bindedPlaces = new List<Place>();
             foreach (Place p in PlaceService.GetAllPlaces())
             {
@@ -335,6 +336,24 @@ namespace HCI_Projekat.gui
                     return;
                 }
             }
+        }
+
+        private void pretraziStanice_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            if (pretraziStaniceTxt.Text.Trim().Length == 0)
+                refreshData();
+            string criteria = pretraziStaniceTxt.Text.Trim().ToLower();
+
+            bindedPlaces = new List<Place>();
+            foreach (Place p in PlaceService.GetAllPlaces())
+            {
+                if (p.Name.ToLower().Contains(criteria))
+                {
+                    bindedPlaces.Add(p);
+                }
+            }
+            Places = new ObservableCollection<Place>(bindedPlaces);
+            this.OnPropertyChanged("Places");
         }
     }
 }
