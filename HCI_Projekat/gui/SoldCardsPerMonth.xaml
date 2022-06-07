@@ -22,7 +22,7 @@
             <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2">
                 <Image Source="/revenue.png"  Margin="20,10,0,0" VerticalAlignment="Top" />
 
-                <Label Content="Mesečni pregled prihoda od prodatih karata" HorizontalAlignment="Stretch" 
+                <Label Content="Mesečni pregled broja prodatih karti" HorizontalAlignment="Stretch" 
                    VerticalAlignment="Stretch" FontSize="18" FontWeight="Bold"
                    Margin="10,20,0,0" Foreground="#FF485B83"/>
 
@@ -60,6 +60,7 @@
               Visibility="Hidden"
               SelectionUnit="Cell"
               IsReadOnly="True"
+              Background="#FFE0E0E0"
               AutoGenerateColumns="False" Margin="10,39,10,10" HorizontalContentAlignment="Left" Foreground="#FF485B83" 
             >
             <DataGrid.Resources>
@@ -75,10 +76,12 @@
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Client}" Header="Kupac" Width="2*" />
+
                 <DataGridTextColumn Binding="{Binding RouteName}" Header="Vozna linija" Width="3*" />
 
                 <DataGridTextColumn Binding="{Binding PlaceInTrain}"  Width="*" Header="Voz" />
-                <DataGridTextColumn Binding="{Binding DateTimeName, StringFormat='dd.MM.yyyy. HH:mm'}" Header="Polazak" Width="2*" />
+                <DataGridTextColumn Binding="{Binding DateTimeName, StringFormat='dd.MM.yyyy. HH:mm'}" Header="Polazak" Width="2.1*" />
                 <DataGridTextColumn Binding="{Binding Price}" Header="Cena (RSD)"  Width="1.5*" />
 
             </DataGrid.Columns>
