@@ -37,5 +37,18 @@ namespace HCI_Projekat.services
             return data;
         }
 
+        internal static List<int> GetAvailableYearsWithSoldCards(int timetableId)
+        {
+            return CardRepository.GetAvailableYearsWithSoldCards(timetableId);
+        }
+
+        internal static List<CardDataGrid> GetSoldCardForTimetable(int timetableId)
+        {
+            List<Card> cards = CardRepository.GetSoldCardForTimetable(timetableId);
+            List<CardDataGrid> data = new List<CardDataGrid>();
+            foreach (Card card in cards)
+                data.Add(new CardDataGrid(card.RouteForCard.FromTo, card.DateTimeForCard, card.WagonNumber, card.SeatNumber, card.Price));
+            return data;
+        }
     }
 }
