@@ -1,0 +1,233 @@
+﻿<Page x:Class="HCI_Projekat.gui.StationsView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:HCI_Projekat.gui"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="StationsView" Background="#FFCECFC8"
+      xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+      >
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <Grid Grid.Column="0">
+
+            <materialDesign:Card
+            MaxWidth="420"
+            Grid.Row="0"
+            Background="#FF485B83"
+            Padding="8"
+            UniformCornerRadius="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,0,5">
+
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="4*"></RowDefinition>
+                        <RowDefinition Height="0.52*"></RowDefinition>
+                        <RowDefinition Height="0.5*"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.8*"></RowDefinition>
+                            <RowDefinition Height="3.8*"></RowDefinition>
+                            <RowDefinition Height="0.2*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Row="0">
+                            <Label Content="Nova stanica" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" Margin="10,-5,0,0" Foreground="#FFCECFC8"/>
+                            <Label BorderThickness="0, 2, 0, 0" Grid.Row="1" BorderBrush="#FFCECFC8"/>
+                            <Label Content="Dodajte lokaciju nove stanice dvoklikom na mapu" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Center" FontSize="13" FontWeight="Bold" Margin="18,-2,0,0" Foreground="#FFCECFC8"/>
+                        </StackPanel>
+
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Button
+                                Grid.Row="0"
+                                Name="UndoBtn"
+                                Click="Undo_Click"
+                                Visibility="Visible"
+                                Content="Poništi lokaciju" HorizontalAlignment="Right" VerticalAlignment="Top" Height="20" MaxWidth="100" MinWidth="80" Foreground="#FFCECFC8" FontSize="9" Background="#FF485B83" BorderBrush="White" Margin="5,5,5,5"
+		    		            />
+                            <m:Map
+                                Grid.Row="1"
+                                Name="Mapa"
+                                MouseDoubleClick="Mapa_MouseDoubleClick"
+                                Center="44.815071,20.460480" ZoomLevel="8"
+                            >
+                            </m:Map>
+                        </Grid>
+
+                        <StackPanel Grid.Row="2"> 
+                            <Label Name="MapError" Visibility="Hidden" Content="Niste dodali novu stanicu na mapi" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Center" FontSize="10" FontWeight="Bold" Margin="18,0,0,0" Foreground="#FFC34E43"/>
+                        </StackPanel>
+                    </Grid>
+                    
+                    <StackPanel Grid.Row="1">
+                        <TextBox
+                            x:Name="newStation"
+                            VerticalAlignment="Center"
+                            AcceptsReturn="True"
+                            TextWrapping="Wrap"
+                            materialDesign:HintAssist.Hint="Unesite naziv stanice..."
+                            HorizontalAlignment="Stretch"
+                            Margin="20,10,20,10"
+                            FontSize="14"
+                            CaretBrush="#FF1ABC9C"
+                            SelectionBrush="#FFABF9EA"
+                            Foreground="#FF485B83"
+                            Background="#FFCECFC8"
+                            MaxWidth="350"
+                        >
+                            <TextBox.Resources>
+                                <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
+                                    <Setter Property="Height" Value="30" />
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <Label Name="StationNameError" Visibility="Hidden" Content="Unesite ime stanice" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Center" FontSize="10" FontWeight="Bold" Margin="18,-10,0,0" Foreground="#FFC34E43"/>
+                    </StackPanel>
+                    
+
+                    <Button
+                      Name="SaveBtn"
+                      Grid.Row="2"
+                      Click="Sacuvaj_Click"
+                      Content="Sačuvaj" MaxWidth="150" MinWidth="150" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" FontSize="13" Background="#FFC34E43" BorderBrush="{x:Null}" Margin="10,5,10,5"
+		    		/>
+                </Grid>
+            </materialDesign:Card>
+
+        </Grid>
+
+        
+        <Grid Grid.Column="1" Margin="10,10,10,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            
+            <Label Grid.Row="0" Name="titleMessage" Content="Prikaz svih stanica" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="14" FontWeight="Bold" Margin="10,5,0,0" Foreground="#FF485B83"/>
+                
+            <DataGrid
+              Grid.Row="1"
+              Name="stationsTable"
+              CanUserAddRows="False"
+              CanUserSortColumns="True"
+              SelectionUnit="FullRow"
+              SelectionMode="Single"
+              IsReadOnly="False"
+              ScrollViewer.CanContentScroll="True"
+              ItemsSource="{Binding Places, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+              AutoGenerateColumns="False" Margin="0,5,10,0" HorizontalContentAlignment="Left" Foreground="#FF485B83" 
+            >
+                    <DataGrid.Resources>
+                        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}" >
+                            <Setter Property="Background" Value="#FF485B83" />
+                            <Setter Property="Foreground" Value="#FFCECFC8" />
+
+                            <Setter Property="BorderBrush" Value="#FFCECFC8"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="BorderThickness" Value="1 1 1 1"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                        </Style>
+
+
+                    <Style x:Key="errorStyle" TargetType="{x:Type TextBox}">
+                        <Setter Property="Padding" Value="-2"/>
+                        <Style.Triggers>
+                            <Trigger Property="Validation.HasError" Value="True">
+                                <Setter Property="ToolTip" 
+                                    Value="{Binding RelativeSource={RelativeSource Self},
+                                     Path=(Validation.Errors)[0].ErrorContent}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.Resources>
+                
+                
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Naziv stanice" Width="2*"  EditingElementStyle="{StaticResource errorStyle}">
+                        <DataGridTextColumn.Binding>
+                            <Binding Path="Name">
+                                <Binding.ValidationRules>
+                                    <local:PlaceValidationRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </DataGridTextColumn.Binding>
+                    </DataGridTextColumn>
+                        <DataGridTemplateColumn Header="Brisanje" Width="1*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <materialDesign:DialogHost DialogTheme="Inherit">
+                                        <materialDesign:DialogHost.DialogContent>
+                                            <StackPanel Margin="16">
+                                                <TextBlock Text="Da li ste sigurni da želite" HorizontalAlignment="Center" />
+                                                <TextBlock Text="da uklonite izabranu stanicu?" HorizontalAlignment="Center"/>
+
+                                                <StackPanel
+                                                Orientation="Horizontal"
+                                                HorizontalAlignment="Center">
+                                                    <Button
+                                                      Style="{StaticResource MaterialDesignFlatButton}"
+                                                      IsDefault="True"
+                                                      Margin="0 8 2 0"
+                                                      Content="Prihvati"
+                                                      Click="ButtonClickDelete"
+                                                      Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
+                                                        <Button.CommandParameter>
+                                                            <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                                                True
+                                                            </system:Boolean>
+                                                        </Button.CommandParameter>
+                                                    </Button>
+                                                    <Button
+                                                  Style="{StaticResource MaterialDesignFlatButton}"
+                                                  IsCancel="True"
+                                                  Margin="0 8 8 0"
+                                                  Content="Odustani"
+                                                  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
+                                                        <Button.CommandParameter>
+                                                            <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                                                False
+                                                            </system:Boolean>
+                                                        </Button.CommandParameter>
+                                                    </Button>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </materialDesign:DialogHost.DialogContent>
+                                        <Border
+                                    ClipToBounds="True">
+                                            <Grid>
+
+                                                <Button
+                                                Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                                                Content="{materialDesign:PackIcon Kind=Delete, Size=16}"  Background="{x:Null}" BorderThickness="0" Foreground="#FF485B83" />
+                                            </Grid>
+                                        </Border>
+                                    </materialDesign:DialogHost>
+                                </DataTemplate>
+
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+
+
+            </DataGrid>
+
+        </Grid>
+
+    </Grid>
+</Page>

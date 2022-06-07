@@ -31,10 +31,13 @@ namespace HCI_Projekat.gui
 			MainWindow.LoggedUser = null;
 			((MainWindow)App.Current.MainWindow).HomePageClient.Visibility = Visibility.Hidden;
 			((MainWindow)App.Current.MainWindow).Login.Visibility = Visibility.Visible;
+			this.TimetableView.Visibility = Visibility.Hidden;
 		}
 
 		private void TimetableShow(object sender, RoutedEventArgs e)
 		{
+			this.RouteMapView.Visibility = Visibility.Hidden;
+			this.TimetableView.Refresh();
 			this.TimetableView.Visibility = Visibility.Visible;
 		}
 
@@ -42,7 +45,12 @@ namespace HCI_Projekat.gui
         {
 			this.ReservationPage.Visibility = Visibility.Visible;
         }
-    }
+		private void ShowRouteMap_Click(object sender, RoutedEventArgs e)
+		{
+			this.TimetableView.Visibility = Visibility.Hidden;
+			this.RouteMapView.Visibility = Visibility.Visible;
+		}
+	}
 
 
 }

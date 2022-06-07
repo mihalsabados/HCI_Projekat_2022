@@ -21,7 +21,7 @@
             </Menu.ItemsPanel>
             <MenuItem Header="Redovi vožnje" Icon="{materialDesign:PackIcon Kind=Train}" Foreground="#FFCECFC8" Click="TimetableShow" >
             </MenuItem>
-            <MenuItem Header="Mreža linija" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" >
+            <MenuItem Header="Mreža linija" Foreground="#FFCECFC8" HorizontalAlignment="Stretch"  Click="ShowRouteMap_Click" >
 
             </MenuItem>
             <MenuItem Header="Rezervacija" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" Click="ReservationClick" >
@@ -36,7 +36,9 @@
                 </MenuItem.Icon>
             </MenuItem>
         </Menu>
-        <Frame Grid.Row="1" x:Name="TimetableView" Source="/gui/TimetableView.xaml" Visibility="Hidden" VerticalAlignment="Stretch" Grid.Column="1" Margin="0,0,0,0" />
         <Frame Grid.Row="1" x:Name="ReservationPage" Source="/gui/ReservationPage.xaml" Visibility="Hidden" VerticalAlignment="Stretch" Margin="0,0,0,0" />
+        <Frame Grid.Row="1" x:Name="RouteMapView" Source="/gui/RouteMapView.xaml" Visibility="Hidden" VerticalAlignment="Stretch" Margin="0,0,0,0"/>
+        <Frame Grid.Row="1" x:Name="TimetableView" Source="/gui/TimetableViewClient.xaml" Visibility="Hidden" Grid.Column="1" Margin="0,0,0,0" />
+
     </Grid>
 </Page>

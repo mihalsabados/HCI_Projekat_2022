@@ -14,5 +14,20 @@ namespace HCI_Projekat.services
         {
             return PlaceRepository.FindPlaceByName(name);
         }
+
+        public static List<Place> GetAllPlaces()
+        {
+            return PlaceRepository.GetAllPlaces();
+        }
+
+        public static bool DeletePlaceByName(string name)
+        {
+            return PlaceRepository.DeletePlaceByName(name);
+        }
+
+        internal static void AddNewPlace(Place newPlace)
+        {
+            PlaceRepository.AddNewPlace(newPlace);
+        }
     }
 }
