@@ -37,7 +37,12 @@ namespace HCI_Projekat.gui
 		{
 			this.TimetableView.Visibility = Visibility.Visible;
 		}
-	}
+
+        private void ReservationClick(object sender, RoutedEventArgs e)
+        {
+			this.ReservationPage.Visibility = Visibility.Visible;
+        }
+    }
 
 
 }

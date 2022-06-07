@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ToastNotifications.Messages;
 
 namespace HCI_Projekat.gui
 {
@@ -306,7 +307,7 @@ namespace HCI_Projekat.gui
                 return;
             }
             TrainRepository.updateTrain(selectedTrain, trainNameTxt.Text, selectedTrainWagons);
-            bool? Result = new CustomMessageBox("Uspešno sačuvane izmene.", MessageType.Success, MessageButtons.Ok).ShowDialog();
+            Registration.notifier.ShowSuccess("Uspešno sačuvane izmene.");
             createTrainChips();
             addBtn.Visibility = Visibility.Hidden;
             saveBtn.Visibility = Visibility.Visible;
@@ -335,7 +336,7 @@ namespace HCI_Projekat.gui
                 return;
             }
             TrainRepository.addNewTrain(trainNameTxt.Text, selectedTrainWagons);
-            bool? Result = new CustomMessageBox("Uspešno dodat novi voz.", MessageType.Success, MessageButtons.Ok).ShowDialog();
+            Registration.notifier.ShowSuccess("Uspešno dodat novi voz.");
             createTrainChips();
             addBtn.Visibility = Visibility.Hidden;
             saveBtn.Visibility = Visibility.Visible;

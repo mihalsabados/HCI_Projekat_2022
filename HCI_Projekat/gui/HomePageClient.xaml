@@ -8,7 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Početna stranica klijenta"  Background="#FFCECFC8">
 
-    <Grid VerticalAlignment="Top">
+    <Grid VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="10*"></RowDefinition>
@@ -24,7 +24,7 @@
             <MenuItem Header="Mreža linija" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" >
 
             </MenuItem>
-            <MenuItem Header="Rezervacija" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" >
+            <MenuItem Header="Rezervacija" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" Click="ReservationClick" >
 
             </MenuItem>
             <MenuItem Header="Pregled Rezervisanih" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" >
@@ -36,6 +36,7 @@
                 </MenuItem.Icon>
             </MenuItem>
         </Menu>
-        <Frame Grid.Row="1" x:Name="TimetableView" Source="/gui/TimetableView.xaml" Visibility="Hidden" Grid.Column="1" Margin="0,0,0,0" />
+        <Frame Grid.Row="1" x:Name="TimetableView" Source="/gui/TimetableView.xaml" Visibility="Hidden" VerticalAlignment="Stretch" Grid.Column="1" Margin="0,0,0,0" />
+        <Frame Grid.Row="1" x:Name="ReservationPage" Source="/gui/ReservationPage.xaml" Visibility="Hidden" VerticalAlignment="Stretch" Margin="0,0,0,0" />
     </Grid>
 </Page>

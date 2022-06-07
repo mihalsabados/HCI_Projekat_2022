@@ -17,12 +17,17 @@ namespace HCI_Projekat.database
                 PlaceService.FindPlaceByName("Beograd (Centar)"),
                 PlaceService.FindPlaceByName("Novi Sad"),
 
-            }),
+            }, TrainRepository.FindTrainByName("741")),
             new Route("2", new List<Place>(){
                 PlaceService.FindPlaceByName("Novi Sad"),
                 PlaceService.FindPlaceByName("Beograd (Centar)"),
 
-            })
+            }, TrainRepository.FindTrainByName("743")),
+            new Route("3", new List<Place>()
+            {
+                PlaceService.FindPlaceByName("Novi Sad"),
+                PlaceService.FindPlaceByName("Subotica")
+            }, TrainRepository.FindTrainByName("743"))
         };
         
 
@@ -35,9 +40,9 @@ namespace HCI_Projekat.database
             return null;
         }
 
-        public static Route SaveNewRoute(string name, List<Place> listPlaces)
+        public static Route SaveNewRoute(string name, List<Place> listPlaces, Train train)
 		{   
-            Route r = new Route(name, listPlaces);
+            Route r = new Route(name, listPlaces, train);
             routes.Add(r);
             return r;
 		}

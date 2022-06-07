@@ -12,7 +12,8 @@ namespace HCI_Projekat.database
         private static List<Place> places = new List<Place>()
         {
             new Place("Beograd (Centar)", 44, 20),
-            new Place("Novi Sad", 45.27, 19.807)
+            new Place("Novi Sad", 45.27, 19.807),
+            new Place("Subotica", 5,40)
         };
 
 
