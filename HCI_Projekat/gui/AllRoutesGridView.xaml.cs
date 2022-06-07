@@ -190,6 +190,7 @@ namespace HCI_Projekat.gui
 
         private void filterBtn_Click(object sender, RoutedEventArgs e)
         {
+            filteredRoutes = RouteService.GetAllRoutes();
             filterByStart();
             filterByEnd();
             filterByInner();
