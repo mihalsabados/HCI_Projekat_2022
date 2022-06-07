@@ -13,12 +13,14 @@ namespace HCI_Projekat.database
     {
         private static List<Timetable> timetables = new List<Timetable>()
         {
-            new Timetable(1, RouteService.FindRouteByName("1"), 
+            new Timetable(1, RouteService.FindRouteByName("1"),
                 new DateTime(2022, 6, 13, 4, 48, 0), new DateTime(2022, 6, 13, 5, 43, 0), DayOfWeekTimetable.WORK),
             new Timetable(2, RouteService.FindRouteByName("1"),
                 new DateTime(2022, 6, 13, 6, 13, 0), new DateTime(2022, 6, 13, 7, 10, 0), DayOfWeekTimetable.SATURDAY),
             new Timetable(3, RouteService.FindRouteByName("1"),
                 new DateTime(2022, 6, 13, 6, 13, 0), new DateTime(2022, 6, 13, 7, 10, 0), DayOfWeekTimetable.WORK),
+            new Timetable(3, RouteService.FindRouteByName("3"),
+                new DateTime(2022, 6, 13, 7, 20, 0), new DateTime(2022, 6, 13, 8, 20, 0), DayOfWeekTimetable.WORK),
 
         };
 

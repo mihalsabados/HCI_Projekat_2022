@@ -32,7 +32,7 @@ namespace HCI_Projekat.gui
 		{
 			InitializeComponent();
 		}
-		Notifier notifier = new Notifier(cfg =>
+		public static Notifier notifier = new Notifier(cfg =>
 		{
 			cfg.PositionProvider = new WindowPositionProvider(
 				parentWindow: Application.Current.MainWindow,
