@@ -50,6 +50,18 @@ namespace HCI_Projekat.gui
             InitializeComponent();
             fillComboBoxes();
             initInnerStations();
+            initCommands();
+        }
+
+        private void initCommands()
+        {
+            RoutedCommand newCmdAddRoute = new RoutedCommand();
+            newCmdAddRoute.InputGestures.Add(new KeyGesture(Key.A, ModifierKeys.Control));
+            this.CommandBindings.Add(new CommandBinding(newCmdAddRoute, addRoute_Click));
+
+            RoutedCommand newCmdSave = new RoutedCommand();
+            newCmdSave.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
+            this.CommandBindings.Add(new CommandBinding(newCmdSave, Save_Click));
         }
 
         private void fillComboBoxes()

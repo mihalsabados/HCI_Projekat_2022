@@ -23,7 +23,6 @@ namespace HCI_Projekat.gui
 		public HomePageManager()
 		{
 			InitializeComponent();
-
 		}
 
 		private void Logout(object sender, RoutedEventArgs e)
