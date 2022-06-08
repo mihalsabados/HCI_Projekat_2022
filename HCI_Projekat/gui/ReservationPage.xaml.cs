@@ -92,6 +92,7 @@ namespace HCI_Projekat.gui
 
         private void Search(object sender, RoutedEventArgs e)
         {
+            mapIcon.Visibility = Visibility.Hidden;
             alternativeNextBtn.IsEnabled = false;
             reserveBtn.IsEnabled = false;
             formReservation.Visibility = Visibility.Hidden;
@@ -160,8 +161,11 @@ namespace HCI_Projekat.gui
         private void CreateTimetableDataGrid()
         {
             if(currentRoute != null)
+            {
+                mapIcon.Visibility = Visibility.Visible;
                 titleMessage.Content = "Redovi vožnje od stanice: " + currentRoute.places[0].Name +
                             " do stanice: " + currentRoute.places[currentRoute.places.Count - 1].Name;
+            }
             var date = LocaleDatePickerRTL.SelectedDate.Value;
             DayOfWeekTimetable selectedDay;
             if (date.DayOfWeek == DayOfWeek.Saturday)
@@ -475,6 +479,12 @@ namespace HCI_Projekat.gui
             currentRoute = selectedAlternativeRoutes.Item1;
             CreateTimetableDataGrid();
             
+        }
+
+        private void mapIcon_Click(object sender, RoutedEventArgs e)
+        {
+            ShowOneRouteOnMap s = new ShowOneRouteOnMap(currentRoute);
+            s.Show();
         }
     }
 }
