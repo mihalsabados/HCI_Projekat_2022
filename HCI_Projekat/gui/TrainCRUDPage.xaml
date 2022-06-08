@@ -37,12 +37,13 @@
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="0.3*"></RowDefinition>
+                        <RowDefinition Height="0.4*"></RowDefinition>
+                        <RowDefinition Height="0.25*"></RowDefinition>
+                        <RowDefinition Height="2.5*"></RowDefinition>
+                        <RowDefinition Height="0.2*"></RowDefinition>
                         <RowDefinition Height="0.5*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="0.4*"></RowDefinition>
-                        <RowDefinition Height="2.1*"></RowDefinition>
-                        <RowDefinition Height="0.4*"></RowDefinition>
-                        <RowDefinition Height="0.8*"></RowDefinition>
+                        <RowDefinition Height="0.2*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Label Content="Podaci o vozu:" HorizontalAlignment="Left" Grid.Row="0" VerticalAlignment="Stretch" FontSize="18" FontWeight="Bold" Margin="20,0,0,0" Foreground="#FF485B83"/>
                     <TextBox
@@ -55,11 +56,12 @@
                         TextWrapping="Wrap"
                         materialDesign:HintAssist.Hint="Naziv voza"
                         HorizontalAlignment="Stretch"
-                        Margin="20,30,20,0"
+                        Margin="20,0,20,0"
                         FontSize="14"
                         CaretBrush="#FF1ABC9C"
                         SelectionBrush="#FFABF9EA"
                         Foreground="#FF485B83"
+                        Height="50"
                     />
                     <Label Content="vagoni voza:" HorizontalAlignment="Stretch" Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom" FontSize="15" FontWeight="Bold" Margin="20,0,30,0" Foreground="#FF485B83"/>
                     <Label Content="izgled vagona:" HorizontalAlignment="Stretch" Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" FontSize="15" FontWeight="Bold" Margin="20,0,30,0" Foreground="#FF485B83"/>
@@ -81,15 +83,15 @@
                         </Grid>
                     </Canvas>
                     <Label Content="Mogući broj putnika: " x:Name="passengerNumTxt" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Top" FontSize="13" FontWeight="Bold" Margin="0,0,0,0" Foreground="#FF485B83"/>
-                    <Button Content="Sačuvaj izmene" x:Name="saveBtn" HorizontalAlignment="Stretch" Grid.Row="5" Grid.ColumnSpan="2" VerticalAlignment="Center" FontSize="14" Click="SaveChanges" Margin="45,10,45,0" Background="#FF485B83" BorderBrush="#FF485B83" Foreground="#FFCECFC8"/>
+                    <Button Content="Sačuvaj izmene" x:Name="saveBtn" HorizontalAlignment="Stretch" Grid.Row="5" Grid.ColumnSpan="2" VerticalAlignment="Stretch" FontSize="14" Click="SaveChanges" Margin="45,10,45,0" Background="#FF485B83" BorderBrush="#FF485B83" Foreground="#FFCECFC8"/>
                     <Button Content="Dodaj voz" x:Name="addBtn" HorizontalAlignment="Stretch" Grid.Row="5" Grid.ColumnSpan="2" VerticalAlignment="Center" FontSize="14" Click="AddNewTrainEvent" Margin="45,10,45,0" Background="#FF485B83" BorderBrush="#FF485B83" Foreground="#FFCECFC8" Visibility="Hidden"/>
                     <Label
                         Name="AddError"
                         Visibility="Hidden"
                         Content=""
                         HorizontalAlignment="Center"
-                        Grid.Row="3"
-                        VerticalAlignment="Bottom"
+                        Grid.Row="6"
+                        VerticalAlignment="Top"
                         Grid.ColumnSpan="2"
                         Foreground="#FFC34E43"
                         Margin="0,0,0,0" />

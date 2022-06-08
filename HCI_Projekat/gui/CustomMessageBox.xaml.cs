@@ -27,22 +27,22 @@ namespace HCI_Projekat.gui
             {
 
                 case MessageType.Info:
-                    txtTitle.Text = "Info";
+                    this.Title = "Info";
                     break;
                 case MessageType.Confirmation:
-                    txtTitle.Text = "Potvrda";
+                    Title = "Potvrda";
                     break;
                 case MessageType.Success:
                     {
-                        txtTitle.Text = "Uspeh";
+                        Title = "Uspeh";
                     }
                     break;
                 case MessageType.Warning:
-                    txtTitle.Text = "Upozorenje";
+                    Title = "Upozorenje";
                     break;
                 case MessageType.Error:
                     {
-                        txtTitle.Text = "Greška";
+                        Title = "Greška";
                     }
                     break;
             }

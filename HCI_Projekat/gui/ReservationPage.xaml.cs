@@ -27,7 +27,8 @@ namespace HCI_Projekat.gui
     {
         public List<DataGridTimetable> dataGridTimetables;
         public List<DataGridAlternativeRoute> dataGridAlternativeRoutes;
-        public Timetable selectedTime;
+        public Timetable selectedTimetable;
+        public DateTime selectedDate;
         public List<Timetable> currentTimetables;
         public List<string> curTakenSeats;
         public List<Tuple<Route, Route>> alternativeRoutes;
@@ -103,6 +104,7 @@ namespace HCI_Projekat.gui
             string selectedFromRoute = "";
             string selectedToRoute = "";
             var date = LocaleDatePickerRTL.SelectedDate.Value;
+            selectedDate = date;
 
             if (fromRoutes.SelectedItem != null)
             {
@@ -119,6 +121,7 @@ namespace HCI_Projekat.gui
             }
             else
                 ToError.Visibility = Visibility;
+
 
             if (!selectedFromRoute.Equals(""))
             {
@@ -252,7 +255,7 @@ namespace HCI_Projekat.gui
             string wagonName = item.Split(':')[1].Trim();
             myCanvas.Visibility = Visibility.Visible;
 
-            List<TrainTicket> tickets = TicketRepository.GetTicketsForDateTimeAndWagon(currentRoute, selectedTime.StartDateTime, wagonNum);
+            List<TrainTicket> tickets = TicketRepository.GetTicketsForDateTimeAndWagon(currentRoute, selectedDate, wagonNum);
 
             double rows;
             if (wagonName.Equals("Mali vagon"))
@@ -363,7 +366,7 @@ namespace HCI_Projekat.gui
             {
                 foreach (var takenSeat in curTakenSeats)
                 {
-                    TicketRepository.AddNewTrainTicket(currentRoute, selectedTime.StartDateTime, WagonComboBox.SelectedIndex, takenSeat, MainWindow.LoggedUser.Username);
+                    TicketRepository.AddNewTrainTicket(currentRoute, selectedDate, WagonComboBox.SelectedIndex, takenSeat, MainWindow.LoggedUser.Username);
                 }
                 Registration.notifier.ShowSuccess("Uspešno obavljena rezervacija.");
 
@@ -390,19 +393,22 @@ namespace HCI_Projekat.gui
         {
             if(timetable.SelectedIndex >= 0)
             {
-                selectedTime = currentTimetables.Find(x => {
+                selectedTimetable = currentTimetables.Find(x => {
                     var selected = ((DataGridTimetable)timetable.SelectedItem).StartDateTime;
                     if (x.StartDateTime.Hour == selected.Hour && x.StartDateTime.Minute == selected.Minute)
                         return true;
                     return false;
                 });
+                selectedDate = selectedDate.AddHours(selectedTimetable.StartDateTime.Hour);
+                selectedDate = selectedDate.AddMinutes(selectedTimetable.StartDateTime.Minute);
                 reserveBtn.IsEnabled = true;
+
             }
         }
 
         private void GoToReservationForm(object sender, RoutedEventArgs e)
         {
-            if(selectedTime != null)
+            if(selectedTimetable != null)
             {
                 timetablePanel.Visibility = Visibility.Hidden;
                 formReservation.Visibility = Visibility.Visible;

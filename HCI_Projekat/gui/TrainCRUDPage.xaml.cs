@@ -275,9 +275,7 @@ namespace HCI_Projekat.gui
             newChip.Icon = addIcon;
             newChip.IconBackground = (SolidColorBrush)new BrushConverter().ConvertFrom("#FF485B83");
             WagonListBox.Items.Add(newChip);
-
         }
-
 
         private void AddNewWagon(object sender, RoutedEventArgs e)
         {
@@ -336,6 +334,7 @@ namespace HCI_Projekat.gui
                 return;
             }
             TrainRepository.addNewTrain(trainNameTxt.Text, selectedTrainWagons);
+            selectedTrain = trainNameTxt.Text;
             Registration.notifier.ShowSuccess("Uspešno dodat novi voz.");
             createTrainChips();
             addBtn.Visibility = Visibility.Hidden;
