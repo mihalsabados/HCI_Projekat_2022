@@ -5,14 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="MessageBoxWindow" Height="220" Width="500" 
-        WindowStartupLocation="CenterScreen" WindowStyle="None" Background="#FFCECFC8"
-        ResizeMode="CanResize" Topmost="True" ShowInTaskbar="False"
+        WindowStartupLocation="CenterScreen" Background="#FFCECFC8"
+        ResizeMode="NoResize" Topmost="True" ShowInTaskbar="False"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="10"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"        
+        Icon="/railway.png"
         FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -23,16 +24,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <materialDesign:Card x:Name="cardHeader" Grid.Row="0" Padding="10" Margin="0" materialDesign:ShadowAssist.ShadowDepth="Depth5"   Background="#FF485B83" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Visibility="Visible" Grid.ColumnSpan="2">
-            <StackPanel>
-                <TextBlock x:Name="txtTitle" HorizontalAlignment="Center" VerticalAlignment="Stretch" Style="{DynamicResource MaterialDesignTitleTextBlock}" FontSize="20" >Message Title</TextBlock>
-            </StackPanel>
-        </materialDesign:Card>
-        <StackPanel  HorizontalAlignment="Right" Margin="0,5,5,0"  VerticalAlignment="Top" Grid.Column="1">
-            <Button x:Name="btnClose" Click="btnClose_Click" Width="35" Height="35"  Background="White" Foreground="{DynamicResource PrimaryHueDarkBrush}" Style="{StaticResource MaterialDesignFloatingActionDarkButton}">
-                <materialDesign:PackIcon Kind="Close" />
-            </Button>
-        </StackPanel>
+        
         <Grid Grid.Row="1" Grid.ColumnSpan="2">
             <Grid Margin="20">
                 <Grid.RowDefinitions>

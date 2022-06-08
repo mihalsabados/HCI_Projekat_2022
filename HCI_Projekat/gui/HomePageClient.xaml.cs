@@ -36,21 +36,36 @@ namespace HCI_Projekat.gui
 
 		private void TimetableShow(object sender, RoutedEventArgs e)
 		{
-			this.RouteMapView.Visibility = Visibility.Hidden;
+			hideAllPages();
 			this.TimetableView.Refresh();
 			this.TimetableView.Visibility = Visibility.Visible;
 		}
 
         private void ReservationClick(object sender, RoutedEventArgs e)
         {
+			hideAllPages();
 			this.ReservationPage.Visibility = Visibility.Visible;
         }
 		private void ShowRouteMap_Click(object sender, RoutedEventArgs e)
 		{
-			this.TimetableView.Visibility = Visibility.Hidden;
+			hideAllPages();
 			this.RouteMapView.Visibility = Visibility.Visible;
 		}
-	}
+
+		private void hideAllPages()
+        {
+			TimetableView.Visibility = Visibility.Hidden;
+			ReservationPage.Visibility = Visibility.Hidden;
+			RouteMapView.Visibility = Visibility.Hidden;
+			MyReservations.Visibility = Visibility.Hidden;
+        }
+
+        private void ShowReservedTickets(object sender, RoutedEventArgs e)
+        {
+			hideAllPages();
+			MyReservations.Visibility = Visibility.Visible;
+        }
+    }
 
 
 }
