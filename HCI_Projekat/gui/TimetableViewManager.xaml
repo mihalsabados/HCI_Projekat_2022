@@ -69,7 +69,7 @@
                 />
                 <Button
                   Click="Search"
-                  Content="Pretraži" MaxWidth="150" MinWidth="150" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" FontSize="14" Background="#FFC34E43" BorderBrush="{x:Null}" Margin="10,10,10,20"
+                  Content="Pretraži" ToolTip="Pretraži redove vožnje (Enter)" MaxWidth="150" MinWidth="150" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" FontSize="14" Background="#FFC34E43" BorderBrush="{x:Null}" Margin="10,10,10,20"
 				/>
 
 
@@ -80,13 +80,14 @@
         <StackPanel Grid.Column="1" Margin="0,10,10,10">
             <Label Name="titleMessage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="14" FontWeight="Bold" Margin="10,20,0,0" Foreground="#FF485B83"/>
             <Label Name="searchedMessage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="14" FontWeight="Bold" Margin="10,5,0,0" Foreground="#FFC34E43"/>
-            <Button x:Name="addTimetable" Visibility="Hidden" Click="ButtonClickAdd" Content="Dodavanje" ToolTip="Dodavanje novog reda vožnje" HorizontalAlignment="Right" Margin="0,0,10,9" Background="#FF485B83" BorderBrush="#FF485B83" Foreground="#FFCECFC8"/>
+            <Button x:Name="addTimetable" Visibility="Hidden" Click="ButtonClickAdd" Content="Dodavanje" ToolTip="Dodavanje novog reda vožnje (Ctrl-A)" HorizontalAlignment="Right" Margin="0,0,10,9" Background="#FF485B83" BorderBrush="#FF485B83" Foreground="#FFCECFC8"/>
             <DataGrid Name="timetable"
               ItemsSource="{Binding dataGridTimetable, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
               CanUserAddRows="False"
               Visibility="Hidden"
               SelectionUnit="FullRow"
               SelectionMode="Single"
+              PreviewKeyDown="timetable_PreviewKeyDown"
               IsReadOnly="True"
               SelectedItem="{Binding editedTimetable, Mode=TwoWay}"
               AutoGenerateColumns="False" Margin="0,5,10,0" HorizontalContentAlignment="Left" Foreground="#FF485B83" 

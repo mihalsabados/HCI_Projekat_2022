@@ -21,7 +21,22 @@
                 <RowDefinition Height="10*"></RowDefinition>
             </Grid.RowDefinitions>
             <Label Content="Svi vozovi:" HorizontalAlignment="Left" Grid.Row="0" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" Margin="62,0,62,0" Foreground="#FF485B83"/>
-
+            <TextBox
+                Visibility="Hidden"
+                    Grid.Column="1"
+                    x:Name="hiddenTextBox"
+                    Style="{StaticResource MaterialDesignTextBox}"
+                    VerticalAlignment="Center"
+                    AcceptsReturn="True"
+                    TextWrapping="Wrap"
+                    materialDesign:HintAssist.Hint="Pretraži..."
+                    HorizontalAlignment="Stretch"
+                    Margin="0,0,10,-5"
+                    FontSize="14"
+                    CaretBrush="#FF1ABC9C"
+                    SelectionBrush="#FFABF9EA"
+                    Foreground="#FF485B83"
+                />
         </Grid>
         <Grid Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" x:Name="FormLayout">
             <materialDesign:Card
@@ -83,8 +98,8 @@
                         </Grid>
                     </Canvas>
                     <Label Content="Mogući broj putnika: " x:Name="passengerNumTxt" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Top" FontSize="13" FontWeight="Bold" Margin="0,0,0,0" Foreground="#FF485B83"/>
-                    <Button Content="Sačuvaj izmene" x:Name="saveBtn" HorizontalAlignment="Stretch" Grid.Row="5" Grid.ColumnSpan="2" VerticalAlignment="Stretch" FontSize="14" Click="SaveChanges" Margin="45,10,45,0" Background="#FF485B83" BorderBrush="#FF485B83" Foreground="#FFCECFC8"/>
-                    <Button Content="Dodaj voz" x:Name="addBtn" HorizontalAlignment="Stretch" Grid.Row="5" Grid.ColumnSpan="2" VerticalAlignment="Center" FontSize="14" Click="AddNewTrainEvent" Margin="45,10,45,0" Background="#FF485B83" BorderBrush="#FF485B83" Foreground="#FFCECFC8" Visibility="Hidden"/>
+                    <Button Content="Sačuvaj izmene" ToolTip="Sačuvaj izmene voza (Ctrl-S)" x:Name="saveBtn" HorizontalAlignment="Stretch" Grid.Row="5" Grid.ColumnSpan="2" VerticalAlignment="Stretch" FontSize="14" Click="SaveChanges" Margin="45,10,45,0" Background="#FF485B83" BorderBrush="#FF485B83" Foreground="#FFCECFC8"/>
+                    <Button Content="Dodaj voz" ToolTip="Dodaj novi voz (Enter)" x:Name="addBtn" HorizontalAlignment="Stretch" Grid.Row="5" Grid.ColumnSpan="2" VerticalAlignment="Center" FontSize="14" Click="AddNewTrainEvent" Margin="45,10,45,0" Background="#FF485B83" BorderBrush="#FF485B83" Foreground="#FFCECFC8" Visibility="Hidden"/>
                     <Label
                         Name="AddError"
                         Visibility="Hidden"

@@ -34,6 +34,23 @@ namespace HCI_Projekat.gui
             FormLayout.Visibility = Visibility.Hidden;
 
             createTrainChips();
+            hiddenTextBox.Focus();
+            initCommands();
+        }
+
+        private void initCommands()
+        {
+            RoutedCommand newCmdAddNewTrain = new RoutedCommand();
+            newCmdAddNewTrain.InputGestures.Add(new KeyGesture(Key.A, ModifierKeys.Control));
+            this.CommandBindings.Add(new CommandBinding(newCmdAddNewTrain, AddNewTrain));
+
+            RoutedCommand newCmdAddTrain = new RoutedCommand();
+            newCmdAddTrain.InputGestures.Add(new KeyGesture(Key.Enter));
+            this.CommandBindings.Add(new CommandBinding(newCmdAddTrain, AddNewTrainEvent));
+
+            RoutedCommand newCmdSaveChange = new RoutedCommand();
+            newCmdSaveChange.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
+            this.CommandBindings.Add(new CommandBinding(newCmdSaveChange, AddNewTrainEvent));
         }
 
         private void createTrainChips()
@@ -74,6 +91,7 @@ namespace HCI_Projekat.gui
             newChip.Content = "Dodaj novi voz";
             newChip.Margin = new Thickness(marginLeft, marginTop, 0, 0);
             newChip.Click += AddNewTrain;
+            newChip.ToolTip = "Dodavanje novog voza (Ctrl-A)";
             newChip.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#FF485B83");
             newChip.Foreground = Brushes.White;
             newChip.VerticalAlignment = VerticalAlignment.Top;

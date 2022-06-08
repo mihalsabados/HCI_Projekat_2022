@@ -43,7 +43,18 @@ namespace HCI_Projekat.gui
             }
             this.PresetTimePickerFrom.SelectedTime = TimetableViewManager.SelectedTimetable.StartDateTime;
             this.PresetTimePickerTo.SelectedTime = TimetableViewManager.SelectedTimetable.EndDateTime;
+            initCommands();
 
+        }
+        private void initCommands()
+        {
+            RoutedCommand newCmdSave = new RoutedCommand();
+            newCmdSave.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
+            this.CommandBindings.Add(new CommandBinding(newCmdSave, Edit));
+
+            RoutedCommand newCmdReset = new RoutedCommand();
+            newCmdReset.InputGestures.Add(new KeyGesture(Key.D, ModifierKeys.Control));
+            this.CommandBindings.Add(new CommandBinding(newCmdReset, Cancel));
         }
 
         Notifier notifier = new Notifier(cfg =>

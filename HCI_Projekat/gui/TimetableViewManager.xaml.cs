@@ -34,7 +34,18 @@ namespace HCI_Projekat.gui
 
             InitializeComponent();
             addFromAndToRoutes();
+            initCommands();
+        }
 
+        private void initCommands()
+        {
+            RoutedCommand newCmdAddNewRoute = new RoutedCommand();
+            newCmdAddNewRoute.InputGestures.Add(new KeyGesture(Key.A, ModifierKeys.Control));
+            this.CommandBindings.Add(new CommandBinding(newCmdAddNewRoute, ButtonClickAdd));
+
+            RoutedCommand newCmdSearch = new RoutedCommand();
+            newCmdSearch.InputGestures.Add(new KeyGesture(Key.Enter));
+            this.CommandBindings.Add(new CommandBinding(newCmdSearch, Search));
         }
 
         Notifier notifier = new Notifier(cfg =>
@@ -202,5 +213,21 @@ namespace HCI_Projekat.gui
             Search(sender, e);
         }
 
+        private void timetable_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            var u = e.OriginalSource as UIElement;
+            if (e.Key == Key.Enter && u != null)
+            {
+                DataGrid grid = sender as DataGrid;
+                if (grid.CurrentColumn.Header.ToString().Equals("Izmena", StringComparison.OrdinalIgnoreCase))
+                {
+                    SelectedTimetable = timetable.SelectedItem as DataGridTimetable;
+                    EditTimetable a = new EditTimetable();
+                    a.ShowDialog();
+                    Search(sender, e);
+                    e.Handled = true;
+                }
+            }
+        }
     }
 }

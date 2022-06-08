@@ -58,8 +58,8 @@
 
                     <Button x:Name="btnOk" Click="btnOk_Click" Grid.Column="1" Style="{StaticResource MaterialDesignRaisedButton}" Background="#FF485B83" Margin="5" Width="100" Content="Prihvati" ToolTip="Ok"/>
                     <Button x:Name="btnCancel" Click="btnCancel_Click" Grid.Column="2" Style="{StaticResource MaterialDesignRaisedButton}" Background="#FF485B83" Margin="5" Width="100" Content="Otkaži" ToolTip="Cancel"/>
-                    <Button x:Name="btnYes" Click="btnYes_Click" Grid.Column="1" Style="{StaticResource MaterialDesignRaisedButton}" Background="#FF485B83" Margin="5" Width="100" Content="Da" ToolTip="Yes"/>
-                    <Button x:Name="btnNo" Click="btnNo_Click" Grid.Column="2" Style="{StaticResource MaterialDesignRaisedButton}" Background="#FF485B83" Margin="5" Width="100" Content="Ne" ToolTip="No"/>
+                    <Button x:Name="btnYes" Click="btnYes_Click" Grid.Column="1" Style="{StaticResource MaterialDesignRaisedButton}" Background="#FF485B83" Margin="5" Width="100" Content="Da" />
+                    <Button x:Name="btnNo" Click="btnNo_Click" Grid.Column="2" Style="{StaticResource MaterialDesignRaisedButton}" Background="#FF485B83" Margin="5" Width="100" Content="Ne" />
                 </Grid>
 
             </Grid>

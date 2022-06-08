@@ -86,6 +86,7 @@
                 <Button
                   Click="Search"
                     Name="searchButton"
+                    ToolTip="Pretraži prodate karte za izabrani red vožnje (Enter)"
                   Content="Pretraži" MaxWidth="150" MinWidth="100" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" FontSize="14" Background="#FF485B83" BorderBrush="{x:Null}" Margin="10,0,10,20"
 				/>
                

@@ -75,12 +75,14 @@
                   Click="AddTimetable"
                     MinWidth="90"
                     MaxWidth="90"
+                    ToolTip="Sačuvaj red vožnje (Ctrl-S)"
                   Content="Sačuvaj" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" FontSize="14" Background="#FF485B83" BorderBrush="{x:Null}" Margin="35,19,10,20"
 				/>
                 <Button
                   Click="Cancel"
                     MinWidth="90"
                     MaxWidth="90"
+                    ToolTip="Odustani od dodavanja reda vožnje (Ctrl-D)"
                   Content="Odustani" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" FontSize="14" Background="#FF485B83" BorderBrush="{x:Null}" Margin="10,19,16,20"
 				/>
             </StackPanel>

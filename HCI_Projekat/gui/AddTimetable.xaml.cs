@@ -33,7 +33,19 @@ namespace HCI_Projekat.gui
             this.dayWeek.Items.Add(createComboBoxItem("Radni dan"));
             this.dayWeek.Items.Add(createComboBoxItem("Subota"));
             this.dayWeek.Items.Add(createComboBoxItem("Nedelja"));
+            initCommands();
         }
+        private void initCommands()
+        {
+            RoutedCommand newCmdSave = new RoutedCommand();
+            newCmdSave.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
+            this.CommandBindings.Add(new CommandBinding(newCmdSave, AddTimetable));
+
+            RoutedCommand newCmdReset = new RoutedCommand();
+            newCmdReset.InputGestures.Add(new KeyGesture(Key.D, ModifierKeys.Control));
+            this.CommandBindings.Add(new CommandBinding(newCmdReset, Cancel));
+        }
+
         private ComboBoxItem createComboBoxItem(string content)
         {
             ComboBoxItem c = new ComboBoxItem();
