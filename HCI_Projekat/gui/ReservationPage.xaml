@@ -10,7 +10,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Background="#FFCECFC8"
-      Title="Reservation">
+      Title="Reservation" IsVisibleChanged="Page_IsVisibleChanged">
         
     <Grid>
         <Grid.RowDefinitions>
@@ -83,7 +83,11 @@
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" Name="titleMessage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="14" FontWeight="Bold" Margin="10,10,0,0" Foreground="#FF485B83"/>
-                <MenuItem Grid.Column="1" Visibility="Hidden" Margin="0 8 0 0"  ToolTip="Prikaz vozne linije na mapi" Name="mapIcon" Click="mapIcon_Click" Icon="{materialDesign:PackIcon Kind=MapMarker}"/>
+                <MenuItem Grid.Column="1" Visibility="Hidden" Margin="0 8 0 0"  ToolTip="Prikaz vozne linije na mapi" Name="mapIcon" Click="mapIcon_Click" >
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="MapMarker" Foreground="#FFBC5046" ></materialDesign:PackIcon>
+                    </MenuItem.Icon>
+                </MenuItem>
             </Grid>
             <Label Name="searchedMessage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="14" FontWeight="Bold" Margin="10,0,0,0" Foreground="#FFC34E43"/>
             <DataGrid Name="timetable"
@@ -125,7 +129,7 @@
                       Content="Dalje na rezervaciju" MaxWidth="180" MinWidth="180" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" FontSize="14" Background="#FFC34E43" BorderBrush="{x:Null}" VerticalAlignment="Center" Margin="0,15,0,0"
 				    />
         </StackPanel>
-        <Grid x:Name="formReservation" Grid.Row="0" Grid.Column="1" Margin="15" Visibility="Hidden">
+        <Grid x:Name="formReservation" Grid.Row="0" Grid.Column="1" Margin="15" Visibility="Visible">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.4*"></RowDefinition>
                 <RowDefinition Height="0.3*"></RowDefinition>
@@ -136,18 +140,21 @@
             </Grid.ColumnDefinitions>
             <Grid >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.4*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.2*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.2*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.4*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Label Content="Broj osoba:" HorizontalAlignment="Right" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" FontSize="15" FontWeight="Bold" Margin="10,0,0,0" Foreground="#FF485B83"/>
-                <xctk:IntegerUpDown Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="50" x:Name="personNumTxt" Text="1" FontSize="15" ValueChanged="personNumTxt_ValueChanged" />
-                <Label Content="Vagon:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2"  FontSize="15" FontWeight="Bold" Margin="10,0,0,0" Foreground="#FF485B83"/>
-                <ComboBox Grid.Row="0" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" x:Name="WagonComboBox" FontSize="15"></ComboBox>
+                <StackPanel Orientation="Horizontal" >
+                    <Label Content="Broj osoba:"  HorizontalAlignment="Right" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" FontSize="15" FontWeight="Bold" Margin="10,0,0,0" Foreground="#FF485B83"/>
+                    <xctk:IntegerUpDown Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="50" x:Name="personNumTxt" Text="1" FontSize="15" ValueChanged="personNumTxt_ValueChanged" />
+                    
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Grid.ColumnSpan="3">
+                    <Label Content="Vagon:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2"  FontSize="15" FontWeight="Bold" Margin="10,0,0,0" Foreground="#FF485B83"/>
+                    <ComboBox Grid.Row="0"  HorizontalAlignment="Stretch" MinWidth="130" VerticalAlignment="Center" x:Name="WagonComboBox" FontSize="15" Foreground="#FF485B83"></ComboBox>
+                    
+                </StackPanel>
             </Grid>
-            <Label Content="izgled vagona:" HorizontalAlignment="Left" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Bottom" FontSize="15" FontWeight="Bold" Margin="10,0,0,0" Foreground="#FF485B83"/>
+            <Label Content="Izgled vagona:" HorizontalAlignment="Left" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Bottom" FontSize="15" FontWeight="Bold" Margin="10,0,0,0" Foreground="#FF485B83"/>
             <Grid Grid.Row="2" Grid.ColumnSpan="4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1.7*"></ColumnDefinition>

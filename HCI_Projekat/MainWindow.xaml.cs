@@ -27,8 +27,6 @@ namespace HCI_Projekat
         {
             InitializeComponent();
         }
-
-       
     }
 
 }

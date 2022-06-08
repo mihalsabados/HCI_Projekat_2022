@@ -129,5 +129,28 @@ namespace HCI_Projekat.gui
 			this.RoutesViewPage.Visibility = Visibility.Visible;
 			this.RoutesViewPage.Refresh();
 		}
+
+        private void HelpClicked(object sender, RoutedEventArgs e)
+        {
+			var helpPath = "timetableManager";
+			if (this.TrainCRUD.Visibility == Visibility.Visible)
+				helpPath = "trains";
+			else if (this.RouteMapView.Visibility == Visibility.Visible)
+				helpPath = "mreznaLinija";
+			else if(this.SoldCardsPerMonthPage.Visibility == Visibility.Visible)
+				helpPath = "soldTicketsMonth";
+			else if(this.SoldCardsPerRoutePage.Visibility == Visibility.Visible)
+				helpPath = "soldTicketsRoute";
+			else if(this.StationsView.Visibility == Visibility.Visible)
+				helpPath = "stations";
+			else if(this.RoutesViewPage.Visibility == Visibility.Visible)
+				helpPath = "routeMap";
+			else if(this.TimetableView.Visibility == Visibility.Visible)
+				helpPath = "timetableManager";
+
+
+
+			HelpProvider.ShowHelp(helpPath, this);
+		}
     }
 }

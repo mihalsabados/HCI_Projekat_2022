@@ -544,5 +544,6 @@ namespace HCI_Projekat.gui
             refreshTable();
             showMapRoute();
         }
+
     }
 }

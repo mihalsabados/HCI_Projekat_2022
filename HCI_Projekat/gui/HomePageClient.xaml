@@ -19,16 +19,18 @@
                     <DockPanel HorizontalAlignment="Stretch"></DockPanel>
                 </ItemsPanelTemplate>
             </Menu.ItemsPanel>
-            <MenuItem Header="Redovi vožnje" Icon="{materialDesign:PackIcon Kind=Train}" Foreground="#FFCECFC8" Click="TimetableShow" >
+            <MenuItem Header="Redovi vožnje" Foreground="#FFCECFC8" Click="TimetableShow" >
             </MenuItem>
             <MenuItem Header="Mreža linija" Foreground="#FFCECFC8" HorizontalAlignment="Stretch"  Click="ShowRouteMap_Click" >
 
             </MenuItem>
-            <MenuItem Header="Rezervacija" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" Click="ReservationClick" >
-
-            </MenuItem>
             <MenuItem Header="Pregled Rezervisanih" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" Click="ShowReservedTickets" >
 
+            </MenuItem>
+            <MenuItem Header="Pomoć" x:Name="HelpBtn" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" Click="HelpClicked" >
+                <MenuItem.Icon>
+                    <materialDesign:PackIcon Kind="HelpCircle" />
+                </MenuItem.Icon>
             </MenuItem>
             <MenuItem HorizontalAlignment="Right"  ToolTip="Odjava" Foreground="#FFCECFC8" Margin="-7,0,0,0" Click="Logout">
                 <MenuItem.Icon>
@@ -36,7 +38,7 @@
                 </MenuItem.Icon>
             </MenuItem>
         </Menu>
-        <Frame Grid.Row="1" x:Name="ReservationPage" Source="/gui/ReservationPage.xaml" Visibility="Hidden" VerticalAlignment="Stretch" Margin="0,0,0,0" />
+        <Frame Grid.Row="1" x:Name="ReservationPage" Source="/gui/ReservationPage.xaml" Visibility="Visible" VerticalAlignment="Stretch" Margin="0,0,0,0" />
         <Frame Grid.Row="1" x:Name="RouteMapView" Source="/gui/RouteMapView.xaml" Visibility="Hidden" VerticalAlignment="Stretch" Margin="0,0,0,0"/>
         <Frame Grid.Row="1" x:Name="TimetableView" Source="/gui/TimetableViewClient.xaml" Visibility="Hidden" Grid.Column="1" Margin="0,0,0,0" />
         <Frame Grid.Row="1" x:Name="MyReservations" Source="/gui/MyReservedTicketsPage.xaml" Visibility="Hidden" Grid.Column="1" Margin="0,0,0,0" />
