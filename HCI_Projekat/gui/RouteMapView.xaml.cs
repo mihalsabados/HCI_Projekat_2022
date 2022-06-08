@@ -47,6 +47,14 @@ namespace HCI_Projekat.gui
             });
 
             addFromAndToRoutes();
+            initCommands();
+        }
+
+        private void initCommands()
+        {
+            RoutedCommand newCmdSearch = new RoutedCommand();
+            newCmdSearch.InputGestures.Add(new KeyGesture(Key.Enter));
+            this.CommandBindings.Add(new CommandBinding(newCmdSearch, Search_Click));
         }
 
         private void addFromAndToRoutes()

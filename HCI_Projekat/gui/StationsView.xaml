@@ -58,7 +58,7 @@
                                 Name="UndoBtn"
                                 Click="Undo_Click"
                                 Visibility="Visible"
-                                Content="Poništi lokaciju" HorizontalAlignment="Right" VerticalAlignment="Top" Height="20" MaxWidth="100" MinWidth="80" Foreground="#FFCECFC8" FontSize="9" Background="#FF485B83" BorderBrush="White" Margin="5,5,5,5"
+                                Content="Poništi lokaciju" ToolTip="Poništi unetu lokaciju sa mape (Ctrl-D)" HorizontalAlignment="Right" VerticalAlignment="Top" Height="20" MaxWidth="100" MinWidth="80" Foreground="#FFCECFC8" FontSize="9" Background="#FF485B83" BorderBrush="White" Margin="5,5,5,5"
 		    		            />
                             <m:Map
                                 Grid.Row="1"
@@ -104,7 +104,7 @@
                       Name="SaveBtn"
                       Grid.Row="2"
                       Click="Sacuvaj_Click"
-                      Content="Sačuvaj" MaxWidth="150" MinWidth="150" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" FontSize="13" Background="#FFC34E43" BorderBrush="{x:Null}" Margin="10,5,10,5"
+                      Content="Sačuvaj" ToolTip="Sačuvaj novu stanicu (Ctrl-S)" MaxWidth="150" MinWidth="150" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" FontSize="13" Background="#FFC34E43" BorderBrush="{x:Null}" Margin="10,5,10,5"
 		    		/>
                 </Grid>
             </materialDesign:Card>

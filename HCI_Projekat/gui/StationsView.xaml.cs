@@ -86,6 +86,29 @@ namespace HCI_Projekat.gui
                 SessionKey = c.ApplicationId;
             });
             addExistingStationsToMap();
+            initCommands();
+        }
+
+        private void initCommands()
+        {
+            RoutedCommand newCmdSaveNewStation = new RoutedCommand();
+            newCmdSaveNewStation.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
+            this.CommandBindings.Add(new CommandBinding(newCmdSaveNewStation, Sacuvaj_Click));
+
+            RoutedCommand newCmdResetLocation = new RoutedCommand();
+            newCmdResetLocation.InputGestures.Add(new KeyGesture(Key.D, ModifierKeys.Control));
+            this.CommandBindings.Add(new CommandBinding(newCmdResetLocation, Undo_Click));
+
+            RoutedCommand newCmdFocusSearch = new RoutedCommand();
+            newCmdFocusSearch.InputGestures.Add(new KeyGesture(Key.F, ModifierKeys.Control));
+            this.CommandBindings.Add(new CommandBinding(newCmdFocusSearch, setSearchFocus));
+
+        }
+
+        private void setSearchFocus(object sender, RoutedEventArgs e)
+        {
+            pretraziStaniceTxt.Focusable = true;
+            Keyboard.Focus(pretraziStaniceTxt);
         }
 
         private void initTableData()

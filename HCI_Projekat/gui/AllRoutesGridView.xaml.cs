@@ -19,7 +19,8 @@ using ToastNotifications;
 using ToastNotifications.Lifetime;
 using ToastNotifications.Messages;
 using ToastNotifications.Position;
-
+using System.Windows.Automation.Peers;
+using System.Windows.Automation.Provider;
 
 namespace HCI_Projekat.gui
 {
@@ -68,6 +69,19 @@ namespace HCI_Projekat.gui
             this.DataContext = this;
             initTableData();
             initComboboxes();
+
+            RoutedCommand newCmdFilter = new RoutedCommand();
+            newCmdFilter.InputGestures.Add(new KeyGesture(Key.F, ModifierKeys.Control));
+            this.CommandBindings.Add(new CommandBinding(newCmdFilter, filterBtn_Click));
+           
+            RoutedCommand newCmdResetFilter = new RoutedCommand();
+            newCmdResetFilter.InputGestures.Add(new KeyGesture(Key.D, ModifierKeys.Control));
+            this.CommandBindings.Add(new CommandBinding(newCmdResetFilter, resetFilterBtn_Click));
+
+            RoutedCommand newCmdAddNewRoute = new RoutedCommand();
+            newCmdAddNewRoute.InputGestures.Add(new KeyGesture(Key.A, ModifierKeys.Control));
+            this.CommandBindings.Add(new CommandBinding(newCmdAddNewRoute, AddRoute_Click));
+
         }
 
         private void initComboboxes()
@@ -141,6 +155,12 @@ namespace HCI_Projekat.gui
             cfg.Dispatcher = Application.Current.Dispatcher;
         });
 
+
+        private void HandleEnterKeyCommand(object sender, RoutedEventArgs e)
+        {
+            AddRoute addRoute = new AddRoute(this);
+            addRoute.ShowDialog();
+        }
 
         private void AddRoute_Click(object sender, RoutedEventArgs e)
         {
@@ -255,5 +275,20 @@ namespace HCI_Projekat.gui
             }
         }
 
+        private void routesTable_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            var u = e.OriginalSource as UIElement;
+            if (e.Key == Key.Enter && u != null)
+            {
+                DataGrid grid = sender as DataGrid;
+                if (grid.CurrentColumn.Header.ToString().Equals("Izmena", StringComparison.OrdinalIgnoreCase))
+                {
+                    SelectedRoute = routesTable.SelectedItem as DataGridRoute;
+                    EditRoute editRoute = new EditRoute(this);
+                    editRoute.ShowDialog();
+                    e.Handled = true;
+                }
+            }
+        }
     }
 }

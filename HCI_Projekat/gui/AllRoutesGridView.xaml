@@ -84,8 +84,8 @@
                 <ColumnDefinition Width="4*"></ColumnDefinition>
                 <ColumnDefinition Width="10*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button x:Name="filterBtn" Height="25" Grid.Column="1" MinWidth="150" Visibility="Visible" FontSize="12" Click="filterBtn_Click"  Content="Filtriraj" ToolTip="Filtriraj vozne linije po izabranom kriterijumu" HorizontalAlignment="Center" Margin="0,0,2,0" Background="#FF485B83" BorderBrush="#FF485B83" Foreground="#FFCECFC8"/>
-            <Button x:Name="resetFilterBtn" Height="25" Grid.Column="2" MinWidth="150" Visibility="Visible" FontSize="12" Click="resetFilterBtn_Click" Content="Poništi filter" ToolTip="Poništi filter i prikaži sve vozne linije" HorizontalAlignment="Center" Margin="2,0,0,0" Background="#FF485B83" BorderBrush="#FF485B83" Foreground="#FFCECFC8"/>
+            <Button x:Name="filterBtn" Height="25" Grid.Column="1" MinWidth="150" Visibility="Visible" FontSize="12" Click="filterBtn_Click"  Content="Filtriraj" ToolTip="Filtriraj vozne linije po izabranom kriterijumu (Ctrl-F)" HorizontalAlignment="Center" Margin="0,0,2,0" Background="#FF485B83" BorderBrush="#FF485B83" Foreground="#FFCECFC8"/>
+            <Button x:Name="resetFilterBtn" Height="25" Grid.Column="2" MinWidth="150" Visibility="Visible" FontSize="12" Click="resetFilterBtn_Click" Content="Poništi filter" ToolTip="Poništi filter i prikaži sve vozne linije (Ctrl-D)" HorizontalAlignment="Center" Margin="2,0,0,0" Background="#FF485B83" BorderBrush="#FF485B83" Foreground="#FFCECFC8"/>
         </Grid>
 
         <Label Grid.Row="3" Margin="0 5 0 0" BorderThickness="0, 2, 0, 0" BorderBrush="#FF485B83"/>
@@ -96,7 +96,7 @@
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="2" x:Name="addRoute" Visibility="Visible" FontSize="12" Click="AddRoute_Click"  Content="Dodavanje" ToolTip="Dodavanje nove vozne linije" HorizontalAlignment="Center" Margin="0,-5,0,0" Background="#FF485B83" BorderBrush="#FF485B83" Foreground="#FFCECFC8"/>
+            <Button Grid.Column="2" x:Name="addRoute" Visibility="Visible" FontSize="12" Click="AddRoute_Click"  Content="Dodavanje" ToolTip="Dodavanje nove vozne linije (Ctrl-A)" HorizontalAlignment="Center" Margin="0,-5,0,0" Background="#FF485B83" BorderBrush="#FF485B83" Foreground="#FFCECFC8"/>
         </Grid>
         
         <DataGrid
@@ -107,10 +107,12 @@
               SelectionUnit="FullRow"
               SelectionMode="Single"
               IsReadOnly="True"
+              PreviewKeyDown="routesTable_PreviewKeyDown"
               ScrollViewer.CanContentScroll="True"
               ItemsSource="{Binding Routes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
               AutoGenerateColumns="False" Margin="10,5,10,10" HorizontalContentAlignment="Left" Foreground="#FF485B83" 
             >
+            
             <DataGrid.Resources>
                 <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}" >
                     <Setter Property="Background" Value="#FF485B83" />
