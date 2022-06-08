@@ -37,6 +37,17 @@ namespace HCI_Projekat.database
             new Card(RouteService.FindRouteByName("1"), new DateTime(2022, 11, 11, 4, 48, 0), 1, 1, 657, TimetableService.FindTimetableById(1)),
         };
 
+        internal static List<Card> GetSoldCardForTimetable(int timetableId)
+        {
+            List<Card> cs = new List<Card>();
+            foreach (Card card in cards)
+            {
+                if (card.TimetableForCard.Id == timetableId)
+                    cs.Add(card);
+            }
+            return cs;
+        }
+
         internal static List<Card> GetCardsForYearAndMonth(int year, int month)
         {
             List<Card> cs = new List<Card>();
@@ -51,18 +62,20 @@ namespace HCI_Projekat.database
         internal static List<double> RevenueForTimetable(int timetableId)
         {
             List<double> revenue = new List<double>();
+            
             Dictionary<string, double> dicRev = new Dictionary<string, double>();
-          
+            InitializationDict(dicRev, timetableId);
+
             foreach (Card card in cards)
             {
                 if (card.TimetableForCard.Id == timetableId)
                 {
                     if (dicRev.ContainsKey(card.DateTimeForCard.Month + " " + card.DateTimeForCard.Year))
                     {
-                        dicRev[card.DateTimeForCard.Month + " " + card.DateTimeForCard.Year] += card.Price;
+                        dicRev[card.DateTimeForCard.Month + " " + card.DateTimeForCard.Year] += 1;
                     }
                     else
-                        dicRev.Add(card.DateTimeForCard.Month + " " + card.DateTimeForCard.Year, card.Price);
+                        dicRev.Add(card.DateTimeForCard.Month + " " + card.DateTimeForCard.Year, 1);
                 }
             }
             foreach (double a in dicRev.Values)
@@ -70,6 +83,29 @@ namespace HCI_Projekat.database
                 revenue.Add(a);
             }
             return revenue;
+        }
+
+        private static void InitializationDict(Dictionary<string, double> dicRev, int timetableId)
+        {
+            List<int> years = GetAvailableYearsWithSoldCards(timetableId);
+            foreach (int year in years)
+            {
+                for (int i = 1; i <= 12; i++) {
+                    dicRev.Add(i + " " + year, 0); 
+                }
+            }
+        }
+
+        internal static List<int> GetAvailableYearsWithSoldCards(int timetableId)
+        {
+            List<int> years = new List<int>();
+            foreach (Card card in cards)
+            {
+                if (!years.Contains(card.DateTimeForCard.Year) && card.TimetableForCard.Id == timetableId)
+                    years.Add(card.DateTimeForCard.Year);
+            }
+            years.Sort();
+            return years;
         }
 
         internal static List<double> RevenueForMonths(int yearRevenue, int month)

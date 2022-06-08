@@ -77,7 +77,14 @@
 
         </materialDesign:Card>
         <StackPanel Grid.Column="1" Margin="10" x:Name="timetablePanel" Visibility="Hidden">
-            <Label Name="titleMessage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="14" FontWeight="Bold" Margin="10,10,0,0" Foreground="#FF485B83"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Name="titleMessage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="14" FontWeight="Bold" Margin="10,10,0,0" Foreground="#FF485B83"/>
+                <MenuItem Grid.Column="1" Visibility="Hidden" Margin="0 8 0 0"  ToolTip="Prikaz vozne linije na mapi" Name="mapIcon" Click="mapIcon_Click" Icon="{materialDesign:PackIcon Kind=MapMarker}"/>
+            </Grid>
             <Label Name="searchedMessage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="14" FontWeight="Bold" Margin="10,0,0,0" Foreground="#FFC34E43"/>
             <DataGrid Name="timetable"
                       IsReadOnly="True"

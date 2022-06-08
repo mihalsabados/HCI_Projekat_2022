@@ -2,86 +2,62 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
+using System.Windows.Automation.Peers;
+using System.Windows.Automation.Provider;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using HCI_Projekat.model;
+using HCI_Projekat.database;
+using HCI_Projekat.services;
 using Microsoft.Maps.MapControl.WPF;
-
 using BingMapsRESTToolkit;
 using BingMapsRESTToolkit.Extensions;
-using HCI_Projekat.model;
-using HCI_Projekat.services;
-using Route = HCI_Projekat.model.Route;
 
 
 namespace HCI_Projekat.gui
 {
     /// <summary>
-    /// Interaction logic for RouteMapView.xaml
+    /// Interaction logic for ShowOneRouteOnMap.xaml
     /// </summary>
-    public partial class RouteMapView : Page
+    public partial class ShowOneRouteOnMap : Window
     {
+
         private string BingMapsKey = "oU6C1d9L3SpiIjWjcMtX~NlvJ4abp72u-diLrup_xdw~AtDP3HyzbLn6vnOjapJ7nLaqM4g-sR1TpNVBbl6c53FGjGJEVOp5jRDt96RJyCmC";
         private string SessionKey;
 
-        public static String SelectedFromRoute { get; set; }
-        public static String SelectedToRoute { get; set; }
 
-        private Route currentRoute = null;
+        private model.Route currentRoute;
 
-        public RouteMapView()
+        public ShowOneRouteOnMap(model.Route route)
         {
             InitializeComponent();
+            this.currentRoute = route;
             this.Mapa.Focus();
-
-
             Mapa.CredentialsProvider = new ApplicationIdCredentialsProvider(BingMapsKey);
             Mapa.CredentialsProvider.GetCredentials((c) =>
             {
                 SessionKey = c.ApplicationId;
             });
-
-            addFromAndToRoutes();
-            initCommands();
         }
 
-        private void initCommands()
+        private void OnLoadMap(object sender, RoutedEventArgs e)
         {
-            RoutedCommand newCmdSearch = new RoutedCommand();
-            newCmdSearch.InputGestures.Add(new KeyGesture(Key.Enter));
-            this.CommandBindings.Add(new CommandBinding(newCmdSearch, Search_Click));
+            ButtonAutomationPeer peer = new ButtonAutomationPeer(showMapBtn);
+            IInvokeProvider invokeProv = peer.GetPattern(PatternInterface.Invoke) as IInvokeProvider;
+            invokeProv.Invoke();
         }
-
-        private void addFromAndToRoutes()
+        private void ShowMapClicked(object sender, RoutedEventArgs e)
         {
-            foreach (Place place in RouteService.GetAllDistinctPlacesForStartRoute())
-            {
-                fromRoutes.Items.Add(createComboBoxItem(place.Name));
-            }
-            foreach (Place place in RouteService.GetAllDistinctPlacesForEndRoute())
-            {
-                toRoutes.Items.Add(createComboBoxItem(place.Name));
-            }
-        }
-
-        private ComboBoxItem createComboBoxItem(string content)
-        {
-            ComboBoxItem c = new ComboBoxItem();
-            c.Content = content;
-            c.Visibility = Visibility.Visible;
-            c.Foreground = (Brush)(new BrushConverter().ConvertFrom("#FF485B83"));
-
-            return c;
+            CalculateRouteFromPlaces(currentRoute);
         }
 
 
-
-        private async void CalculateRouteFromPlaces(Route foundRoute)
+        private async void CalculateRouteFromPlaces(model.Route foundRoute)
         {
             Mapa.Children.Clear();
             LoadingBar.Visibility = Visibility.Visible;
@@ -93,6 +69,7 @@ namespace HCI_Projekat.gui
             }
 
             var travelMode = (TravelModeType)Enum.Parse(typeof(TravelModeType), (string)("Walking"));
+
             var tspOptimization = (TspOptimizationType)Enum.Parse(typeof(TspOptimizationType), (string)("StraightLineDistance"));
 
             try
@@ -135,7 +112,15 @@ namespace HCI_Projekat.gui
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                if (ex.Message.StartsWith("Access was"))
+                {
+                    MessageBox.Show("Došlo je do greške prilikom učitavanja rute. Probajte da otvorite prikaz ponovo,\n ili kliknite na dugme 'Osveži prikaz' u gornjem levom uglu.");
+                }
+                else if (ex.Message.StartsWith("The route"))
+                {
+                    MessageBox.Show("Ruta je predugačka da bi se prikazala na mapi");
+                }
+
             }
 
             LoadingBar.Visibility = Visibility.Collapsed;
@@ -191,64 +176,10 @@ namespace HCI_Projekat.gui
             }
         }
 
-        private Route checkIfRouteExists(string selectedFromRoute, string selectedToRoute)
+        private void refreshMapViewBtn_Click(object sender, RoutedEventArgs e)
         {
-            foreach (Route route in RouteService.GetAllRoutes())
-            {
-                if (route.places[0].Name.Equals(selectedFromRoute) && route.places[route.places.Count - 1].Name.Equals(selectedToRoute))
-                {
-                    return route;
-                }
-            }
-            return null;
-        }
-
-
-        private void Search_Click(object sender, RoutedEventArgs e)
-        {
-            SelectedFromRoute = "";
-            SelectedToRoute = "";
-            if (fromRoutes.SelectedItem != null)
-            {
-                ComboBoxItem item = (ComboBoxItem)fromRoutes.SelectedItem;
-                SelectedFromRoute = item.Content.ToString();
-            }
-            else
-            {
-                FromError.Visibility = Visibility;
-            }
-            if (toRoutes.SelectedItem != null)
-            {
-                ComboBoxItem item = (ComboBoxItem)toRoutes.SelectedItem;
-                SelectedToRoute = item.Content.ToString();
-            }
-            else
-            {
-                ToError.Visibility = Visibility;
-            }
-            if (!SelectedFromRoute.Equals(""))
-            {
-                FromError.Visibility = Visibility.Hidden;
-                if (!SelectedToRoute.Equals(""))
-                {
-                    ToError.Visibility = Visibility.Hidden;
-                    Route route = checkIfRouteExists(SelectedFromRoute, SelectedToRoute);
-                    if (route == null)
-                    {
-                        searchedMessage.Content = "Trenuno ne postoji direktna vozna linija: " + SelectedFromRoute + " - " + SelectedToRoute;
-                        this.searchedMessage.Visibility = Visibility.Visible;
-                        this.Mapa.Visibility = Visibility.Hidden;
-                    }
-                    else
-                    {
-                        searchedMessage.Content = "Vozna linija: " + SelectedFromRoute + " - " + SelectedToRoute;
-                        this.searchedMessage.Visibility = Visibility.Visible;
-                        this.Mapa.Visibility = Visibility.Visible;
-                        currentRoute = route;
-                        CalculateRouteFromPlaces(route);
-                    }
-                }
-            }
+            CalculateRouteFromPlaces(currentRoute);
         }
     }
+
 }

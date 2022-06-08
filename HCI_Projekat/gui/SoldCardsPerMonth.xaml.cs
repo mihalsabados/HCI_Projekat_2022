@@ -124,7 +124,7 @@ namespace HCI_Projekat.gui
             check = checkIfNoSoldCards(revenue);
             if (check)
             {
-                label.Content = "Nema prodatih karata za " + monthName + ", " + yearRevenue + ".";
+                label.Content = "Nema prodatih karti za " + monthName + ", " + yearRevenue + ".";
                 
                 review.Visibility = Visibility.Hidden;
                 columnChart.Visibility = Visibility.Hidden;
@@ -132,7 +132,7 @@ namespace HCI_Projekat.gui
             }
             else
             {
-                label1.Content = "Grafički prikaz broja prodatih karata za " + monthName + ", " + yearRevenue + ".";
+                label1.Content = "Grafički prikaz broja prodatih karti za " + monthName + ", " + yearRevenue + ".";
                 label1.HorizontalAlignment = HorizontalAlignment.Center;
 
                 var chartValues = new ChartValues<double>();
@@ -147,7 +147,7 @@ namespace HCI_Projekat.gui
             {
                new ColumnSeries
                 {
-                    Title = "Broj prodatih karata po danu",
+                    Title = "Broj prodatih karti po danu",
                     Values = chartValues,
                     Configuration = new CartesianMapper<double>()
                     .Y(point => point)
@@ -159,7 +159,7 @@ namespace HCI_Projekat.gui
 
                 seriesCollection.Add(new LineSeries()
                 {
-                    Title = "Broj prodatih karata po danu",
+                    Title = "Broj prodatih karti po danu",
                     Values = chartValues,
                     DataLabels = false,
                     Fill = Brushes.Transparent,
@@ -189,7 +189,7 @@ namespace HCI_Projekat.gui
 
                 columnChart.AxisY.Add(new Axis
                 {
-                    Title = "Broj prodatih karata",
+                    Title = "Broj prodatih karti",
                     LabelFormatter = labFormat,
                     Foreground = (Brush)new BrushConverter().ConvertFrom("#FF485B83"),
                     FontSize = 14
@@ -239,7 +239,7 @@ namespace HCI_Projekat.gui
                 this.review.Visibility = Visibility.Visible;
                 ComboBoxItem item2 = (ComboBoxItem)monthComboBox.SelectedItem;
                 string monthName = item2.Content.ToString();
-                label.Content = "Tabelarni prikaz broja prodatih karata za " + monthName + ", " + year + ".";
+                label.Content = "Tabelarni prikaz broja prodatih karti za " + monthName + ", " + year + ".";
                 label.HorizontalAlignment = HorizontalAlignment.Center;
             }
 

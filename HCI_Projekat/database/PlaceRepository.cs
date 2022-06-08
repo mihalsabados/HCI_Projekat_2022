@@ -31,7 +31,6 @@ namespace HCI_Projekat.database
             new Place("Odžaci", 45.5058662, 19.2597368),
             new Place("Kikinda", 45.8297838, 20.4653942),
             new Place("Bečej", 45.6153745, 20.0490085),
-            new Place("Zrenjanin", 45.3802683, 20.3907614),
             new Place("Jagodina", 43.9794256, 21.2607688),
         };
 

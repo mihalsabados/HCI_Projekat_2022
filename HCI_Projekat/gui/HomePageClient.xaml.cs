@@ -45,11 +45,13 @@ namespace HCI_Projekat.gui
         {
 			hideAllPages();
 			this.ReservationPage.Visibility = Visibility.Visible;
+			this.ReservationPage.Refresh();
         }
 		private void ShowRouteMap_Click(object sender, RoutedEventArgs e)
 		{
 			hideAllPages();
 			this.RouteMapView.Visibility = Visibility.Visible;
+			this.RouteMapView.Refresh();
 		}
 
 		private void hideAllPages()
