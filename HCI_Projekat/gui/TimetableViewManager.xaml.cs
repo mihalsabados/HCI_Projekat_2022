@@ -243,6 +243,10 @@ namespace HCI_Projekat.gui
                 RoutedCommand newCmdFilter = new RoutedCommand();
                 newCmdFilter.InputGestures.Add(new KeyGesture(Key.F1));
                 this.CommandBindings.Add(new CommandBinding(newCmdFilter, CommandBinding_Executed));
+                RoutedCommand newCmdFilter2 = new RoutedCommand();
+                newCmdFilter2.InputGestures.Add(new KeyGesture(Key.F2));
+                this.CommandBindings.Add(new CommandBinding(newCmdFilter2, CommandBinding_Executed));
+
 
                 initCommands();
             }

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1" charset='utf-8'>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color:rgb(38, 49, 113);
+}
+
+.topnav {
+  overflow: hidden;
+  padding: 0.5%;
+  background-color: rgb(38, 49, 113);
+  color: rgb(190, 73, 73);
+  font-size: 17px;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+</style>
+</head>
+<body>
+	
+  <div class="topnav">
+	<p><a href="./index.htm" style="font-size:11px; color:rgb(190, 73, 73)">Početna strana</a></p><br/><br/><br/>
+    <h2>Pregled voznih linija</h2>
+  </div>
+  <div style="margin: 0 0 0 10px">
+  Vozna linija predstavlja putanja kojom se kreće voz. Sve vozne linije imaju početnu i krajnju stanicu. Dodatno vozne linije mogu
+  da sadrže i međustanice. Međustanica predstavlja stanicu kroz koju voz prolazi i kupi ostale putnike. U nekim slučajevima u zavisnosti od voznih linija,
+  jedna stanica može da bude polazna za jednu voznu liniju a krajnja za neku drugu voznu liniju. Više informacija o samim stanicama možete pogledati ovde.
+
+
+  <p>Na slici ispod je dat početni prikaz svih voznih linija.</p>
+  <img width="50%" src="./slike/mrezneIVozneLinije/pregVoznihLinija.jpg" alt="Nije moguće učitati sliku"/>
+  <br/>
+  <p>
+  Sve vozne linije mogu da se filtriraju po polaznoj stanici, krajnjoj stanici, međustanici (u prikazu se nalaze sve vozne linije koje prolaze kroz međustanicu) i po vozu.
+  Filtriranje se obavlja pritiskom na dugme <b>filter</b> ili komandom <b>Ctrl-F</b>. Ukoliko želite da poništite filter
+  i da prikažete sve stanice kliknite da dugme <b>poništi filter</b> ili komandom <b>Ctrl-D</b>.
+  Nakon uspešnog filtera u prikazu će se pokazati samo one vozne linije koje zadovoljavaju uneti kriterijum.
+  Na slici ispod je dat jedan primer filtriranja.
+  </p>
+  <img width="50%" src="./slike/mrezneIVozneLinije/pregledVoznihLinijaPrimerFiltera.jpg" alt="Nije moguće učitati sliku"/>
+  <br/>
+
+  <p>Izmena voznih linija se radi tako što se pozicionirate na željenu voznu liniju u tabelarnom prikazu i pritiskom na ikonicu izmeni ili na enter, otvara
+  se <a href="./editRoute.htm">dijalog za izmenu vozne linije</a>.
+  Na slici ispod je dat opis ove radnje.</p>
+  <img width="50%" src="./slike/mrezneIVozneLinije/pregledVoznihLinijaEditPocetak.jpg" alt="Nije moguće učitati sliku"/>
+  <br/>
+  <p>
+    Ukoliko želite da obrišete neku voznu liniju, pozicionirajte se na na željenu voznu liniju i kliknite na dugme za brisanje.
+    Pre brisanje dobiće upozorenje da li to zaista radnja koju želite da uradite.
+  </p>
+  <img width="50%"  src="./slike/mrezneIVozneLinije/pregledVoznihLinijaBrisanjePrikaz.jpg" alt="Nije moguće učitati sliku"/>
+  <p>
+    Klikom na dugme prihvati, vozna linija će uspešno biti obrisana
+  </p>
+  <img width="50%" src="./slike/mrezneIVozneLinije/pregledVoznihLinijaUspesnoBrisanje.jpg" alt="Nije moguće učitati sliku"/>
+  <br/>
+  <p>
+  Ukoliko želite da dodate novu stanicu pritisnite dugme <b>Dodavanje</b> ili komandu <b>Ctrl-A</b>. Nakon toga će se otvoriti <a href="./addRoute.htm">dijalog
+  za dodavanje nove vozne linije</a>.
+  </p>
+  <img width="50%" src="./slike/mrezneIVozneLinije/pregledVoznihLinijaDodavanjePocetak.jpg" alt="Nije moguće učitati sliku"/>
+  
+
+
+</div>
+  <p style="color:rgb(38, 49, 113); padding-left: 1%;">Hvala što koristite naše usluge i srećan put želi Vam "Železnica Srbije"a.d.</p>
+</body>
+</html>

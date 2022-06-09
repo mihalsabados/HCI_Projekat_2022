@@ -361,6 +361,12 @@ namespace HCI_Projekat.gui
             HelpProvider.ShowHelp(str, this);
         }
 
+        private void CommandBinding_Executed1(object sender, ExecutedRoutedEventArgs e)
+        {
+            string str = "demoTrains";
+            HelpProvider.ShowHelp(str, this);
+        }
+
         private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (Visibility == Visibility.Visible)
@@ -369,7 +375,10 @@ namespace HCI_Projekat.gui
                 this.Focus();
                 RoutedCommand newCmdFilter = new RoutedCommand();
                 newCmdFilter.InputGestures.Add(new KeyGesture(Key.F1));
-                this.CommandBindings.Add(new CommandBinding(newCmdFilter, CommandBinding_Executed));
+                this.CommandBindings.Add(new CommandBinding(newCmdFilter, CommandBinding_Executed1));
+                RoutedCommand newCmdFilter2 = new RoutedCommand();
+                newCmdFilter2.InputGestures.Add(new KeyGesture(Key.F2));
+                this.CommandBindings.Add(new CommandBinding(newCmdFilter2, CommandBinding_Executed));
 
                 initCommands();
             }
