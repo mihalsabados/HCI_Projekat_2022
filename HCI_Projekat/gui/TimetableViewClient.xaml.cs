@@ -24,7 +24,9 @@ namespace HCI_Projekat.gui
         public TimetableViewClient()
         {
             InitializeComponent();
-            addFromAndToRoutes();   
+            addFromAndToRoutes();
+
+           
         }
 
         private void addFromAndToRoutes()
@@ -145,6 +147,24 @@ namespace HCI_Projekat.gui
                 }
             }
             return null;
+        }
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            string str = "timetable";
+            HelpProvider.ShowHelp(str, this);
+        }
+
+        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (Visibility == Visibility.Visible)
+            {
+                this.Focusable = true;
+                this.Focus();
+                RoutedCommand newCmdFilter = new RoutedCommand();
+                newCmdFilter.InputGestures.Add(new KeyGesture(Key.F1));
+                this.CommandBindings.Add(new CommandBinding(newCmdFilter, CommandBinding_Executed));
+            }
         }
     }
 }

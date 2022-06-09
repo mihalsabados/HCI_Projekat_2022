@@ -34,7 +34,6 @@ namespace HCI_Projekat.gui
 
             InitializeComponent();
             addFromAndToRoutes();
-            initCommands();
         }
 
         private void initCommands()
@@ -229,5 +228,25 @@ namespace HCI_Projekat.gui
                 }
             }
         }
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            string str = "timetableManager";
+            HelpProvider.ShowHelp(str, this);
+        }
+
+        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (Visibility == Visibility.Visible)
+            {
+                this.Focusable = true;
+                this.Focus();
+                RoutedCommand newCmdFilter = new RoutedCommand();
+                newCmdFilter.InputGestures.Add(new KeyGesture(Key.F1));
+                this.CommandBindings.Add(new CommandBinding(newCmdFilter, CommandBinding_Executed));
+
+                initCommands();
+            }
+        }
+
     }
 }

@@ -8,7 +8,9 @@
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="1000"
-      Title="Red vožnje" Background="#FFCECFC8">
+      Title="Red vožnje" Background="#FFCECFC8"
+      IsVisibleChanged="Page_IsVisibleChanged"
+      >
 
     <Grid>
         <Grid.RowDefinitions>

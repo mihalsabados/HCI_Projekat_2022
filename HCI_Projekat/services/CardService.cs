@@ -33,7 +33,7 @@ namespace HCI_Projekat.services
             List<Card> cards = CardRepository.GetCardsForYearAndMonth(year, month);
             List<CardDataGrid> data = new List<CardDataGrid>();
             foreach (Card card in cards)
-                data.Add(new CardDataGrid(card.RouteForCard.FromTo, card.DateTimeForCard, card.WagonNumber, card.SeatNumber, card.Price));
+                data.Add(new CardDataGrid(card.RouteForCard.FromTo, card.DateTimeForCard, card.WagonNumber, card.SeatNumber, card.Price, card.ClientName));
             return data;
         }
 
@@ -47,7 +47,7 @@ namespace HCI_Projekat.services
             List<Card> cards = CardRepository.GetSoldCardForTimetable(timetableId);
             List<CardDataGrid> data = new List<CardDataGrid>();
             foreach (Card card in cards)
-                data.Add(new CardDataGrid(card.RouteForCard.FromTo, card.DateTimeForCard, card.WagonNumber, card.SeatNumber, card.Price));
+                data.Add(new CardDataGrid(card.RouteForCard.FromTo, card.DateTimeForCard, card.WagonNumber, card.SeatNumber, card.Price, card.ClientName));
             return data;
         }
     }

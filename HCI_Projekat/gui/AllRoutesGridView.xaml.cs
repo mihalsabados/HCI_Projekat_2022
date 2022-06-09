@@ -69,19 +69,6 @@ namespace HCI_Projekat.gui
             this.DataContext = this;
             initTableData();
             initComboboxes();
-
-            RoutedCommand newCmdFilter = new RoutedCommand();
-            newCmdFilter.InputGestures.Add(new KeyGesture(Key.F, ModifierKeys.Control));
-            this.CommandBindings.Add(new CommandBinding(newCmdFilter, filterBtn_Click));
-           
-            RoutedCommand newCmdResetFilter = new RoutedCommand();
-            newCmdResetFilter.InputGestures.Add(new KeyGesture(Key.D, ModifierKeys.Control));
-            this.CommandBindings.Add(new CommandBinding(newCmdResetFilter, resetFilterBtn_Click));
-
-            RoutedCommand newCmdAddNewRoute = new RoutedCommand();
-            newCmdAddNewRoute.InputGestures.Add(new KeyGesture(Key.A, ModifierKeys.Control));
-            this.CommandBindings.Add(new CommandBinding(newCmdAddNewRoute, AddRoute_Click));
-
         }
 
         private void initComboboxes()
@@ -288,6 +275,36 @@ namespace HCI_Projekat.gui
                     editRoute.ShowDialog();
                     e.Handled = true;
                 }
+            }
+        }
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            string str = "routeMap";
+            HelpProvider.ShowHelp(str, this);
+        }
+
+        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (Visibility == Visibility.Visible)
+            {
+                this.Focusable = true;
+                this.Focus();
+                RoutedCommand newCmd = new RoutedCommand();
+                newCmd.InputGestures.Add(new KeyGesture(Key.F1));
+                this.CommandBindings.Add(new CommandBinding(newCmd, CommandBinding_Executed));
+
+                RoutedCommand newCmdFilter = new RoutedCommand();
+                newCmdFilter.InputGestures.Add(new KeyGesture(Key.F, ModifierKeys.Control));
+                this.CommandBindings.Add(new CommandBinding(newCmdFilter, filterBtn_Click));
+
+                RoutedCommand newCmdResetFilter = new RoutedCommand();
+                newCmdResetFilter.InputGestures.Add(new KeyGesture(Key.D, ModifierKeys.Control));
+                this.CommandBindings.Add(new CommandBinding(newCmdResetFilter, resetFilterBtn_Click));
+
+                RoutedCommand newCmdAddNewRoute = new RoutedCommand();
+                newCmdAddNewRoute.InputGestures.Add(new KeyGesture(Key.A, ModifierKeys.Control));
+                this.CommandBindings.Add(new CommandBinding(newCmdAddNewRoute, AddRoute_Click));
             }
         }
     }

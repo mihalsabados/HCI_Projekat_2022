@@ -11,15 +11,17 @@ namespace HCI_Projekat.model
         public String PlaceInTrain { get; set; }
         public double Price { get; set; }
 
+        public string Client { get; set; }
         public CardDataGrid() { }
 
         public CardDataGrid(String rr, DateTime dt, int wagonNumber,
-            int seatNumber, double price)
+            int seatNumber, double price, string clientName)
         {
             RouteName = rr;
             DateTimeName = dt;
             PlaceInTrain = wagonNumber + "/" + seatNumber;
             Price = price;
+            Client = clientName;
         }
     }
 

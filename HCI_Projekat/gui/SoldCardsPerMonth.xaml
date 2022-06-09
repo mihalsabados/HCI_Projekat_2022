@@ -7,7 +7,9 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:Wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="1100"
-      Title="Mesečni pregled prodatih karata" Background="#FFCECFC8">
+      Title="Mesečni pregled prodatih karata" Background="#FFCECFC8"
+      IsVisibleChanged="Page_IsVisibleChanged"
+      >
 
     <Grid>
         <Grid.RowDefinitions>

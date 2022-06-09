@@ -27,8 +27,6 @@ namespace HCI_Projekat.gui
         public MyReservedTicketsPage()
         {
             InitializeComponent();
-
-            
         }
 
         private void fillDataGridWithData(List<TrainTicket> tickets)
@@ -91,6 +89,12 @@ namespace HCI_Projekat.gui
                     ticketsDataGrid.Visibility = Visibility.Hidden;
                     SearchPanel.Visibility = Visibility.Hidden;
                 }
+
+                this.Focusable = true;
+                this.Focus();
+                RoutedCommand newCmdFilter = new RoutedCommand();
+                newCmdFilter.InputGestures.Add(new KeyGesture(Key.F1));
+                this.CommandBindings.Add(new CommandBinding(newCmdFilter, CommandBinding_Executed));
             }
         }
 
@@ -127,5 +131,12 @@ namespace HCI_Projekat.gui
 
             return c;
         }
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            string str = "myReservations";
+            HelpProvider.ShowHelp(str, this);
+        }
+
     }
 }

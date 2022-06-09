@@ -21,7 +21,8 @@ namespace HCI_Projekat.gui
 	/// </summary>
 	public partial class HomePageClient : Page
 	{
-		public HomePageClient()
+
+        public HomePageClient()
 		{
 			InitializeComponent();
 		}
@@ -37,8 +38,8 @@ namespace HCI_Projekat.gui
 		private void TimetableShow(object sender, RoutedEventArgs e)
 		{
 			hideAllPages();
-			this.TimetableView.Refresh();
-			this.TimetableView.Visibility = Visibility.Visible;
+			this.ReservationPage.Visibility = Visibility.Visible;
+			this.ReservationPage.Refresh();
 		}
 
         private void ReservationClick(object sender, RoutedEventArgs e)
@@ -56,7 +57,6 @@ namespace HCI_Projekat.gui
 
 		private void hideAllPages()
         {
-			TimetableView.Visibility = Visibility.Hidden;
 			ReservationPage.Visibility = Visibility.Hidden;
 			RouteMapView.Visibility = Visibility.Hidden;
 			MyReservations.Visibility = Visibility.Hidden;
@@ -67,7 +67,29 @@ namespace HCI_Projekat.gui
 			hideAllPages();
 			MyReservations.Visibility = Visibility.Visible;
         }
-    }
+
+		private void dokumentacijaClick(object sender, RoutedEventArgs e)
+		{
+			var helpPath = "timetable";
+			if (RouteMapView.Visibility == Visibility.Visible)
+				helpPath = "mreznaLinija";
+			else if (MyReservations.Visibility == Visibility.Visible)
+				helpPath = "myReservations";
+
+			HelpProvider.ShowHelp(helpPath, this);
+		}
+
+		private void demoClick(object sender, RoutedEventArgs e)
+		{
+			var helpPath = "demoTimetable";
+			if (RouteMapView.Visibility == Visibility.Visible)
+				helpPath = "demoMreznaLinija";
+			else if (MyReservations.Visibility == Visibility.Visible)
+				helpPath = "demoMyReservations";
+
+			HelpProvider.ShowHelp(helpPath, this);
+		}
+	}
 
 
 }

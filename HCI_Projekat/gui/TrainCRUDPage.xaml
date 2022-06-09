@@ -6,13 +6,14 @@
       xmlns:local="clr-namespace:HCI_Projekat.gui"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="HCI_Projekat.gui.TrainCRUDPage"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800" Background="#FFB2B2A6"
+      d:DesignHeight="450" d:DesignWidth="800" Background="#FFCECFC8"
+        IsVisibleChanged="Page_IsVisibleChanged"
       Title="TrainCRUDPage">
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="1.2*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" x:Name="TrainLayout">
@@ -20,23 +21,7 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition Height="10*"></RowDefinition>
             </Grid.RowDefinitions>
-            <Label Content="Svi vozovi:" HorizontalAlignment="Left" Grid.Row="0" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" Margin="62,0,62,0" Foreground="#FF485B83"/>
-            <TextBox
-                Visibility="Hidden"
-                    Grid.Column="1"
-                    x:Name="hiddenTextBox"
-                    Style="{StaticResource MaterialDesignTextBox}"
-                    VerticalAlignment="Center"
-                    AcceptsReturn="True"
-                    TextWrapping="Wrap"
-                    materialDesign:HintAssist.Hint="Pretraži..."
-                    HorizontalAlignment="Stretch"
-                    Margin="0,0,10,-5"
-                    FontSize="14"
-                    CaretBrush="#FF1ABC9C"
-                    SelectionBrush="#FFABF9EA"
-                    Foreground="#FF485B83"
-                />
+            <Label Content="Svi vozovi:" HorizontalAlignment="Left" Grid.Row="0" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" Margin="30,0,62,0" Foreground="#FF485B83"/>
         </Grid>
         <Grid Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" x:Name="FormLayout">
             <materialDesign:Card
@@ -56,11 +41,11 @@
                         <RowDefinition Height="0.4*"></RowDefinition>
                         <RowDefinition Height="0.25*"></RowDefinition>
                         <RowDefinition Height="2.5*"></RowDefinition>
-                        <RowDefinition Height="0.2*"></RowDefinition>
+                        <RowDefinition Height="0.28*"></RowDefinition>
                         <RowDefinition Height="0.5*"></RowDefinition>
                         <RowDefinition Height="0.2*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Label Content="Podaci o vozu:" HorizontalAlignment="Left" Grid.Row="0" VerticalAlignment="Stretch" FontSize="18" FontWeight="Bold" Margin="20,0,0,0" Foreground="#FF485B83"/>
+                    <Label Content="Podaci o vozu:" HorizontalAlignment="Left" Grid.Row="0" VerticalAlignment="Stretch" FontSize="18" FontWeight="Bold" Margin="10,0,0,0" Foreground="#FF485B83"/>
                     <TextBox
                         x:Name="trainNameTxt"
                         Grid.ColumnSpan="2"
@@ -71,18 +56,19 @@
                         TextWrapping="Wrap"
                         materialDesign:HintAssist.Hint="Naziv voza"
                         HorizontalAlignment="Stretch"
-                        Margin="20,0,20,0"
+                        Margin="10,0,20,0"
                         FontSize="14"
                         CaretBrush="#FF1ABC9C"
                         SelectionBrush="#FFABF9EA"
                         Foreground="#FF485B83"
                         Height="50"
                     />
-                    <Label Content="vagoni voza:" HorizontalAlignment="Stretch" Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom" FontSize="15" FontWeight="Bold" Margin="20,0,30,0" Foreground="#FF485B83"/>
-                    <Label Content="izgled vagona:" HorizontalAlignment="Stretch" Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" FontSize="15" FontWeight="Bold" Margin="20,0,30,0" Foreground="#FF485B83"/>
+                    <Label Content="Vagoni voza:" HorizontalAlignment="Stretch" Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom" FontSize="15" FontWeight="Bold" Margin="10,0,30,0" Foreground="#FF485B83"/>
+                    <Label Content="Izgled vagona:" HorizontalAlignment="Stretch" Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" FontSize="15" FontWeight="Bold" Margin="10,0,30,0" Foreground="#FF485B83"/>
                     <ListBox Grid.Row="3" HorizontalAlignment="Stretch" x:Name="WagonListBox"
                               ScrollViewer.CanContentScroll="True"
                               ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                             Margin="10,0,0,0"
                               ScrollViewer.PanningMode="HorizontalFirst" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" BorderBrush="#FF485B83" BorderThickness="1">
                      
                     </ListBox>

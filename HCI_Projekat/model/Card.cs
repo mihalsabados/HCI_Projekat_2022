@@ -13,10 +13,12 @@ namespace HCI_Projekat.model
         public double Price { get; set; }
         public Timetable TimetableForCard { get; set; }
 
+        public string ClientName { get; set; }
+
         public Card() { }
 
         public Card(Route routeForCard, DateTime dateTimeForCard, int wagonNumber, 
-            int seatNumber, double price, Timetable t)
+            int seatNumber, double price, Timetable t, string clientName)
         {
             RouteForCard = routeForCard;
             DateTimeForCard = dateTimeForCard;
@@ -24,6 +26,7 @@ namespace HCI_Projekat.model
             SeatNumber = seatNumber;
             Price = price;
             TimetableForCard = t;
+            ClientName = clientName;
         }
     }
 }
