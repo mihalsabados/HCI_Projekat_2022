@@ -1,0 +1,87 @@
+﻿<Page x:Class="HCI_Projekat.Login"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:HCI_Projekat"
+      mc:Ignorable="d" 
+      d:DesignHeight="350" d:DesignWidth="600"
+      IsVisibleChanged="Page_IsVisibleChanged"
+      Title="Prijava">
+
+	<Grid  Margin="0,0,0,0">
+		<Grid.Background>
+			<ImageBrush ImageSource="/firstPage.png" />
+		</Grid.Background>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+
+		<materialDesign:Card
+  Background="#FFCECFC8"
+  Padding="8"
+  UniformCornerRadius="6" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="250,20,40,20">
+			<StackPanel>
+				<Image Source="/railway.png" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="110,10,110,0" MaxHeight="80" MaxWidth="80"></Image>
+                <Label Content="Prijava" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" Margin="62,0,62,0" Foreground="#FF485B83"/>
+				<TextBox
+                x:Name="usernameTxt"
+                Style="{StaticResource MaterialDesignFilledTextBox}"
+                VerticalAlignment="Center"
+                AcceptsReturn="True"
+                TextWrapping="Wrap"
+                materialDesign:HintAssist.Hint="Korisničko ime"
+                Grid.Row="2"
+                HorizontalAlignment="Stretch"
+                Margin="20,10,20,0"
+                FontSize="14"
+                CaretBrush="#FF1ABC9C"
+                SelectionBrush="#FFABF9EA"
+                Foreground="#FF485B83"
+            />
+
+				<PasswordBox
+                 x:Name="passwordTxt"
+                 Style="{StaticResource MaterialDesignFilledPasswordBox}"
+                 VerticalAlignment="Center"
+                 materialDesign:HintAssist.Hint="Lozinka"
+                 Grid.Row="3"
+                 HorizontalAlignment="Stretch"
+                 Margin="20,10,20,0"
+                 FontSize="14"
+                 CaretBrush="#FF1ABC9C"
+                 SelectionBrush="#FFABF9EA"
+                 Foreground="#FF485B83"
+            />
+
+
+				<Button Content="Prijavi se" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Center" FontSize="14" Click="LoginClicked" Margin="45,10,45,0" Background="#FF485B83" BorderBrush="#FF485B83" Foreground="#FFCECFC8"/>
+				<Label
+                    Name="LoginError"
+                    Visibility="Hidden"
+                    Content="Pogrešno korisničko ime ili lozinka."
+                    HorizontalAlignment="Center"
+                    Grid.Row="5"
+                    VerticalAlignment="Top"
+                    Grid.RowSpan="2"
+                    Foreground="#FFC34E43"
+                    Margin="0,5,0,0" />
+
+
+				<Button
+				  Grid.Row="5" VerticalAlignment="Top" Grid.RowSpan="2"
+                  Click="ButtonRegister_OnClick"
+				  Margin="0,5,0,0"
+                  Content="Nemate nalog? Registrujte se." Foreground="#FF485B83" HorizontalAlignment="Center" FontSize="10" Background="{x:Null}" BorderBrush="{x:Null}"
+				/>
+                
+
+            </StackPanel>
+		</materialDesign:Card>
+	</Grid>
+
+</Page>

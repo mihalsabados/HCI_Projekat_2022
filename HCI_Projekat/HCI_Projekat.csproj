@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon />
+    <StartupObject />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="firstPage.png" />
+    <None Remove="login.png" />
+    <None Remove="railway.png" />
+    <None Remove="revenue.png" />
+    <None Remove="route.png" />
+    <None Remove="timetable.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="firstPage.png" />
+    <Resource Include="login.png" />
+    <Resource Include="railway.png" />
+    <Resource Include="revenue.png" />
+    <Resource Include="route.png" />
+    <Resource Include="timetable.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.3.0" />
+    <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
+    <PackageReference Include="BingMapsRESTToolkit" Version="1.1.4" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.6.0-ci182" />
+    <PackageReference Include="Microsoft.Maps.MapControl.WPF" Version="1.0.0.3" />
+    <PackageReference Include="ToastNotifications" Version="2.5.1" />
+    <PackageReference Include="ToastNotifications.Messages" Version="2.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="gui\AddEditTimetable - Copy %282%29.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>AddEditTimetable.xaml.cs</DependentUpon>
+    </Compile>
+    <Compile Update="gui\AddEditTimetable - Copy - Copy.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>AddEditTimetable - Copy.xaml.cs</DependentUpon>
+    </Compile>
+    <Compile Update="gui\AddEditTimetable - Copy.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>AddEditTimetable.xaml.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+</Project>

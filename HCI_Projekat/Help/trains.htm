@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1" charset='utf-8'>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color:rgb(38, 49, 113);
+}
+
+.topnav {
+  overflow: hidden;
+  padding: 0.5%;
+  background-color: rgb(38, 49, 113);
+  color: rgb(190, 73, 73);
+  font-size: 17px;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+</style>
+</head>
+<body>
+	
+  <div class="topnav">
+	<p><a href="./index.htm" style="font-size:11px; color:rgb(190, 73, 73)">Početna strana</a></p><br/><br/><br/>
+    <h2>Pregled, dodavanje, brisanje i izmena vozova</h2>
+  </div>
+  <div style="margin: 0 0 0 10px">
+    </br>
+    <p>Stranica za pregled, dodavanje, brisanje i izmenu vozova predstavlja CRUD operacije nad vozovima.</p>
+    <img width="50%" src="./slike/trains/PočetniPrikaz.jpg" alt="Nije moguće učitati sliku"/>
+    <br/>
+    <p>
+    Ukoliko se klikne na jednu karticu voza tada se otvara sa desne strane popunjena forma sa podacima postojećeg voza.
+    <br>
+    Prikazuje se polje za unos naziva voza (<b>Polje 1</b>).
+    <br>
+    Prikazuju se svi vagoni datog voza sa njihovim tipom (<b>Polje 2</b>).
+    <br>
+    Prikazuje se mogući broj putnika koji se menja na osnovu vagona (<b>Polje 3</b>)
+    </p>
+    <img width="50%" src="./slike/trains/Odabir postojećeg voza.jpg" alt="Nije moguće učitati sliku"/>
+    <br/>
+    <p>
+    Ukoliko se klikne na jednu karticu vagona (<b>Kartica 1</b>), tada se otvara sa desne strane izgled vagona sa sedištima (<b>Polje 2</b>).
+    </p>
+    <img width="50%" src="./slike/trains/Selektovanje vagona.jpg" alt="Nije moguće učitati sliku"/>
+    <br/>
+    <p>
+      Ukoliko se klikne na dodavanje vagona (<b>Kartica 3</b>), tada se otvara prozor za odabir veličine vagona.
+    </p>
+    <img width="30%" src="./slike/trains/Dodavanje vagona.jpg" alt="Nije moguće učitati sliku"/>
+    <br/>
+    <p>
+    Kada se doda vagon on se može videti u polju <b>Vagoni voza</b> (<b>Kartica 1</b>).
+    <br>
+    Brisanje vagona kliktanjem na dugme x (<b>Dugme 2</b>) se otvara prozor za potvrdu brisanja vagona.
+    <br>
+    Čuvanje izmena voza se može učiniti kliktanjem na dugme <b>Sačuvaj izmene</b>(<b>Dugme 3</b>) čime se ažurira postojeći voz i osvežavaju se prikaz vozova.
+    </p>
+    <img width="50%" src="./slike/trains/dodatVagon.jpg" alt="Nije moguće učitati sliku"/>
+    <br/>
+    <p>
+    Prozor potvrde brisanja.
+    </p>
+    <img width="30%" src="./slike/trains/PotvrdaBrisanjaVagona.jpg" alt="Nije moguće učitati sliku"/>
+    <br/>
+    <p>
+      Prozor nakon čuvanja izmena.
+    </p>
+    <img width="50%" src="./slike/trains/UspešnaIzmena.jpg" alt="Nije moguće učitati sliku"/>
+    <br/>
+
+    <p>
+      Postupak dodavanje voza se vrši kliktanjem na dugme <b>Dodaj novi voz</b> ili na taster <b>Ctrl + A</b> čime se otvara forma za popunjavanje podataka o vozu.
+    </p>
+      <img width="50%" src="./slike/trains/DodavanjeNovogVoza.jpg" alt="Nije moguće učitati sliku"/>
+      <br/>
+    <p>
+      Primer popunjene forme za dodavanje novog voza na dole slici.<br>
+      Za dodavanje voza potrebno je kliknuti na dugme <b>Dodaj voz</b> ili na taster <b>Enter</b> čime se dodaje novi voz u sistem i osvežava se prikaz vozova.
+    </p>
+      <img width="50%" src="./slike/trains/DodavanjeNovogVozaPopunjeo.jpg" alt="Nije moguće učitati sliku"/>
+      <br>
+    <p>
+    Prikaz nakon dodavanja voza. <br>
+    Dalje se voz može menjati voz isto kao i u gore navedenim koracima.<br>
+    Za brisanje voza se klikne na dugme <b>X</b> koja se nalazi na kartici voza označeno crvenim kvadratom.
+    </p>
+    <img width="50%" src="./slike/trains/NakonDodavanjaVoza.jpg" alt="Nije moguće učitati sliku"/>
+    <br>
+    <p>
+      Prikaz potvrde brisanja voza.
+    </p>
+    <img width="30%" src="./slike/trains/PotvrdaBrisanjaVoza.jpg" alt="Nije moguće učitati sliku"/>
+      <br>
+      <p>
+      Prikaz nakon potvrde brisanja voza.
+    </p>
+      <img width="50%" src="./slike/trains/Nakon brisanja vozajpg.jpg" alt="Nije moguće učitati sliku"/>
+  </div>
+<p style="color:rgb(38, 49, 113); padding-left: 1%;">Hvala što koristite naše usluge i srećan put želi Vam "Železnica Srbije"a.d.</p>
+</body>
+</html>

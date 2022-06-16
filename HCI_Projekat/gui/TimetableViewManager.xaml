@@ -1,0 +1,197 @@
+﻿<Page x:Class="HCI_Projekat.gui.TimetableViewManager"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HCI_Projekat.gui"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="1000"
+      Title="Red vožnje" Background="#FFCECFC8"
+      IsVisibleChanged="Page_IsVisibleChanged"
+      >
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.1*"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <materialDesign:Card
+            MaxWidth="320"
+            Background="#FF485B83"
+            Padding="8"
+            UniformCornerRadius="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20,20,20,20">
+            <StackPanel>
+                <Label Content="Red vožnje" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" Margin="10,0,0,0" Foreground="#FFCECFC8"/>
+                <Label Content="{Binding Source={x:Static sys:DateTime.Now}}" ContentStringFormat="dd. MM. yyyy." HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Center" FontSize="12" FontWeight="Bold" Margin="10,0,0,0" Foreground="#FFCECFC8"/>
+                <Label BorderThickness="0, 2, 0, 0" Grid.Row="1" BorderBrush="#FFCECFC8"/>
+
+                <ComboBox
+                    x:Name="fromRoutes"
+                    MaxWidth="250"
+                    Style="{StaticResource MaterialDesignFilledComboBox}"
+                    materialDesign:HintAssist.Hint="Polazište" Background="#FFCECFC8" Foreground="#FF485B83" FontSize="14" Margin="10,0,10,0" HorizontalAlignment="Stretch">
+
+                </ComboBox>
+                <Label
+                    Name="FromError"
+                    Visibility="Hidden"
+                    Content="Unesite polazište."
+                    HorizontalAlignment="Center"
+                    Foreground="#FFC34E43"
+                    Margin="0,1,0,0" />
+
+                <ComboBox
+                    MaxWidth="250"
+                    x:Name="toRoutes"
+                    Style="{StaticResource MaterialDesignFilledComboBox}"
+                    materialDesign:HintAssist.Hint="Dolazište" Background="#FFCECFC8" Foreground="#FF485B83" FontSize="14" Margin="10,5,10,0" HorizontalAlignment="Stretch">
+
+                </ComboBox>
+                <Label
+                    Name="ToError"
+                    Visibility="Hidden"
+                    Content="Unesite dolazište."
+                    HorizontalAlignment="Center"
+                    Foreground="#FFC34E43"
+                    Margin="0,1,0,0" />
+                <DatePicker
+                    MaxWidth="250"
+                    Language='sr-Lat'
+                    Name="LocaleDatePickerRTL"
+                    SelectedDate="{x:Static sys:DateTime.Now}"
+                    Style="{StaticResource MaterialDesignFilledDatePicker}"
+                    FlowDirection="LeftToRight"
+                    materialDesign:HintAssist.Hint="Izaberite datum" FontSize="14" VerticalAlignment="Stretch" Margin="10,10,10,0" Background="#FFCECFC8" Foreground="#FF485B83" FirstDayOfWeek="Monday" Text="dfdf"
+                />
+                <Button
+                  Click="Search"
+                  Content="Pretraži" ToolTip="Pretraži redove vožnje (Enter)" MaxWidth="150" MinWidth="150" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" FontSize="14" Background="#FFC34E43" BorderBrush="{x:Null}" Margin="10,10,10,20"
+				/>
+
+
+            </StackPanel>
+
+        </materialDesign:Card>
+
+        <StackPanel Grid.Column="1" Margin="0,10,10,10">
+            <Label Name="titleMessage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="14" FontWeight="Bold" Margin="10,20,0,0" Foreground="#FF485B83"/>
+            <Label Name="searchedMessage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="14" FontWeight="Bold" Margin="10,5,0,0" Foreground="#FFC34E43"/>
+            <Button x:Name="addTimetable" Visibility="Hidden" Click="ButtonClickAdd" Content="Dodavanje" ToolTip="Dodavanje novog reda vožnje (Ctrl-A)" HorizontalAlignment="Right" Margin="0,0,10,9" Background="#FF485B83" BorderBrush="#FF485B83" Foreground="#FFCECFC8"/>
+            <DataGrid Name="timetable"
+              ItemsSource="{Binding dataGridTimetable, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+              CanUserAddRows="False"
+              Visibility="Hidden"
+              SelectionUnit="FullRow"
+              SelectionMode="Single"
+              PreviewKeyDown="timetable_PreviewKeyDown"
+              IsReadOnly="True"
+              SelectedItem="{Binding editedTimetable, Mode=TwoWay}"
+              AutoGenerateColumns="False" Margin="0,5,10,0" HorizontalContentAlignment="Left" Foreground="#FF485B83" 
+            >
+                <DataGrid.Resources>
+                    <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}" >
+                        <Setter Property="Background" Value="#FF485B83" />
+                        <Setter Property="Foreground" Value="#FFCECFC8" />
+
+                        <Setter Property="BorderBrush" Value="#FFCECFC8"/>
+                        <Setter Property="FontSize" Value="12"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="BorderThickness" Value="1 1 1 1"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding StartDateTime, StringFormat='HH:mm'}" Header="Polazak" />
+                    <DataGridTextColumn Binding="{Binding StartDateTime, StringFormat='dd.MM.yyyy.'}" Header="Datum polaska" Width="1.5*" />
+                    <DataGridTextColumn Binding="{Binding EndDateTime, StringFormat='HH:mm'}" Header="Dolazak"  Width="*" />
+                    <DataGridTextColumn Binding="{Binding EndDateTime, StringFormat='dd.MM.yyyy.'}"  Width="1.5*" Header="Datum dolaska" />
+                    <DataGridTextColumn Binding="{Binding Duration}" Header="Putuje" />
+                    <DataGridTemplateColumn Header="Izmena">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Click="ButtonClickEdit"  Background="{x:Null}" BorderBrush="{x:Null}">
+                                    <materialDesign:PackIcon Kind="Pencil" Foreground="#FF485B83"/>
+
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Brisanje">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <materialDesign:DialogHost DialogTheme="Inherit">
+                                    <materialDesign:DialogHost.DialogContent>
+                                        <StackPanel Margin="16">
+                                            <TextBlock Text="Da li ste sigurni da želite" HorizontalAlignment="Center" />
+                                            <TextBlock Text="da uklonite izabrani red vožnje?" HorizontalAlignment="Center"/>
+                                        
+                                            <StackPanel
+                                                Orientation="Horizontal"
+                                                HorizontalAlignment="Center">
+                                                <Button
+                                                      Style="{StaticResource MaterialDesignFlatButton}"
+                                                      IsDefault="True"
+                                                      Margin="0 8 2 0"
+                                                      Content="Prihvati"
+                                                      Click="ButtonClickDelete"
+                                                      Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">        
+                                                    <Button.CommandParameter>
+                                                        <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                                            True
+                                                        </system:Boolean>
+                                                    </Button.CommandParameter>
+                                                </Button>
+                                                <Button
+          Style="{StaticResource MaterialDesignFlatButton}"
+          IsCancel="True"
+          Margin="0 8 8 0"
+          Content="Odustani"
+          Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
+                                                    <Button.CommandParameter>
+                                                        <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                                            False
+                                                        </system:Boolean>
+                                                    </Button.CommandParameter>
+                                                </Button>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </materialDesign:DialogHost.DialogContent>
+                                    <Border
+    ClipToBounds="True">
+                                        <Grid>
+                                           
+                                            <Button
+        Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+        
+        Content="{materialDesign:PackIcon Kind=Delete, Size=16}"  Background="{x:Null}" BorderThickness="0" Foreground="#FF485B83" />
+                                        </Grid>
+                                    </Border>
+                                </materialDesign:DialogHost>
+                            </DataTemplate>
+                           
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </StackPanel>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+    </Grid>
+</Page>
+
+

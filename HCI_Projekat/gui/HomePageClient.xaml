@@ -1,0 +1,57 @@
+﻿<Page x:Class="HCI_Projekat.gui.HomePageClient"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HCI_Projekat.gui" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Početna stranica klijenta"  Background="#FFCECFC8">
+
+    <Grid VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" HorizontalAlignment="Stretch" Background="#FF485B83" Foreground="#FFCECFC8">
+            <Menu.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <DockPanel HorizontalAlignment="Stretch"></DockPanel>
+                </ItemsPanelTemplate>
+            </Menu.ItemsPanel>
+            <MenuItem Header="Redovi vožnje" Foreground="#FFCECFC8" Click="TimetableShow" >
+            </MenuItem>
+            <MenuItem Header="Mreža linija" Foreground="#FFCECFC8" HorizontalAlignment="Stretch"  Click="ShowRouteMap_Click" >
+
+            </MenuItem>
+            <MenuItem Header="Pregled Rezervisanih" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" Click="ShowReservedTickets" >
+
+            </MenuItem>
+
+
+            <MenuItem Header="Pomoć"  Foreground="#FFCECFC8" HorizontalAlignment="Stretch" Background="#FF485B83" >
+                <MenuItem.Icon>
+                    <materialDesign:PackIcon Kind="HelpCircle" />
+                </MenuItem.Icon>
+
+                <MenuItem Click="dokumentacijaClick"  Header="Dokumentacija" Foreground="#FFCECFC8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                </MenuItem>
+                <Separator/>
+                <MenuItem Click="demoClick" Header="Demo"  Foreground="#FFCECFC8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                </MenuItem>
+
+            </MenuItem>
+
+            <MenuItem HorizontalAlignment="Right"  ToolTip="Odjava" Foreground="#FFCECFC8" Margin="-7,0,0,0" Click="Logout">
+                <MenuItem.Icon>
+                    <materialDesign:PackIcon Kind="Logout" />
+                </MenuItem.Icon>
+            </MenuItem>
+        </Menu>
+        <Frame Grid.Row="1" x:Name="ReservationPage" Source="/gui/ReservationPage.xaml" Visibility="Visible" VerticalAlignment="Stretch" Margin="0,0,0,0" />
+        <Frame Grid.Row="1" x:Name="RouteMapView" Source="/gui/RouteMapView.xaml" Visibility="Hidden" VerticalAlignment="Stretch" Margin="0,0,0,0"/>
+        <Frame Grid.Row="1" x:Name="TimetableView" Source="/gui/TimetableViewClient.xaml" Visibility="Hidden" Grid.Column="1" Margin="0,0,0,0" />
+        <Frame Grid.Row="1" x:Name="MyReservations" Source="/gui/MyReservedTicketsPage.xaml" Visibility="Hidden" Grid.Column="1" Margin="0,0,0,0" />
+
+    </Grid>
+</Page>
